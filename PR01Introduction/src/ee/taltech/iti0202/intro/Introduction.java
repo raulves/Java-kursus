@@ -12,10 +12,9 @@ public class Introduction {
     public static int countJava(String stringWithJava) {
 
         int i = 0;
-        String world = stringWithJava.toLowerCase();
 
         for (int x = 0; x < stringWithJava.length() - 3; x++) {
-            if (world.substring(x, x + 4).equals("java")) {
+            if (stringWithJava.toLowerCase().substring(x, x + 4).equals("java")) {
                 i += 1;
 
             }
