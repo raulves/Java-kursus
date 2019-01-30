@@ -61,14 +61,19 @@ public class Introduction {
      * @return true if sneakyNumber's value equals its number of occurrences
      */
     public static String howIsOutcome(int valueOne, int valueTwo) {
-        return "";
+        if (valueOne < 5 || valueTwo < 5) {
+            return "bad";
+        }else if (valueOne * 2 == valueTwo || valueTwo * 2 == valueOne) {
+            return "good";
+        }else {
+            return "ok";
+        }
     }
 
     public static void main(String[] args) {
         // static method we can call directly from static method (main)
         System.out.println(countJava("javaJavaJAVA"));  // 3
         System.out.println(countJava("Nothing here"));  // 0
-        System.out.println(doubleNumber(new int[] {1, 4, 7, 2, 2, 3}, 2));
         // try some other examples here
     }
 }
