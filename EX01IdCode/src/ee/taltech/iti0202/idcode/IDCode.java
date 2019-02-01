@@ -110,8 +110,55 @@ public class IDCode {
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
+        int[] numbers1 = {1,2,3,4,5,6,7,8,9,1};
+        int[] numbers2 = {3,4,5,6,7,8,9,1,2,3};
+        int count = 0;
+        int y = 0;
+        int mod = 0;
+        int count2 = 0;
+        int s = 0;
+        int mod2 = 0;
 
-        return true;
+
+        if (idCode.length() == 11) {
+            if (idCode.matches("[0-9]+")) {
+                for (int nr: numbers1) {
+                    count += nr * Integer.parseInt(idCode.substring(y, y + 1));
+                    y += 1;
+                    mod = count % 11;
+                 }
+                if (mod == 10) {
+                    for (int nrs: numbers2) {
+                        count2 += nrs * Integer.parseInt(idCode.substring(s, s + 1));
+                        s += 1;
+                        mod2 = count2 % 11;
+                    }
+                    if (mod2 == 10) {
+                        if (0 == Integer.parseInt(idCode.substring(10, 11))) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } else if (mod2 == Integer.parseInt(idCode.substring(10, 11))) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+
+
+                } else if (mod == Integer.parseInt(idCode.substring(10, 11))) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+                }
+
+        }
+
+
+        return false;
     }
 
     private static boolean isLeapYear(int fullYear) {
