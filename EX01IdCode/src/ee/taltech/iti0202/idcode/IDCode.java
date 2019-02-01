@@ -224,15 +224,4 @@ public class IDCode {
         }
         return Integer.parseInt(result);
     }
-
-    public static void main(String[] args) {
-
-        System.out.println(isYearNumberCorrect("39007190299"));
-        System.out.println(isQueueNumberCorrect("39007190299"));
-        System.out.println(getFullYear("39007190299"));
-        System.out.println(isIDCodeCorrect("39007190299"));
-        System.out.println(getInformationFromIDCode("39007190299"));
-    }
 }
-
-
