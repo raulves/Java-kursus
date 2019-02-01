@@ -10,24 +10,20 @@ public class IDCode {
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
-        char genderNumber = idCode.charAt(0);
+        int gender = Integer.parseInt(idCode.substring(0, 1));
 
-        switch (genderNumber) {
-            case '1': return true;
-            case '2': return true;
-            case '3': return true;
-            case '4': return true;
-            case '5': return true;
-            case '6': return true;
-            default:
-                return false;
+        for (int i = 1; i < 7; i++) {
+            if (i == gender) {
+                return true;
+            }
         }
 
+
+        return false;
     }
 
     private static boolean isYearNumberCorrect(String idCode) {
-        String yearNumber = idCode.substring(1, 3);
-        int year = Integer.parseInt(yearNumber);
+        int year = Integer.parseInt(idCode.substring(1, 3));
         if  (year < 100) {
             return true;
         }
@@ -35,6 +31,12 @@ public class IDCode {
     }
 
     private static boolean isMonthNumberCorrect(String idCode) {
+        int month = Integer.parseInt(idCode.substring(3, 5));
+        for (int i = 1; i < 13; i++) {
+            if (month == i) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -65,4 +67,11 @@ public class IDCode {
     public static int getFullYear(String idCode) {
         return 0;
     }
+
+    public static void main(String[] args) {
+
+        System.out.println(isYearNumberCorrect("39007190299"));
+    }
 }
+
+
