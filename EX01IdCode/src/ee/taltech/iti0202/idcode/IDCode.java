@@ -49,20 +49,15 @@ public class IDCode {
     private static boolean isYearNumberCorrect(String idCode) {
         int year = Integer.parseInt(idCode.substring(1, 3));
         final int YEARS = 99;
-        if  (year <= YEARS) {
-            return true;
-        }
-        return false;
+        return year <= YEARS;
+
     }
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
         final int MONTHS = 12;
-        if (month <= MONTHS && month > 0) {
-            return true;
-        }
+        return month <= MONTHS && month > 0;
 
-        return false;
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
@@ -84,11 +79,7 @@ public class IDCode {
             } else if (day < DAYS_29) {
                 return true;
             } else {
-                if (leapYear) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return leapYear;
             }
         }
         for (int nr: monthsLong) {
@@ -98,11 +89,7 @@ public class IDCode {
         }
         for (int nrs: monthsShort) {
             if (nrs == month) {
-                if (day < DAYS_31) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return day < DAYS_31;
             }
         }
 
@@ -113,10 +100,7 @@ public class IDCode {
     private static boolean isQueueNumberCorrect(String idCode) {
         int queueNumber = Integer.parseInt(idCode.substring(SUBSTRING_7, 10));
 
-        if (queueNumber < 1000 && queueNumber > 0) {
-            return true;
-        }
-        return false;
+        return queueNumber < 1000 && queueNumber > 0;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
@@ -145,25 +129,9 @@ public class IDCode {
                         mod2 = count2 % ID_LENGTH;
                     }
                     if (mod2 == 10) {
-                        if (0 == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else if (mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-
-
-                } else if (mod == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
-                    return true;
-                } else {
-                    return false;
-                }
-
+                        return 0 == Integer.parseInt(idCode.substring(10, SUBSTRING));
+                    } return mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING));
+                } return mod == Integer.parseInt(idCode.substring(10, SUBSTRING));
                 }
 
         }
@@ -178,13 +146,7 @@ public class IDCode {
         final int year100 = 100;
         if (fullYear % year4 == 0) {
             if (fullYear % year100 == 0) {
-                if (fullYear % year400 == 0) {
-                    return true;
-                } else {
-                    return false;
-
-                }
-
+                return fullYear % year400 == 0;
             } else {
                 return true;
             }
