@@ -130,14 +130,8 @@ public class IDCode {
                     }
                     if (mod2 == 10) {
                         return 0 == Integer.parseInt(idCode.substring(10, SUBSTRING));
-                    } else if (mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
-                        return true;
-                    } else {
-                        return false;
                     }
-
-
-
+                    return mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING));
                 } else if (mod == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
                     return true;
                 } else {
