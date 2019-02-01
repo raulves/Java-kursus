@@ -9,7 +9,19 @@ public class IDCode {
     public static boolean isIDCodeCorrect(String idCode) {
         if (idCode.length() == 11) {
             if (idCode.matches("[0-9]+")) {
-                return true;
+                if (isGenderNumberCorrect(idCode)) {
+                    if (isYearNumberCorrect(idCode)) {
+                        if (isMonthNumberCorrect(idCode)) {
+                            if (isDayNumberCorrect(idCode)) {
+                                if (isQueueNumberCorrect(idCode)) {
+                                    if (isControlNumberCorrect(idCode)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -64,7 +76,7 @@ public class IDCode {
 
     private static boolean isControlNumberCorrect(String idCode) {
 
-        return false;
+        return true;
     }
 
     private static boolean isLeapYear(int fullYear) {
