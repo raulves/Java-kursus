@@ -132,17 +132,10 @@ public class IDCode {
                         return 0 == Integer.parseInt(idCode.substring(10, SUBSTRING));
                     }
                     return mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING));
-                } else if (mod == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
-                    return true;
-                } else {
-                    return false;
                 }
-
+                return mod == Integer.parseInt(idCode.substring(10, SUBSTRING));
                 }
-
         }
-
-
         return false;
     }
 
