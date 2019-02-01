@@ -49,10 +49,9 @@ public class IDCode {
 
     private static boolean isQueueNumberCorrect(String idCode) {
         int queueNumber = Integer.parseInt(idCode.substring(7, 10));
-        if (queueNumber == 0) {
-            return false;
-        }
-        if (queueNumber < 1000) {
+        System.out.println(queueNumber);
+
+        if (queueNumber < 1000 && queueNumber > 000) {
             return true;
         }
         return false;
@@ -81,6 +80,7 @@ public class IDCode {
     public static void main(String[] args) {
 
         System.out.println(isYearNumberCorrect("39007190299"));
+        System.out.println(isQueueNumberCorrect("39007190299"));
     }
 }
 
