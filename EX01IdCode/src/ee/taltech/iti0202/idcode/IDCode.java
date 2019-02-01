@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.idcode;
 
+import java.util.Arrays;
+
 public class IDCode {
 
     private enum Gender {
@@ -50,7 +52,7 @@ public class IDCode {
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
-        if (month < 13) {
+        if (month < 13 && month > 0) {
             return true;
         }
 
@@ -58,12 +60,45 @@ public class IDCode {
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
+        int fullYear = getFullYear(idCode);
+        boolean leapYear = isLeapYear(fullYear);
         int day = Integer.parseInt(idCode.substring(5, 7));
-        if (day < 31) {
-            return true;
+        int month = Integer.parseInt(idCode.substring(3, 5));
+        int[] monthsLong = {1, 3, 5, 7, 8, 10, 12};
+        int[] monthsShort = {4, 6, 9, 11};
+        if (day > 31) {
+            return false;
+        }
+        if (month == 2) {
+            if (day > 29) {
+                return false;
+            } else if (day < 29) {
+                return true;
+            } else {
+                if (leapYear) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        for (int nr: monthsLong) {
+            if (nr == month) {
+                return true;
+            }
+        for (int nrs: monthsShort) {
+            if (nrs == month) {
+                if (day < 31) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
         }
         return false;
-    }
+        }
+
 
     private static boolean isQueueNumberCorrect(String idCode) {
         int queueNumber = Integer.parseInt(idCode.substring(7, 10));
