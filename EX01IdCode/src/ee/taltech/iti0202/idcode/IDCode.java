@@ -67,15 +67,15 @@ public class IDCode {
             if (fullYear % 100 == 0) {
                 if (fullYear % 400 == 0) {
                     return true;
-                }else {
+                } else {
                     return false;
 
                 }
 
-            }else {
+            } else {
                 return true;
             }
-        }else {
+        } else {
             return false;
         }
     }
@@ -99,14 +99,30 @@ public class IDCode {
     }
 
     public static int getFullYear(String idCode) {
-        return 0;
+        char gender = idCode.charAt(0);
+        String result = "";
+        switch (gender) {
+            case '1': result = "18" + idCode.substring(1, 3);
+                break;
+            case '2': result = "18" + idCode.substring(1, 3);
+                break;
+            case '3': result = "19" + idCode.substring(1, 3);
+                break;
+            case '4': result = "19" + idCode.substring(1, 3);
+                break;
+            case '5': result = "20" + idCode.substring(1, 3);
+                break;
+            case '6': result = "20" + idCode.substring(1, 3);
+                break;
+        }
+        return Integer.parseInt(result);
     }
 
     public static void main(String[] args) {
 
         System.out.println(isYearNumberCorrect("39007190299"));
         System.out.println(isQueueNumberCorrect("39007190299"));
-        System.out.println(isControlNumberCorrect("39007190299"));
+        System.out.println(getFullYear("39007190299"));
     }
 }
 
