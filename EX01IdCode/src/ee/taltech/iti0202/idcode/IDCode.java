@@ -8,7 +8,9 @@ public class IDCode {
 
     public static boolean isIDCodeCorrect(String idCode) {
         if (idCode.length() == 11) {
-            return true;
+            if (idCode.matches("[0-9]+")) {
+                return true;
+            }
         }
         return false;
     }
@@ -130,6 +132,7 @@ public class IDCode {
         System.out.println(isYearNumberCorrect("39007190299"));
         System.out.println(isQueueNumberCorrect("39007190299"));
         System.out.println(getFullYear("39007190299"));
+        System.out.println(isIDCodeCorrect("39007190299"));
     }
 }
 
