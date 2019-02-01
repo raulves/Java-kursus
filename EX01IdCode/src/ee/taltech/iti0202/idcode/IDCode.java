@@ -7,6 +7,9 @@ public class IDCode {
     }
 
     public static boolean isIDCodeCorrect(String idCode) {
+        if (idCode.length() == 11) {
+            return true;
+        }
         return false;
     }
 
