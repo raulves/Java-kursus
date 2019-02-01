@@ -220,6 +220,7 @@ public class IDCode {
                 break;
             case '6': result = "20" + idCode.substring(1, 3);
                 break;
+            default: return 0;
         }
         return Integer.parseInt(result);
     }
