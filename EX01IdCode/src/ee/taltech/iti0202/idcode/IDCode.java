@@ -26,6 +26,11 @@ public class IDCode {
     }
 
     private static boolean isYearNumberCorrect(String idCode) {
+        String yearNumber = idCode.substring(1, 3);
+        int year = Integer.parseInt(yearNumber);
+        if  (year < 100) {
+            return true;
+        }
         return false;
     }
 
