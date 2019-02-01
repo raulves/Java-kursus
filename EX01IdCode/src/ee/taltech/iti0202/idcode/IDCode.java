@@ -162,8 +162,10 @@ public class IDCode {
 
     private static boolean isLeapYear(int fullYear) {
         final int year400 = 400;
-        if (fullYear % 4 == 0) {
-            if (fullYear % 100 == 0) {
+        final int year4 = 4;
+        final int year100 = 100;
+        if (fullYear % year4 == 0) {
+            if (fullYear % year100 == 0) {
                 if (fullYear % year400 == 0) {
                     return true;
                 } else {
