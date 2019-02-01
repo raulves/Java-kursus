@@ -104,15 +104,15 @@ public class IDCode {
     private static boolean isQueueNumberCorrect(String idCode) {
         int queueNumber = Integer.parseInt(idCode.substring(7, 10));
 
-        if (queueNumber < 1000 && queueNumber > 000) {
+        if (queueNumber < 1000 && queueNumber > 0) {
             return true;
         }
         return false;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
-        int[] numbers1 = {1,2,3,4,5,6,7,8,9,1};
-        int[] numbers2 = {3,4,5,6,7,8,9,1,2,3};
+        int[] numbers1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+        int[] numbers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
         int count = 0;
         int y = 0;
         int mod = 0;
