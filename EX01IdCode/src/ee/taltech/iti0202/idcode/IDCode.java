@@ -7,6 +7,7 @@ public class IDCode {
     }
 
     private static final int ID_LENGTH = 11;
+    private static final int SUBSTRING_7 = 7;
 
     public static boolean isIDCodeCorrect(String idCode) {
         final int ID_LENGTH = 11;
@@ -67,7 +68,7 @@ public class IDCode {
     private static boolean isDayNumberCorrect(String idCode) {
         int fullYear = getFullYear(idCode);
         boolean leapYear = isLeapYear(fullYear);
-        int day = Integer.parseInt(idCode.substring(5, 7));
+        int day = Integer.parseInt(idCode.substring(5, SUBSTRING_7));
         int month = Integer.parseInt(idCode.substring(3, 5));
         final int[] monthsLong = {1, 3, 5, 7, 8, 10, 12};
         final int[] monthsShort = {4, 6, 9, 11};
@@ -110,7 +111,7 @@ public class IDCode {
 
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        int queueNumber = Integer.parseInt(idCode.substring(7, 10));
+        int queueNumber = Integer.parseInt(idCode.substring(SUBSTRING_7, 10));
 
         if (queueNumber < 1000 && queueNumber > 0) {
             return true;
@@ -200,7 +201,7 @@ public class IDCode {
 
         }
         if (isIDCodeCorrect(idCode)) {
-            return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + Integer.parseInt(idCode.substring(5, 7)) + "." + dayString + "." + getFullYear(idCode);
+            return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + Integer.parseInt(idCode.substring(5, SUBSTRING_7)) + "." + dayString + "." + getFullYear(idCode);
         }
 
         return "Given invalid ID code!";
