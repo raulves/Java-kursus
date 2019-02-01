@@ -7,7 +7,8 @@ public class IDCode {
     }
 
     public static boolean isIDCodeCorrect(String idCode) {
-        if (idCode.length() == 11) {
+        final int ID_LENGTH = 11;
+        if (idCode.length() == ID_LENGTH) {
             if (idCode.matches("[0-9]+")) {
                 if (isGenderNumberCorrect(idCode)) {
                     if (isYearNumberCorrect(idCode)) {
@@ -30,8 +31,10 @@ public class IDCode {
     private static boolean isGenderNumberCorrect(String idCode) {
         int gender = Integer.parseInt(idCode.substring(0, 1));
 
-        for (int i = 1; i < 7; i++) {
-            if (i == gender) {
+        int[] genderNumbers = {1, 2, 3, 4, 5, 6};
+
+        for (int x: genderNumbers) {
+            if (x == gender) {
                 return true;
             }
         }
