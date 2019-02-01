@@ -48,6 +48,10 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
+        int queueNumber = Integer.parseInt(idCode.substring(7, 10));
+        if (queueNumber < 1000) {
+            return true;
+        }
         return false;
     }
 
