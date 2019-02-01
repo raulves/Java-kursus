@@ -2,7 +2,7 @@ package ee.taltech.iti0202.idcode;
 
 public class IDCode {
 
-    public static final int year400 = 400;
+    private static final int year400 = 400;
 
     private enum Gender {
         MALE, FEMALE
