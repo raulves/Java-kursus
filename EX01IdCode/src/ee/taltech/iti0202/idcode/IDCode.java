@@ -45,7 +45,8 @@ public class IDCode {
 
     private static boolean isYearNumberCorrect(String idCode) {
         int year = Integer.parseInt(idCode.substring(1, 3));
-        if  (year < 100) {
+        final int YEARS = 99;
+        if  (year <= YEARS) {
             return true;
         }
         return false;
@@ -53,7 +54,8 @@ public class IDCode {
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
-        if (month < 13 && month > 0) {
+        final int MONTHS = 12;
+        if (month <= MONTHS && month > 0) {
             return true;
         }
 
