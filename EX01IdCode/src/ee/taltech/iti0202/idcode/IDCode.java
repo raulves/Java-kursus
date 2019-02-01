@@ -32,15 +32,18 @@ public class IDCode {
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
-        for (int i = 1; i < 13; i++) {
-            if (month == i) {
-                return true;
-            }
+        if (month < 13) {
+            return true;
         }
+
         return false;
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
+        int day = Integer.parseInt(idCode.substring(5, 7));
+        if (day < 31) {
+            return true;
+        }
         return false;
     }
 
