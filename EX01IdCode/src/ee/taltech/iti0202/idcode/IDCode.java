@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.idcode;
 
 public class IDCode {
+
     private enum Gender {
         MALE, FEMALE
     }
@@ -49,7 +50,6 @@ public class IDCode {
 
     private static boolean isQueueNumberCorrect(String idCode) {
         int queueNumber = Integer.parseInt(idCode.substring(7, 10));
-        System.out.println(queueNumber);
 
         if (queueNumber < 1000 && queueNumber > 000) {
             return true;
@@ -58,6 +58,7 @@ public class IDCode {
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
+
         return false;
     }
 
@@ -84,6 +85,16 @@ public class IDCode {
     }
 
     public static Gender getGender(String idCode) {
+        char gender = idCode.charAt(0);
+
+        switch (gender) {
+            case '1': return Gender.MALE;
+            case '2': return Gender.FEMALE;
+            case '3': return Gender.MALE;
+            case '4': return Gender.FEMALE;
+            case '5': return Gender.MALE;
+            case '6': return Gender.FEMALE;
+        }
         return null;
     }
 
@@ -95,6 +106,7 @@ public class IDCode {
 
         System.out.println(isYearNumberCorrect("39007190299"));
         System.out.println(isQueueNumberCorrect("39007190299"));
+        System.out.println(isControlNumberCorrect("39007190299"));
     }
 }
 
