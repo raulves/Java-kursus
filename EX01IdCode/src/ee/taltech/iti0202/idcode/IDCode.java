@@ -33,7 +33,7 @@ public class IDCode {
     private static boolean isGenderNumberCorrect(String idCode) {
         int gender = Integer.parseInt(idCode.substring(0, 1));
 
-        int[] genderNumbers = {1, 2, 3, 4, 5, 6};
+        final int[] genderNumbers = {1, 2, 3, 4, 5, 6};
 
         for (int x: genderNumbers) {
             if (x == gender) {
@@ -119,8 +119,8 @@ public class IDCode {
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
-        int[] numbers1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
-        int[] numbers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
+        final int[] numbers1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+        final int[] numbers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
         int count = 0;
         int y = 0;
         int mod = 0;
