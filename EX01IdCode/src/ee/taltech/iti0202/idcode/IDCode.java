@@ -196,14 +196,10 @@ public class IDCode {
 
     public static Gender getGender(String idCode) {
         char gender = idCode.charAt(0);
-
-        switch (gender) {
-            case '1': return Gender.MALE;
-            case '2': return Gender.FEMALE;
-            case '3': return Gender.MALE;
-            case '4': return Gender.FEMALE;
-            case '5': return Gender.MALE;
-            case '6': return Gender.FEMALE;
+        if (gender == '1' || gender == '3' || gender == '5') {
+            return Gender.MALE;
+        } else if (gender == '2' || gender == '4' || gender == '6') {
+            return Gender.FEMALE;
         }
         return null;
     }
