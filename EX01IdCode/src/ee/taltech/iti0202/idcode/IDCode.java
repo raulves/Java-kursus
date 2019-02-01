@@ -2,8 +2,6 @@ package ee.taltech.iti0202.idcode;
 
 public class IDCode {
 
-    private static final int year400 = 400;
-
     private enum Gender {
         MALE, FEMALE
     }
@@ -163,6 +161,7 @@ public class IDCode {
     }
 
     private static boolean isLeapYear(int fullYear) {
+        final int year400 = 400;
         if (fullYear % 4 == 0) {
             if (fullYear % 100 == 0) {
                 if (fullYear % year400 == 0) {
