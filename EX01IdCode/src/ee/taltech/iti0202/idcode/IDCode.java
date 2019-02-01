@@ -81,7 +81,11 @@ public class IDCode {
     }
 
     public static String getInformationFromIDCode(String idCode) {
-        return "";
+        if (idCode.length() == 11) {
+            return "";
+        }
+
+        return "Given invalid ID code!";
     }
 
     public static Gender getGender(String idCode) {
