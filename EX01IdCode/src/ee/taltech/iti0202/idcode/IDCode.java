@@ -180,8 +180,13 @@ public class IDCode {
     }
 
     public static String getInformationFromIDCode(String idCode) {
-        if (idCode.length() == 11) {
-            return "";
+        int day = Integer.parseInt(idCode.substring(3, 5));
+        String dayString = Integer.toString(day);
+        if (dayString.length() == 1) {
+            dayString = "0" + dayString;
+        }
+        if (isIDCodeCorrect(idCode)) {
+            return "This is a " + getGender(idCode) + " born on " + Integer.parseInt(idCode.substring(5, 7)) + "." + dayString + "." + getFullYear(idCode);
         }
 
         return "Given invalid ID code!";
@@ -227,6 +232,7 @@ public class IDCode {
         System.out.println(isQueueNumberCorrect("39007190299"));
         System.out.println(getFullYear("39007190299"));
         System.out.println(isIDCodeCorrect("39007190299"));
+        System.out.println(getInformationFromIDCode("39007190299"));
     }
 }
 
