@@ -13,19 +13,12 @@ public class IDCode {
         char genderNumber = idCode.charAt(0);
 
         switch (genderNumber) {
-
             case '1': return true;
-                break;
             case '2': return true;
-                break;
             case '3': return true;
-                break;
             case '4': return true;
-                break;
             case '5': return true;
-                break;
             case '6': return true;
-                break;
             default:
                 return false;
         }
