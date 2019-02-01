@@ -69,8 +69,8 @@ public class IDCode {
         boolean leapYear = isLeapYear(fullYear);
         int day = Integer.parseInt(idCode.substring(5, 7));
         int month = Integer.parseInt(idCode.substring(3, 5));
-        int[] monthsLong = {1, 3, 5, 7, 8, 10, 12};
-        int[] monthsShort = {4, 6, 9, 11};
+        final int[] monthsLong = {1, 3, 5, 7, 8, 10, 12};
+        final int[] monthsShort = {4, 6, 9, 11};
         final int DAYS_31 = 31;
         final int DAYS_29 = 29;
 
