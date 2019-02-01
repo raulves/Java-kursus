@@ -6,6 +6,8 @@ public class IDCode {
         MALE, FEMALE
     }
 
+    private static final int ID_LENGTH = 11;
+
     public static boolean isIDCodeCorrect(String idCode) {
         final int ID_LENGTH = 11;
         if (idCode.length() == ID_LENGTH) {
@@ -69,13 +71,16 @@ public class IDCode {
         int month = Integer.parseInt(idCode.substring(3, 5));
         int[] monthsLong = {1, 3, 5, 7, 8, 10, 12};
         int[] monthsShort = {4, 6, 9, 11};
-        if (day > 31) {
+        final int DAYS_31 = 31;
+        final int DAYS_29 = 29;
+
+        if (day > DAYS_31) {
             return false;
         }
         if (month == 2) {
-            if (day > 29) {
+            if (day > DAYS_29) {
                 return false;
-            } else if (day < 29) {
+            } else if (day < DAYS_29) {
                 return true;
             } else {
                 if (leapYear) {
@@ -92,7 +97,7 @@ public class IDCode {
         }
         for (int nrs: monthsShort) {
             if (nrs == month) {
-                if (day < 31) {
+                if (day < DAYS_31) {
                     return true;
                 } else {
                     return false;
@@ -124,18 +129,18 @@ public class IDCode {
         int mod2 = 0;
 
 
-        if (idCode.length() == 11) {
+        if (idCode.length() == ID_LENGTH) {
             if (idCode.matches("[0-9]+")) {
                 for (int nr: numbers1) {
                     count += nr * Integer.parseInt(idCode.substring(y, y + 1));
                     y += 1;
-                    mod = count % 11;
+                    mod = count % ID_LENGTH;
                  }
                 if (mod == 10) {
                     for (int nrs: numbers2) {
                         count2 += nrs * Integer.parseInt(idCode.substring(s, s + 1));
                         s += 1;
-                        mod2 = count2 % 11;
+                        mod2 = count2 % ID_LENGTH;
                     }
                     if (mod2 == 10) {
                         if (0 == Integer.parseInt(idCode.substring(10, 11))) {
