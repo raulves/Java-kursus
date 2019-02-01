@@ -86,6 +86,7 @@ public class IDCode {
             if (nr == month) {
                 return true;
             }
+        }
         for (int nrs: monthsShort) {
             if (nrs == month) {
                 if (day < 31) {
@@ -95,7 +96,7 @@ public class IDCode {
                 }
             }
         }
-        }
+
         return false;
         }
 
