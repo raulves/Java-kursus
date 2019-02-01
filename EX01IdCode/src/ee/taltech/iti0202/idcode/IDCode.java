@@ -121,6 +121,7 @@ public class IDCode {
     private static boolean isControlNumberCorrect(String idCode) {
         final int[] numbers1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
         final int[] numbers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
+        final int SUBSTRING = 11;
         int count = 0;
         int y = 0;
         int mod = 0;
@@ -143,12 +144,12 @@ public class IDCode {
                         mod2 = count2 % ID_LENGTH;
                     }
                     if (mod2 == 10) {
-                        if (0 == Integer.parseInt(idCode.substring(10, 11))) {
+                        if (0 == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
                             return true;
                         } else {
                             return false;
                         }
-                    } else if (mod2 == Integer.parseInt(idCode.substring(10, 11))) {
+                    } else if (mod2 == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
                         return true;
                     } else {
                         return false;
@@ -156,7 +157,7 @@ public class IDCode {
 
 
 
-                } else if (mod == Integer.parseInt(idCode.substring(10, 11))) {
+                } else if (mod == Integer.parseInt(idCode.substring(10, SUBSTRING))) {
                     return true;
                 } else {
                     return false;
