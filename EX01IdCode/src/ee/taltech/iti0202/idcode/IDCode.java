@@ -185,9 +185,10 @@ public class IDCode {
         String dayString = Integer.toString(day);
         if (dayString.length() == 1) {
             dayString = "0" + dayString;
+
         }
         if (isIDCodeCorrect(idCode)) {
-            return "This is a " + getGender(idCode) + " born on " + Integer.parseInt(idCode.substring(5, 7)) + "." + dayString + "." + getFullYear(idCode);
+            return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + Integer.parseInt(idCode.substring(5, 7)) + "." + dayString + "." + getFullYear(idCode);
         }
 
         return "Given invalid ID code!";
