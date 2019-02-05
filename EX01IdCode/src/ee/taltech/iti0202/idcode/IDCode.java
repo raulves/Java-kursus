@@ -106,24 +106,24 @@ public class IDCode {
         final int[] numbers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
         final int SUBSTRING = 11;
         int count = 0;
-        int y = 0;
+        int index1 = 0;
         int mod = 0;
         int count2 = 0;
-        int s = 0;
+        int index2 = 0;
         int mod2 = 0;
 
 
         if (idCode.length() == ID_LENGTH) {
             if (idCode.matches("[0-9]+")) {
                 for (int nr: numbers1) {
-                    count += nr * Integer.parseInt(idCode.substring(y, y + 1));
-                    y += 1;
+                    count += nr * Integer.parseInt(idCode.substring(index1, index1 + 1));
+                    index1 += 1;
                     mod = count % ID_LENGTH;
                  }
                 if (mod == 10) {
                     for (int nrs: numbers2) {
-                        count2 += nrs * Integer.parseInt(idCode.substring(s, s + 1));
-                        s += 1;
+                        count2 += nrs * Integer.parseInt(idCode.substring(index2, index2 + 1));
+                        index2 += 1;
                         mod2 = count2 % ID_LENGTH;
                     }
                     if (mod2 == 10) {
