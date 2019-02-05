@@ -78,7 +78,9 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
+
         Map<String, Integer> wordToCount = new HashMap<>();
+        ArrayList<String> even = new ArrayList<String>();
 
         for (String word: words) {
             Integer count = wordToCount.get(word);
@@ -87,16 +89,11 @@ public class Main {
             } else {
                 wordToCount.put(word, count + 1);
             }
-
-
-        }
-        // System.out.println(wordToCount);
-        ArrayList<String> even = new ArrayList<String>();
-
-        for (String string: wordToCount.keySet()) {
-            if (wordToCount.get(string) % 2 == 0) {
-                even.add(string);
+            if (wordToCount.get(word) % 2 == 0) {
+                even.add(word);
             }
+
+
         }
 
         return even;
