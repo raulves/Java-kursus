@@ -18,9 +18,7 @@ public class IDCode {
                         if (isMonthNumberCorrect(idCode)) {
                             if (isDayNumberCorrect(idCode)) {
                                 if (isQueueNumberCorrect(idCode)) {
-                                    if (isControlNumberCorrect(idCode)) {
-                                        return true;
-                                    }
+                                    return isControlNumberCorrect(idCode);
                                 }
                             }
                         }
