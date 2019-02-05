@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.strings;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 public class Main {
     /**
@@ -82,9 +84,9 @@ public class Main {
         System.out.println(mostFrequentWord(new String[]{"SPAM", "SPAM", "eggs", "bacon", "and", "SPAM"})); // SPAM
 
         System.out.println();
-        // System.out.println(onlyEvenWords(List.of("tere", "tere", "vanakere"))); // [tere]
-        // System.out.println(onlyEvenWords(List.of("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
-        // System.out.println(onlyEvenWords(List.of("a", "b", "b", "a"))); // [b, a]
+        System.out.println(onlyEvenWords(List.of("tere", "tere", "vanakere"))); // [tere]
+        System.out.println(onlyEvenWords(List.of("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
+        System.out.println(onlyEvenWords(List.of("a", "b", "b", "a"))); // [b, a]
         // System.out.println(onlyEvenWords(List.of("a", "b", "a", "b"))); // [a, b]
         // System.out.println(onlyEvenWords(List.of("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
