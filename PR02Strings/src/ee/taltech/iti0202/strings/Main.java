@@ -136,7 +136,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(wordCount(new String[]{})); // empty
-        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"}));
+        // {bacon=2, eggs=2, SPAM=3}
 
         System.out.println();
         System.out.println(mostFrequentWord(new String[]{})); // null
@@ -153,6 +154,6 @@ public class Main {
         System.out.println(onlyEvenCharacters("aaa")); // a
         System.out.println(onlyEvenCharacters("aabbcaca")); // abca
         System.out.println(onlyEvenCharacters("bob")); // b
-        System.out.println("\"" + onlyEvenCharacters("abc") + "\"");// ""
+        System.out.println("\"" + onlyEvenCharacters("abc") + "\""); // ""
     }
 }
