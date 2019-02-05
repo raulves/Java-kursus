@@ -79,7 +79,7 @@ public class Main {
      */
     public static List<String> onlyEvenWords(List<String> words) {
 
-        Map<String, Integer> wordToCount = new HashMap<>();
+        HashMap<String, Integer> wordToCount = new HashMap<>();
         ArrayList<String> even = new ArrayList<String>();
 
         for (String word: words) {
