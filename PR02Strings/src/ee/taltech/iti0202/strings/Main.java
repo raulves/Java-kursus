@@ -114,7 +114,23 @@ public class Main {
      * @return string
      */
     public static String onlyEvenCharacters(String input) {
-        return "FooBar";
+
+        String result = "";
+        Map<Character, Integer> magic = new HashMap<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            if (magic.containsKey(input.charAt(i))) {
+                int count = magic.get(input.charAt(i));
+                count++;
+                magic.put(input.charAt(i), count);
+            } else {
+                magic.put(input.charAt(i), 1);
+            }
+            if (magic.get(input.charAt(i)) % 2 == 0) {
+                result += input.charAt(i);
+            }
+        }
+        return result;
     }
 
 
