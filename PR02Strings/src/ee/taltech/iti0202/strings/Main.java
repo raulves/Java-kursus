@@ -13,19 +13,19 @@ public class Main {
      */
     public static Map<String, Integer> wordCount(String[] sentence) {
 
-        Map<String, Integer> word_to_count = new HashMap<>();
+        Map<String, Integer> wordToCount = new HashMap<>();
 
         for (String word: sentence) {
-            Integer count = word_to_count.get(word);
+            Integer count = wordToCount.get(word);
             if (count == null) {
-                word_to_count.put(word, 1);
+                wordToCount.put(word, 1);
             } else {
-                word_to_count.put(word, count + 1);
+                wordToCount.put(word, count + 1);
             }
 
         }
 
-        return word_to_count;
+        return wordToCount;
     }
 
 
@@ -52,9 +52,9 @@ public class Main {
      * @param words input list to filter
      * @return list of strings matching criteria
      */
-    // public static List<String> onlyEvenWords(List<String> words) {
-        // return List.of();
-    // }
+    public static List<String> onlyEvenWords(List<String> words) {
+        return List.of();
+    }
 
     /**
      * Loop over the given string to build a result string like this:
