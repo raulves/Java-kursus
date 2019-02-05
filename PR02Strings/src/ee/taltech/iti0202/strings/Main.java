@@ -57,7 +57,7 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return List.of();
+        return new ArrayList<String>();
     }
 
     /**
