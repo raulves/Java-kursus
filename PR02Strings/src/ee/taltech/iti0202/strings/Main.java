@@ -78,7 +78,30 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return new ArrayList<String>();
+        Map<String, Integer> wordToCount = new HashMap<>();
+
+        for (String word: words) {
+            Integer count = wordToCount.get(word);
+            if (count == null) {
+                wordToCount.put(word, 1);
+            } else {
+                wordToCount.put(word, count + 1);
+            }
+
+
+        }
+        // System.out.println(wordToCount);
+        ArrayList<String> even = new ArrayList<String>();
+
+        for (String string: wordToCount.keySet()) {
+            if (wordToCount.get(string) % 2 == 0) {
+                even.add(string);
+            }
+        }
+
+        return even;
+
+
     }
 
     /**
