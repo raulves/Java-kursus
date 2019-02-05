@@ -27,6 +27,7 @@ public class Main {
                 wordToCount.put(word, count + 1);
             }
 
+
         }
 
         return wordToCount;
@@ -42,7 +43,27 @@ public class Main {
      * @return most frequent word in the sentence
      */
     public static String mostFrequentWord(String[] sentence) {
-        return "TODO";
+        Map<String, Integer> wordToCount = new HashMap<>();
+
+        if (sentence.length == 0) {
+            return null;
+        }
+        String result = sentence[0];
+
+        for (String word: sentence) {
+            Integer count = wordToCount.get(word);
+            if (count == null) {
+                wordToCount.put(word, 1);
+            } else {
+                wordToCount.put(word, count + 1);
+            }
+            if (wordToCount.get(result) < wordToCount.get(word)) {
+                result = word;
+            }
+
+        }
+
+        return result;
     }
 
     /**
