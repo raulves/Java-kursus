@@ -87,8 +87,8 @@ public class Main {
         System.out.println(onlyEvenWords(List.of("tere", "tere", "vanakere"))); // [tere]
         System.out.println(onlyEvenWords(List.of("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
         System.out.println(onlyEvenWords(List.of("a", "b", "b", "a"))); // [b, a]
-        // System.out.println(onlyEvenWords(List.of("a", "b", "a", "b"))); // [a, b]
-        // System.out.println(onlyEvenWords(List.of("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(List.of("a", "b", "a", "b"))); // [a, b]
+        System.out.println(onlyEvenWords(List.of("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
         System.out.println();
         System.out.println(onlyEvenCharacters("aaa")); // a
