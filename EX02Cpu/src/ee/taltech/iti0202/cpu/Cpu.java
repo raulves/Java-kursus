@@ -6,6 +6,38 @@ public class Cpu {
 
     public static Map<String, Integer> compute(String instructions) {
         Map<String, Integer> registry = registers(instructions);
+        String[] linesList = instructions.split("\\r?\\n");
+
+        for (String line: linesList) {
+            String[] lineSplit = line.split(" ");
+            switch (lineSplit[5]) {
+                case "<": if (registry.get(lineSplit[4]) < Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                case ">": if (registry.get(lineSplit[4]) > Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                case ">=": if (registry.get(lineSplit[4]) >= Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                case "==": if (registry.get(lineSplit[4]) == Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                case "!=": if (registry.get(lineSplit[4]) != Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                case "<=": if (registry.get(lineSplit[4]) <= Integer.parseInt(lineSplit[6])) {
+                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                }
+                    break;
+                default: break;
+            }
+        }
 
 
         return registry;
