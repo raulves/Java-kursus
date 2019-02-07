@@ -12,27 +12,57 @@ public class Cpu {
             String[] lineSplit = line.split(" ");
             switch (lineSplit[5]) {
                 case "<": if (registry.get(lineSplit[4]) < Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 case ">": if (registry.get(lineSplit[4]) > Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 case ">=": if (registry.get(lineSplit[4]) >= Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 case "==": if (registry.get(lineSplit[4]) == Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 case "!=": if (registry.get(lineSplit[4]) != Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 case "<=": if (registry.get(lineSplit[4]) <= Integer.parseInt(lineSplit[6])) {
-                    registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    if (lineSplit[1].equals("inc")) {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
+                    } else {
+                        registry.put(lineSplit[0], registry.get(lineSplit[0]) - Integer.parseInt(lineSplit[2]));
+                    }
+
                 }
                     break;
                 default: break;
@@ -57,6 +87,8 @@ public class Cpu {
         }
         return result;
     }
+
+
 
 
     public static void main(String[] args) {
