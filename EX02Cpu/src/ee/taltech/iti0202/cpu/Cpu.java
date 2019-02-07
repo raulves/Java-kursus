@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Cpu {
 
-    public static final int comparingNumberIndex = 6;
+    public static final int COMPARINGNUMBERINDEX = 6;
 
     public static Map<String, Integer> compute(String instructions) {
         Map<String, Integer> registry = registers(instructions);
@@ -13,7 +13,7 @@ public class Cpu {
         for (String line: linesList) {
             String[] lineSplit = line.split(" ");
             switch (lineSplit[5]) {
-                case "<": if (registry.get(lineSplit[4]) < Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case "<": if (registry.get(lineSplit[4]) < Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
@@ -22,7 +22,7 @@ public class Cpu {
 
                 }
                     break;
-                case ">": if (registry.get(lineSplit[4]) > Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case ">": if (registry.get(lineSplit[4]) > Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
@@ -31,7 +31,7 @@ public class Cpu {
 
                 }
                     break;
-                case ">=": if (registry.get(lineSplit[4]) >= Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case ">=": if (registry.get(lineSplit[4]) >= Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
@@ -40,7 +40,7 @@ public class Cpu {
 
                 }
                     break;
-                case "==": if (registry.get(lineSplit[4]) == Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case "==": if (registry.get(lineSplit[4]) == Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
@@ -49,7 +49,7 @@ public class Cpu {
 
                 }
                     break;
-                case "!=": if (registry.get(lineSplit[4]) != Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case "!=": if (registry.get(lineSplit[4]) != Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
@@ -58,7 +58,7 @@ public class Cpu {
 
                 }
                     break;
-                case "<=": if (registry.get(lineSplit[4]) <= Integer.parseInt(lineSplit[comparingNumberIndex])) {
+                case "<=": if (registry.get(lineSplit[4]) <= Integer.parseInt(lineSplit[COMPARINGNUMBERINDEX])) {
                     if (lineSplit[1].equals("inc")) {
                         registry.put(lineSplit[0], registry.get(lineSplit[0]) + Integer.parseInt(lineSplit[2]));
                     } else {
