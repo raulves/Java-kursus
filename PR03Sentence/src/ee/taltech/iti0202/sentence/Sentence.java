@@ -2,7 +2,6 @@
 package ee.taltech.iti0202.sentence;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,14 +22,13 @@ public class Sentence {
      */
     public Sentence(String text) {
         this.text = text;
-        List<String> splitSentence = new ArrayList<>(Arrays.asList(text.split(" ")));
 
-        for (String word : splitSentence) {
+        for (String word : text.split(" ")) {
             if (addWord(word)) {
                 continue;
             }
         }
-        // System.out.println(words);
+        System.out.println(words);
     }
 
     public Sentence() {
@@ -49,6 +47,11 @@ public class Sentence {
         if (words.contains(word)) {
             words.remove(word);
             return true;
+        }
+        for (String s : words) {
+            if (s.endsWith(".") || s.endsWith("!") || s.endsWith("?")) {
+                return false;
+            }
         }
 
         return false;
