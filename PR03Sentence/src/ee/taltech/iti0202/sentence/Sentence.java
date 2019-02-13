@@ -113,11 +113,19 @@ public class Sentence {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Sentence sentence = (Sentence) o;
+
+        return words != null ? words.equals(sentence.words) : sentence.words == null;
     }
 
-
+    @Override
+    public int hashCode() {
+        return words != null ? words.hashCode() : 0;
+    }
 
     public static void main(String[] args) {
         Sentence s1 = new Sentence("hello world");
