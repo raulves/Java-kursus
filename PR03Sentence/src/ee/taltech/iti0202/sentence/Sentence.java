@@ -135,7 +135,6 @@ public class Sentence {
         System.out.println(s4); // Hi!
         Sentence s5 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
         System.out.println(s5); // So.me po.in.ts he,re but only end counts.
-        
         Sentence s6 = new Sentence();
         s6.addWord("hello");
         System.out.println(s6);  // Hello...
