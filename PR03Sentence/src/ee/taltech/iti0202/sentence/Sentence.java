@@ -49,18 +49,13 @@ public class Sentence {
      * @return Whether word was in the sentence and removed.
      */
     public boolean removeWord(String word) {
-        for (String s : words) {
-            if (s.endsWith(".") || s.endsWith("!") || s.endsWith("?")) {
-                return false;
+        if (words.contains(word)) {
+            if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
+                words.remove(word);
+                return true;
             }
         }
-
-        if (words.contains(word)) {
-            words.remove(word);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
