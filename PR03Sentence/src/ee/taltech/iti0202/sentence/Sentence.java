@@ -119,12 +119,12 @@ public class Sentence {
 
         Sentence sentence = (Sentence) o;
 
-        return words != null ? words.equals(sentence.words) : sentence.words == null;
+        return toString().equals(o.toString());
     }
 
     @Override
     public int hashCode() {
-        return words != null ? words.hashCode() : 0;
+        return toString().hashCode();
     }
 
     public static void main(String[] args) {
