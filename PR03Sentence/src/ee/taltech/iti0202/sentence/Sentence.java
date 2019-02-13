@@ -8,8 +8,8 @@ import java.util.List;
  * Sentence class represent words and punctuation.
  */
 public class Sentence {
-    private String text;
-    private String punctuation = "...";
+
+    private String punctuationForSentence = "";
     private List<String> words = new ArrayList<>();
 
     /*
@@ -21,14 +21,19 @@ public class Sentence {
      * @param text Sentence as string
      */
     public Sentence(String text) {
-        this.text = text;
 
         for (String word : text.split(" ")) {
-            if (addWord(word)) {
-                continue;
+            if (word.endsWith(".") || word.endsWith("!") || word.endsWith("?")) {
+                String wordWithoutPunctuation = word.substring(0, word.length() - 1);
+                words.add(wordWithoutPunctuation);
+                punctuationForSentence = word.substring(word.length() - 1);
+                break;
+            } else {
+                if (word.length() != 0) {
+                    words.add(word);
+                }
             }
         }
-        System.out.println(words);
     }
 
     public Sentence() {
@@ -44,17 +49,18 @@ public class Sentence {
      * @return Whether word was in the sentence and removed.
      */
     public boolean removeWord(String word) {
-        if (words.contains(word)) {
-            words.remove(word);
-            return true;
-        }
         for (String s : words) {
             if (s.endsWith(".") || s.endsWith("!") || s.endsWith("?")) {
                 return false;
             }
         }
 
-        return false;
+        if (words.contains(word)) {
+            words.remove(word);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -68,10 +74,12 @@ public class Sentence {
     public boolean addWord(String word) {
         if (word.length() == 0) {
             return false;
-        } else {
+        }
+        if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
             words.add(word);
             return true;
         }
+        return false;
     }
 
     /**
@@ -84,7 +92,16 @@ public class Sentence {
      * @return Whether punctuation was added (false if sentence already had punctuation).
      */
     public boolean addPunctuation(String punctuation) {
-        return true;
+        if (words.size() == 0) {
+            return false;
+        }
+
+        if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
+            punctuationForSentence = punctuation;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -96,23 +113,26 @@ public class Sentence {
      * @return Whether punctuation was removed (false if there was no punctuation).
      */
     public boolean removePunctuation() {
-
-        return true;
+        if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
+            return false;
+        } else {
+            punctuationForSentence = "";
+            return true;
+        }
     }
 
     @Override
     public String toString() {
-        String result = "";
 
-        for (String word : words) {
-            if (word.endsWith(".") || word.endsWith("!") || word.endsWith("?")) {
-                result += word;
-                break;
-            } else {
-                result += word + " ";
-            }
+        String result = String.join(" ", words);
+        if (punctuationForSentence.equals("")) {
+            punctuationForSentence = "...";
         }
-        return result.substring(0, 1).toUpperCase() + result.substring(1);
+        if (result.length() == 0) {
+            return "";
+        }
+
+        return result.substring(0, 1).toUpperCase() + result.substring(1) + punctuationForSentence;
     }
 
     @Override
