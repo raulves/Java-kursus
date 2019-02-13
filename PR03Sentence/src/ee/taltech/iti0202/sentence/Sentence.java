@@ -13,9 +13,7 @@ public class Sentence {
     private String punctuation = "...";
     private List<String> words = new ArrayList<>();
 
-    // TODO: add some private variable(s) here
-    
-    /**
+    /*
      * Given string is treated as possible sentence.
      *
      * Ignore all duplicate whitespaces.
