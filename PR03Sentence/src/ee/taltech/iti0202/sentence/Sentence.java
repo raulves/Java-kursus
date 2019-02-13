@@ -9,7 +9,10 @@ import java.util.List;
  * Sentence class represent words and punctuation.
  */
 public class Sentence {
-    String text;
+    private String text;
+    private String punctuation = "...";
+    private List<String> words = new ArrayList<>();
+
     // TODO: add some private variable(s) here
     
     /**
@@ -22,10 +25,13 @@ public class Sentence {
      */
     public Sentence(String text) {
         this.text = text;
-        List<String> words = new ArrayList<>(Arrays.asList(text.split(" ")));
+        List<String> splitSentence = new ArrayList<>(Arrays.asList(text.split(" ")));
 
-
-
+        for (String word : splitSentence) {
+            if (addWord(word)) {
+                continue;
+            }
+        }
         // System.out.println(words);
     }
 
@@ -42,6 +48,10 @@ public class Sentence {
      * @return Whether word was in the sentence and removed.
      */
     public boolean removeWord(String word) {
+        if (words.contains(word)) {
+            words.remove(word);
+            return true;
+        }
 
         return false;
     }
@@ -55,8 +65,12 @@ public class Sentence {
      * @return Whether word was added to sentence (false if sentence has punctuation).
      */
     public boolean addWord(String word) {
-
-        return false;
+        if (word.length() == 0) {
+            return false;
+        } else {
+            words.add(word);
+            return true;
+        }
     }
 
     /**
@@ -81,12 +95,23 @@ public class Sentence {
      * @return Whether punctuation was removed (false if there was no punctuation).
      */
     public boolean removePunctuation() {
+
         return true;
     }
 
     @Override
     public String toString() {
-        return text;
+        String result = "";
+
+        for (String word : words) {
+            if (word.endsWith(".") || word.endsWith("!") || word.endsWith("?")) {
+                result += word;
+                break;
+            } else {
+                result += word + " ";
+            }
+        }
+        return result.substring(0, 1).toUpperCase() + result.substring(1);
     }
 
     @Override
@@ -131,7 +156,7 @@ public class Sentence {
         s6.addWord("??");
         s6.addPunctuation("hello");
         System.out.println(s6);  // ??hello
-        
+
         Sentence s7 = new Sentence(" hello     world    yes?");
         System.out.println(s7);  // Hello world yes?
         System.out.println(s7.addWord("CANNOT"));  // false
