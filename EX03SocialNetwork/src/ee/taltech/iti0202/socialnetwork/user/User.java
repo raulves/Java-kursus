@@ -1,7 +1,7 @@
 package ee.taltech.iti0202.socialnetwork.user;
 public class User {
-    String name;
-    Integer age;
+    private String name;
+    private Integer age;
 
     public User(String name) {
         this.name = name;
@@ -19,5 +19,11 @@ public class User {
     public Integer getAge() {
         return age;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 
 }
