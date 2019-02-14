@@ -29,6 +29,7 @@ public class Group {
 
     }
 
+
     public User getOwner() {
         return owner;
     }
