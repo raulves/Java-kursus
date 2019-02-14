@@ -46,7 +46,6 @@ public class Group {
         if (usersInGroup.contains(message.getAuthor())) {
             messagesPublished.add(message);
         }
-
     }
 
     public List<Message> getMessages() {
