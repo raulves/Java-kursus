@@ -37,8 +37,7 @@ public class Group {
         usersInGroup.add(user);
     }
 
-    public Set<User> getParticipants()
-    {
+    public Set<User> getParticipants() {
         return usersInGroup;
     }
 
