@@ -44,7 +44,7 @@ public class SocialNetworkDemo {
         socialNetwork.registerGroup(group2);
         System.out.println(socialNetwork.getGroups()); // [group1, newGroup]
 
-        // System.out.println(socialNetwork.getFeedForUser(user2)); // [title1]
+        System.out.println(socialNetwork.getFeedForUser(user2)); // [title1]
     }
 
 }
