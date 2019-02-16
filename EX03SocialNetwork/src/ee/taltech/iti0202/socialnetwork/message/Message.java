@@ -10,18 +10,12 @@ public class Message {
     private String title;
     private String message;
     private User author;
-    private Set<Message> userMessages = new HashSet<>();
 
 
     public Message(String title, String message, User author) {
         this.title = title;
         this.message = message;
         this.author = author;
-
-        new Feed(author, userMessages);
-
-
-
 
     }
 
