@@ -23,4 +23,9 @@ public class Feed {
     public Set<Message> getMessages() {
         return messages;
     }
+
+    @Override
+    public String toString() {
+        return user.toString();
+    }
 }

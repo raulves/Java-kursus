@@ -4,9 +4,7 @@ import ee.taltech.iti0202.socialnetwork.group.Group;
 import ee.taltech.iti0202.socialnetwork.message.Message;
 import ee.taltech.iti0202.socialnetwork.user.User;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SocialNetwork {
 
@@ -22,9 +20,13 @@ public class SocialNetwork {
     }
 
     public Feed getFeedForUser(User user) {
-        Feed feed = new Feed(user, userMessages);
+        for (Group group : allGroups) {
+            if (group.getParticipants().contains(user)) {
+                userMessages.addAll(group.getMessages());
+            }
+        }
 
-        return feed;
+        return new Feed(user, userMessages);
     }
 
     @Override
