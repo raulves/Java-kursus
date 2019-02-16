@@ -6,6 +6,7 @@ import ee.taltech.iti0202.socialnetwork.user.User;
 public class SocialNetworkDemo {
 
     public static void main(String[] args) {
+        /*
         User user1 = new User("user1");
         System.out.println(user1.getName()); // user1
         System.out.println(user1.getAge()); // null
@@ -45,6 +46,7 @@ public class SocialNetworkDemo {
         System.out.println(socialNetwork.getGroups()); // [group1, newGroup]
 
         System.out.println(socialNetwork.getFeedForUser(user2)); // [title1]
+        */
     }
 
 }
