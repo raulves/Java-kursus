@@ -22,8 +22,9 @@ public class SocialNetwork {
     }
 
     public Feed getFeedForUser(User user) {
+        Feed feed = new Feed(user, userMessages);
 
-        return new Feed(user, userMessages);
+        return feed;
     }
 
     @Override
