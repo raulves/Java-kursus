@@ -4,7 +4,10 @@ import ee.taltech.iti0202.socialnetwork.group.Group;
 import ee.taltech.iti0202.socialnetwork.message.Message;
 import ee.taltech.iti0202.socialnetwork.user.User;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 public class SocialNetwork {
 
