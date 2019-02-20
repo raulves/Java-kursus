@@ -73,7 +73,7 @@ public class Stock {
      * if stock has a given product.
      *
      * Use getProduct() method to get the product.
-     * 
+     *
      * If there is nothing to remove, return Optional.empty()
      *
      * @param name Name of the product to be removed
@@ -81,6 +81,11 @@ public class Stock {
      */
 
     public Optional<Product> removeProduct(String name) {
+        List<Product> sorted = getProducts(name);
+        if (sorted.size() != 0) {
+            productsInStock.remove(sorted.get(0));
+            return Optional.of(sorted.get(0));
+        }
 
         return Optional.empty();
     }
