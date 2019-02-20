@@ -25,34 +25,34 @@ public class StockDemo {
     System.out.println(fruitStock.getProducts()); // expensiveApple, cheapApple
 
 
-    // Optional<Product> apple = fruitStock.getProduct("apple"); // Optional.of(cheapApple)
-    // apple.ifPresent(System.out::println); // cheapApple
-    /*
+    Optional<Product> apple = fruitStock.getProduct("apple"); // Optional.of(cheapApple)
+    apple.ifPresent(System.out::println); // cheapApple
+
     fruitStock.addProduct(orange);
     fruitStock.addProduct(mango);
     System.out.println(fruitStock.getProducts().size()); // 4
     System.out.println(fruitStock.getProducts("apple")); // cheapApple, expensiveApple
-    */
-    /*
+
+
     try {
       fruitStock.addProduct(pear);
     } catch (StockException e) {
       System.out.println(e.getReason()); // STOCK_IS_FULL
     }
-    */
-    /*
+
+
     try {
       fruitStock.addProduct(mango);
     } catch (StockException e) {
       System.out.println(e.getReason()); // STOCK_ALREADY_CONTAINS_PRODUCT
     }
-    */
-    // Optional<Product> removedMango = fruitStock.removeProduct("mango"); // Optional.of(mango)
-    // removedMango.ifPresent(System.out::println);
 
-    // System.out.println(fruitStock.removeProduct("apple")); // Optional[cheapApple]
-    // System.out.println(fruitStock.removeProduct("apple").get()); // Optional[]
-    // System.out.println(fruitStock.removeProduct("dumpling")); // Optional.empty
+    Optional<Product> removedMango = fruitStock.removeProduct("mango"); // Optional.of(mango)
+    removedMango.ifPresent(System.out::println);
+
+    System.out.println(fruitStock.removeProduct("apple")); // Optional[cheapApple]
+    System.out.println(fruitStock.removeProduct("apple").get()); // Optional[]
+    System.out.println(fruitStock.removeProduct("dumpling")); // Optional.empty
 
   }
 }

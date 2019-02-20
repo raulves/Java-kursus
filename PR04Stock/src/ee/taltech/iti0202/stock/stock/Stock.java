@@ -65,6 +65,10 @@ public class Stock {
      * @return Optional
      */
     public Optional<Product> getProduct(String name) {
+        List<Product> sorted = getProducts(name);
+        if (sorted.size() != 0) {
+            return Optional.of(sorted.get(0));
+        }
         return Optional.empty();
     }
 
