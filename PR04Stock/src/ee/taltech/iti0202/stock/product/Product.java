@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.stock.product;
 import ee.taltech.iti0202.stock.exceptions.StockException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
 Kui on tegemist objektiga, siis private String name; või private int number;
 Kui on tegemist klassimuutujaga, siis private static String name;

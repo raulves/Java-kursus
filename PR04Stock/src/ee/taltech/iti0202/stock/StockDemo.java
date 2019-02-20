@@ -9,7 +9,7 @@ public class StockDemo {
 
   public static void main(String[] args) throws StockException {
     Stock fruitStock = new Stock("fruit-stock-1", 4);
-
+    /*
     Product cheapApple = new Product("apple", 3);
     Product expensiveApple = new Product("apple", 9);
     Product orange = new Product("orange", 5);
@@ -53,6 +53,6 @@ public class StockDemo {
     System.out.println(fruitStock.removeProduct("apple")); // Optional[cheapApple]
     System.out.println(fruitStock.removeProduct("apple").get()); // Optional[]
     System.out.println(fruitStock.removeProduct("dumpling")); // Optional.empty
-
+    */
   }
 }
