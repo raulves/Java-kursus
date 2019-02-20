@@ -118,8 +118,7 @@ public class Stock {
             }
         }
 
-        sortedByName.sort(Comparator.comparing(Product::getPrice));
-        sortedByName.sort(Comparator.comparing(Product::getId));
+        sortedByName.sort(Comparator.comparing(Product::getPrice).thenComparing((Product::getId)));
         return sortedByName;
     }
 
@@ -145,5 +144,7 @@ public class Stock {
     public boolean isFull() {
         return maxCapacity == productsInStock.size();
     }
+
+
 
 }
