@@ -19,7 +19,11 @@ public class StockDemo {
 
     fruitStock.addProduct(expensiveApple);
     fruitStock.addProduct(cheapApple);
+
+    fruitStock.addProduct(orange);
+
     System.out.println(fruitStock.getProducts()); // expensiveApple, cheapApple
+    System.out.println(fruitStock.getProducts("apple"));
 
     // Optional<Product> apple = fruitStock.getProduct("apple"); // Optional.of(cheapApple)
     // apple.ifPresent(System.out::println); // cheapApple

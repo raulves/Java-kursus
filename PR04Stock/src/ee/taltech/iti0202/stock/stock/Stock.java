@@ -3,6 +3,7 @@ import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,6 +108,9 @@ public class Stock {
                 sortedByName.add(product);
             }
         }
+
+        sortedByName.sort(Comparator.comparing(Product::getPrice));
+        sortedByName.sort(Comparator.comparing(Product::getId));
         return sortedByName;
     }
 
