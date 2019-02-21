@@ -88,13 +88,13 @@ public class Bank {
     public Set<Person> getAllCustomersWithCreditCards() {
 
         return customers.stream().filter(person -> person.getBankCard().isPresent())
-                .filter(person -> person.getBankCard().get().getCardType().equals(BankCard.CardType.CREDIT))
+                .filter(person -> person.getBankCard().get().getCardType().equals(BankCard.CardType.DEBIT))
                 .collect(Collectors.toSet());
     }
 
     public Set<Person> getAllCustomersWithDebitCards() {
         return customers.stream().filter(person -> person.getBankCard().isPresent())
-                .filter(person -> person.getBankCard().get().getCardType().equals(BankCard.CardType.DEBIT))
+                .filter(person -> person.getBankCard().get().getCardType().equals(BankCard.CardType.CREDIT))
                 .collect(Collectors.toSet());
     }
 
