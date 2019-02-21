@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public abstract class BankCard {
 
-
+    protected static CardType cardType;
     protected static Bank bank;
     protected static Person person;
     protected static BigDecimal balance = new BigDecimal(0);
@@ -28,6 +28,7 @@ public abstract class BankCard {
 
         BankCard.bank = bank;
         BankCard.person = person;
+        BankCard.cardType = cardType;
 
         if (cardType.equals(CardType.DEBIT)) {
             return new DebitCard();
@@ -59,6 +60,10 @@ public abstract class BankCard {
      */
     public abstract BigDecimal withdraw(BigDecimal value) throws TransactionException;
 
+
+    public CardType getCardType() {
+        return cardType;
+    }
 
     public Bank getBank() {
         return bank;
