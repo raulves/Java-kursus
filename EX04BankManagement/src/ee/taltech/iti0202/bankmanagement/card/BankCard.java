@@ -9,10 +9,11 @@ import static java.math.BigDecimal.ZERO;
 
 public abstract class BankCard {
 
-    private static CardType cardType;
-    private static Bank bank;
-    private static Person person;
-    private static BigDecimal balance;
+
+    protected static Bank bank;
+    protected static Person person;
+    protected static BigDecimal balance;
+    protected static BankCard userBankCard;
 
     public enum CardType {CREDIT, DEBIT}
 
@@ -25,12 +26,16 @@ public abstract class BankCard {
      * @return
      */
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
-        BankCard.cardType = cardType;
+
         BankCard.bank = bank;
         BankCard.person = person;
-        BankCard.balance = ZERO;
+
         // person.setBankCard();
-        return null;
+        if (cardType.equals(CardType.DEBIT)) {
+            return new DebitCard();
+        } else {
+            return new CreditCard();
+        }
     }
 
     /**
@@ -59,7 +64,7 @@ public abstract class BankCard {
     }
 
     public BigDecimal getBalance() {
-        return null;
+        return balance;
     }
 
     public Person getPerson() {
