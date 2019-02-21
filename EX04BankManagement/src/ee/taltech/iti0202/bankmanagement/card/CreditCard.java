@@ -9,12 +9,12 @@ public final class CreditCard extends BankCard {
     CreditCard() {
         person.setBankCard(this);
         bank.addCustomer(person);
-        balance = new BigDecimal(10000);
+        balance = balance.add(new BigDecimal(10000));
     }
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        return balance.subtract(value);
+        return balance = balance.subtract(value);
     }
 
     @Override

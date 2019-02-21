@@ -16,7 +16,10 @@ public final class DebitCard extends BankCard {
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        return balance.subtract(value);
+        if (balance.intValue() < value.intValue()) {
+            throw new TransactionException();
+        }
+        return balance = balance.subtract(value);
     }
 
 }

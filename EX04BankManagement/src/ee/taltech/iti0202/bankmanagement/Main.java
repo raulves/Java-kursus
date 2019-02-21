@@ -28,7 +28,7 @@ public class Main {
         System.out.println(peep.getBankCard().isEmpty()); // false
         System.out.println(peepDebitCard == peep.getBankCard().get()); // true
         System.out.println(SEB.getCustomers().contains(peep)); // true
-        System.out.println(peepDebitCard.getBalance());
+
 
         boolean exceptionThrown = false;
         try {
@@ -40,7 +40,7 @@ public class Main {
         System.out.println(exceptionThrown); // false
         System.out.println(peepDebitCard.getBalance().equals(BigDecimal.TEN)); // true
         System.out.println(peepDebitCard.getBalance());
-        /*
+
         exceptionThrown = false;
         try {
             peepDebitCard.withdraw(BigDecimal.valueOf(11));
@@ -56,7 +56,7 @@ public class Main {
 
         BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
 
-        */
+
 
 
     }

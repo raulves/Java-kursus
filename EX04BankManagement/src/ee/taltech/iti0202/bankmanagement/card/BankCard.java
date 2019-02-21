@@ -5,14 +5,13 @@ import ee.taltech.iti0202.bankmanagement.person.Person;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ZERO;
 
 public abstract class BankCard {
 
 
     protected static Bank bank;
     protected static Person person;
-    protected static BigDecimal balance;
+    protected static BigDecimal balance = new BigDecimal(0);
 
 
     public enum CardType {CREDIT, DEBIT}
@@ -44,7 +43,10 @@ public abstract class BankCard {
      * @throws TransactionException Thrown if given value is zero or less.
      */
     public void deposit(BigDecimal value) throws TransactionException {
-        balance.add(value);
+        if (value.intValue() <= 0) {
+            throw new TransactionException();
+        }
+        balance = balance.add(value);
     }
 
     /**
