@@ -56,6 +56,9 @@ public class Main {
 
         BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
 
+        System.out.println(SEB.getAllCustomersWithDebitCards());
+        System.out.println(SEB.getAllCustomersWithCreditCards());
+
 
 
 

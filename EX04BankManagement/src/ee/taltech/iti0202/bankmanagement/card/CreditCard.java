@@ -9,7 +9,7 @@ public final class CreditCard extends BankCard {
     CreditCard() {
         person.setBankCard(this);
         bank.addCustomer(person);
-        balance = balance.add(new BigDecimal(10000));
+        balance = new BigDecimal(10000);
     }
 
     @Override

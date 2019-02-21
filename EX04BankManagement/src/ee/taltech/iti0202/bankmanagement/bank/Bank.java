@@ -3,6 +3,7 @@ import ee.taltech.iti0202.bankmanagement.card.BankCard;
 import ee.taltech.iti0202.bankmanagement.person.Person;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -86,12 +87,11 @@ public class Bank {
     public Set<Person> getAllCustomersWithCreditCards() {
 
         return customers.stream()
-                .filter(person -> person.getBankCard().equals(BankCard.CardType.CREDIT)).collect(Collectors.toSet());
+                .filter(person -> person.getBankCard().isPresent()).collect(Collectors.toSet());
     }
 
     public Set<Person> getAllCustomersWithDebitCards() {
-        return customers.stream()
-                .filter(person -> person.getBankCard().equals(BankCard.CardType.DEBIT)).collect(Collectors.toSet());
+        return customers.stream().filter(person -> person.getBankCard().isPresent()).collect(Collectors.toSet());
     }
 
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
