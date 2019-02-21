@@ -13,7 +13,7 @@ public abstract class BankCard {
     protected static Bank bank;
     protected static Person person;
     protected static BigDecimal balance;
-    protected static BankCard userBankCard;
+
 
     public enum CardType {CREDIT, DEBIT}
 
@@ -30,7 +30,6 @@ public abstract class BankCard {
         BankCard.bank = bank;
         BankCard.person = person;
 
-        // person.setBankCard();
         if (cardType.equals(CardType.DEBIT)) {
             return new DebitCard();
         } else {
@@ -45,7 +44,7 @@ public abstract class BankCard {
      * @throws TransactionException Thrown if given value is zero or less.
      */
     public void deposit(BigDecimal value) throws TransactionException {
-
+        balance.add(value);
     }
 
     /**

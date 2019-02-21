@@ -1,8 +1,6 @@
 package ee.taltech.iti0202.bankmanagement.card;
-import ee.taltech.iti0202.bankmanagement.bank.Bank;
-import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
-import ee.taltech.iti0202.bankmanagement.person.Person;
 
+import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
 import java.math.BigDecimal;
 
 public final class CreditCard extends BankCard {
@@ -11,11 +9,12 @@ public final class CreditCard extends BankCard {
     CreditCard() {
         person.setBankCard(this);
         bank.addCustomer(person);
+        balance = new BigDecimal(10000);
     }
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        return null;
+        return balance.subtract(value);
     }
 
     @Override
