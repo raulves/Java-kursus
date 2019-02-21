@@ -14,7 +14,11 @@ public final class CreditCard extends BankCard {
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        return balance = balance.subtract(value);
+        if (!((balance.intValue() - value.intValue()) < -5000)) {
+            return balance = balance.subtract(value);
+        } else {
+            throw new TransactionException();
+        }
     }
 
     @Override
@@ -23,6 +27,9 @@ public final class CreditCard extends BankCard {
     }
 
     public BigDecimal getDebt() {
+        if (balance.intValue() < 0) {
+            return balance;
+        }
         return null;
     }
 }

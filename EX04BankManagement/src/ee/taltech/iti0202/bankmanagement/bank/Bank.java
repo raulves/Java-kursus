@@ -85,11 +85,13 @@ public class Bank {
 
     public Set<Person> getAllCustomersWithCreditCards() {
 
-        return customers.stream().filter(person -> person.getBankCard().isPresent()).filter(person -> person.getBankCard().equals(BankCard.CardType.CREDIT)).collect(Collectors.toSet());
+        return customers.stream()
+                .filter(person -> person.getBankCard().equals(BankCard.CardType.CREDIT)).collect(Collectors.toSet());
     }
 
     public Set<Person> getAllCustomersWithDebitCards() {
-        return null;
+        return customers.stream()
+                .filter(person -> person.getBankCard().equals(BankCard.CardType.DEBIT)).collect(Collectors.toSet());
     }
 
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
