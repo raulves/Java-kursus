@@ -56,16 +56,15 @@ public class Main {
 
         // BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
 
-        SEB.addCustomer(anne);
+        System.out.println(SEB.addCustomer(anne));
         SEB.addCustomer(valdo);
         SEB.addCustomer(malle);
         SEB.addCustomer(juulius);
 
         BankCard anneBankCard = BankCard.createCard(BankCard.CardType.DEBIT, SEB, anne);
+        System.out.println(SEB.getAverageCustomerMonthlyIncome());
 
-        // System.out.println(peep.getBankCard().isPresent());
-        System.out.println(SEB.getAllCustomersWithDebitCards());
-        // System.out.println(SEB.getAllCustomersWithCreditCards());
+
 
 
 
