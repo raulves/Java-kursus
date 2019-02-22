@@ -12,9 +12,11 @@ public abstract class BankCard {
     protected Bank bank;
     protected Person person;
     protected BigDecimal balance;
+    private static final BigDecimal creditCardStartingBalance = new BigDecimal(10000);
 
 
-    public enum CardType {CREDIT, DEBIT}
+    public enum CardType {CREDIT, DEBIT
+    }
 
     /**
      * Constructor factory. Return a CreditCard or DebitCard object according to parameter cardType.
@@ -40,7 +42,7 @@ public abstract class BankCard {
             card.bank = bank;
             card.cardType = cardType;
             card.person = person;
-            card.balance = new BigDecimal(10000);
+            card.balance = creditCardStartingBalance;
             person.setBankCard(card);
             bank.addCustomer(person);
             return card;

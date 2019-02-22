@@ -1,13 +1,13 @@
 package ee.taltech.iti0202.bankmanagement.card;
 
-import ee.taltech.iti0202.bankmanagement.bank.Bank;
+
 import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
-import ee.taltech.iti0202.bankmanagement.person.Person;
+
 
 import java.math.BigDecimal;
 
 public final class CreditCard extends BankCard {
-
+    final int maxDebt = -5000;
 
     CreditCard() {
 
@@ -17,7 +17,7 @@ public final class CreditCard extends BankCard {
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        if (!((balance.intValue() - value.intValue()) <= -5000)) {
+        if (!((balance.intValue() - value.intValue()) <= maxDebt)) {
             return balance = balance.subtract(value);
         } else {
             throw new TransactionException(TransactionException.Reason.NOT_ENOUGH_MONEY);
