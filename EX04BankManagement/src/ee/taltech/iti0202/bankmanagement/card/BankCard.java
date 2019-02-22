@@ -11,7 +11,7 @@ public abstract class BankCard {
     protected static CardType cardType;
     protected static Bank bank;
     protected static Person person;
-    protected static BigDecimal balance = new BigDecimal(0);
+    protected static BigDecimal balance;
 
 
     public enum CardType {CREDIT, DEBIT}
@@ -29,6 +29,7 @@ public abstract class BankCard {
         BankCard.bank = bank;
         BankCard.person = person;
         BankCard.cardType = cardType;
+        BankCard.balance = new BigDecimal(0);
 
         if (cardType.equals(CardType.DEBIT)) {
             return new DebitCard();

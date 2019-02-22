@@ -10,7 +10,7 @@ public final class DebitCard extends BankCard {
     DebitCard() {
         person.setBankCard(this);
         bank.addCustomer(person);
-        balance = new BigDecimal(0);
+
 
     }
 
