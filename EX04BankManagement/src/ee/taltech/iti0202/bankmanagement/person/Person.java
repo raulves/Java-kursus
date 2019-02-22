@@ -51,7 +51,6 @@ public class Person {
     public double getMonthlyIncome() {
         return monthlyIncome;
     }
-    
     /**
      * Return Optional.empty() if person has no bankcard.
      * @return Optional of BankCard
@@ -63,9 +62,7 @@ public class Person {
 
     public void setBankCard(BankCard bankCard) {
         personBankcard = bankCard;
-        
     }
-    
     @Override
     public String toString() {
         return String.format("%s %s", firstName, lastName);

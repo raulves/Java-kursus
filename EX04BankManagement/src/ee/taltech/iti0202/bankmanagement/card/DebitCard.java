@@ -17,8 +17,6 @@ public final class DebitCard extends BankCard {
         this.balance = new BigDecimal(0);
         person.setBankCard(this);
         bank.addCustomer(person);
-
-
     }
 
     @Override
