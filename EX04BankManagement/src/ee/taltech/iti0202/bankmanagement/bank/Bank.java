@@ -123,6 +123,7 @@ public class Bank {
 
         return Optional.ofNullable(richestPerson);
     }
+
     
     @Override
     public String toString() {
