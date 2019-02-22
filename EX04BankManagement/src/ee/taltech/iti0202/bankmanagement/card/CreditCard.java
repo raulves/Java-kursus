@@ -17,7 +17,7 @@ public final class CreditCard extends BankCard {
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        if (!((balance.intValue() - value.intValue()) <= -5000)) {
+        if (!((balance.intValue() - value.intValue()) >= -5000)) {
             return balance = balance.subtract(value);
         } else {
             throw new TransactionException(TransactionException.Reason.NOT_ENOUGH_MONEY);
