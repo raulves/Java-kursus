@@ -109,8 +109,9 @@ public class Bank {
         BigDecimal richest = new BigDecimal(0);
         Person richestPerson = customerByGender.get(0);
         for (Person person : customerByGender) {
-            if (person.getBankCard().get().getBalance().compareTo(richest) > 0) {
-                richest = new BigDecimal("person.getBankCard().get().getBalance()");
+            BigDecimal temp = person.getBankCard().get().getBalance();
+            if (temp.compareTo(richest) > 0) {
+                richest = temp;
                 richestPerson = person;
             }
         }
