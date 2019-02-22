@@ -45,77 +45,43 @@ public class Bank {
     }
 
     public double getAverageCustomerMonthlyIncome() {
-
-        if (customers.isEmpty()) {
-            return 0.0;
-        }
-        double sum = 0.0;
-        double count = customers.size();
-        for (Person customer : customers) {
-            sum += customer.getMonthlyIncome();
-        }
-        return sum / count;
-    }
-
-    public double getAverageCustomerMonthlyIncome(int maxAge) {
-        double sum = 0;
-
         if (customers.isEmpty()) {
             return 0.0;
         } else {
-            Set<Person> maxAgeSet =  customers.stream()
+            return customers.stream()
+                    .collect(Collectors.averagingDouble(Person::getMonthlyIncome));
+        }
+    }
+
+    public double getAverageCustomerMonthlyIncome(int maxAge) {
+        if (customers.isEmpty()) {
+            return 0.0;
+        } else {
+            return customers.stream()
                     .filter(person -> person.getAge() <= maxAge)
-                    .collect(Collectors.toSet());
-            if (!maxAgeSet.isEmpty()) {
-                for (Person person : maxAgeSet) {
-                    sum += person.getMonthlyIncome();
-                }
-                return sum / maxAgeSet.size();
-            } else {
-                return 0.0;
-            }
+                    .collect(Collectors.averagingDouble(Person::getMonthlyIncome));
         }
     }
 
     public double getAverageCustomerMonthlyIncome(int minAge, int maxAge) {
-        double sum = 0;
-
         if (customers.isEmpty()) {
             return 0.0;
         } else {
-            Set<Person> minMaxAge =  customers.stream()
+            return customers.stream()
                     .filter(person -> person.getAge() >= minAge)
                     .filter(person -> person.getAge() <= maxAge)
-                    .collect(Collectors.toSet());
-            if (!minMaxAge.isEmpty()) {
-                for (Person person : minMaxAge) {
-                    sum += person.getMonthlyIncome();
-                }
-                return sum / minMaxAge.size();
-            } else {
-                return 0.0;
-            }
+                    .collect(Collectors.averagingDouble(Person::getMonthlyIncome));
         }
 
     }
 
     public double getAverageCustomerMonthlyIncome(Person.Gender gender) {
-        double sum = 0;
-
         if (customers.isEmpty()) {
             return 0.0;
         } else {
-            Set<Person> genderSet =  customers.stream()
+            return customers.stream()
                     .filter(person -> person.getGender().equals(gender))
-                    .collect(Collectors.toSet());
-            if (!genderSet.isEmpty()) {
-                for (Person person : genderSet) {
-                    sum += person.getMonthlyIncome();
-                }
-                return sum / genderSet.size();
-            } else {
-                return 0.0;
-            }
+                    .collect(Collectors.averagingDouble(Person::getMonthlyIncome));
         }
     }
 
