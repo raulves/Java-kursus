@@ -28,8 +28,10 @@ public abstract class BankCard {
 
         if (cardType.equals(CardType.DEBIT)) {
             return new DebitCard(cardType, bank, person);
-        } else {
+        } else if (cardType.equals(CardType.CREDIT)) {
             return new CreditCard(cardType, bank, person);
+        } else {
+            return null;
         }
     }
 
