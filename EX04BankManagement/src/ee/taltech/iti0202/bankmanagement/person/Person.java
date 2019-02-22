@@ -57,11 +57,8 @@ public class Person {
      * @return Optional of BankCard
      */
     public Optional<BankCard> getBankCard() {
-        if (personBankcard == null) {
-            return Optional.empty();
-        }
 
-        return Optional.of(personBankcard);
+        return Optional.ofNullable(personBankcard);
     }
 
     public void setBankCard(BankCard bankCard) {
