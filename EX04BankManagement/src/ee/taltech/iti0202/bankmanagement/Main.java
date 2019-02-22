@@ -1,3 +1,4 @@
+/*
 package ee.taltech.iti0202.bankmanagement;
 import ee.taltech.iti0202.bankmanagement.bank.Bank;
 import ee.taltech.iti0202.bankmanagement.card.BankCard;
@@ -72,3 +73,4 @@ public class Main {
 
     }
 }
+*/
