@@ -106,7 +106,7 @@ public class Bank {
         if (customerByGender.isEmpty()) {
             return Optional.empty();
         }
-        BigDecimal richest = new BigDecimal(0);
+        BigDecimal richest = BigDecimal.ZERO;
         Person richestPerson = customerByGender.get(0);
         for (Person person : customerByGender) {
             BigDecimal temp = person.getBankCard().get().getBalance();
@@ -115,7 +115,7 @@ public class Bank {
                 richestPerson = person;
             }
         }
-        return Optional.of(richestPerson);
+        return Optional.ofNullable(richestPerson);
     }
     
     @Override
