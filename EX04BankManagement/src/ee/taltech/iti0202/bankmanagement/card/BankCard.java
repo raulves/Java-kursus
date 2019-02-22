@@ -27,12 +27,27 @@ public abstract class BankCard {
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
 
         if (cardType.equals(CardType.DEBIT)) {
-            return new DebitCard(cardType, bank, person);
+            BankCard card = new DebitCard();
+            card.bank = bank;
+            card.cardType = cardType;
+            card.person = person;
+            card.balance = new BigDecimal(0);
+            person.setBankCard(card);
+            bank.addCustomer(person);
+            return card;
         } else if (cardType.equals(CardType.CREDIT)) {
-            return new CreditCard(cardType, bank, person);
+            BankCard card = new CreditCard();
+            card.bank = bank;
+            card.cardType = cardType;
+            card.person = person;
+            card.balance = new BigDecimal(10000);
+            person.setBankCard(card);
+            bank.addCustomer(person);
+            return card;
         } else {
             return null;
         }
+
     }
 
     /**

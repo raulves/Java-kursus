@@ -9,13 +9,9 @@ import java.math.BigDecimal;
 public final class CreditCard extends BankCard {
 
 
-    CreditCard(CardType cardType, Bank bank, Person person) {
-        this.cardType = cardType;
-        this.bank = bank;
-        this.person = person;
-        this.balance = new BigDecimal(10000);
-        person.setBankCard(this);
-        bank.addCustomer(person);
+    CreditCard() {
+
+
 
     }
 
