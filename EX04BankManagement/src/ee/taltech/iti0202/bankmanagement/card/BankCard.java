@@ -12,10 +12,12 @@ public abstract class BankCard {
     protected Bank bank;
     protected Person person;
     protected BigDecimal balance;
-    private static final BigDecimal creditCardStartingBalance = new BigDecimal(10000);
+    private static final BigDecimal CREDITCARDSTARTINGBALANCE = new BigDecimal(10000);
 
 
-    public enum CardType {CREDIT, DEBIT
+    public enum CardType {
+        CREDIT,
+        DEBIT
     }
 
     /**
@@ -42,7 +44,7 @@ public abstract class BankCard {
             card.bank = bank;
             card.cardType = cardType;
             card.person = person;
-            card.balance = creditCardStartingBalance;
+            card.balance = CREDITCARDSTARTINGBALANCE;
             person.setBankCard(card);
             bank.addCustomer(person);
             return card;

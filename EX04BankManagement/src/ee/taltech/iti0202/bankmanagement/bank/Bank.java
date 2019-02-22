@@ -1,10 +1,13 @@
 package ee.taltech.iti0202.bankmanagement.bank;
+
 import ee.taltech.iti0202.bankmanagement.card.BankCard;
-import ee.taltech.iti0202.bankmanagement.card.CreditCard;
 import ee.taltech.iti0202.bankmanagement.person.Person;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Bank {
@@ -30,6 +33,7 @@ public class Bank {
             customers.add(person);
             return true;
         }
+
         return false;
     }
     
@@ -116,6 +120,7 @@ public class Bank {
                 richestPerson = person;
             }
         }
+
         return Optional.ofNullable(richestPerson);
     }
     
