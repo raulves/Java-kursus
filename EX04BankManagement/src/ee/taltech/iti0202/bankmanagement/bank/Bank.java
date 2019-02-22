@@ -36,8 +36,8 @@ public class Bank {
 
         return false;
     }
-    
-    public Boolean removeCustomer(Person person){
+
+    public Boolean removeCustomer(Person person) {
         if (customers.contains(person)) {
             customers.remove(person);
             person.setBankCard(null);
@@ -124,7 +124,6 @@ public class Bank {
         return Optional.ofNullable(richestPerson);
     }
 
-    
     @Override
     public String toString() {
         return getName();
