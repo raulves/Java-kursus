@@ -27,15 +27,16 @@ public final class CreditCard extends BankCard {
     @Override
     public BigDecimal getBalance() {
         if (balance.intValue() < 0) {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
         return balance;
     }
 
     public BigDecimal getDebt() {
         if (balance.intValue() < 0) {
-            return balance;
+
+            return balance.abs();
         }
-        return new BigDecimal(0);
+        return BigDecimal.ZERO;
     }
 }

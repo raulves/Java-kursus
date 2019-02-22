@@ -63,6 +63,7 @@ public class Main {
 
         BankCard anneBankCard = BankCard.createCard(BankCard.CardType.DEBIT, SEB, anne);
         System.out.println(LHV.getAverageCustomerMonthlyIncome());
+        
 
 
 

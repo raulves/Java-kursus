@@ -31,7 +31,7 @@ public abstract class BankCard {
             card.bank = bank;
             card.cardType = cardType;
             card.person = person;
-            card.balance = new BigDecimal(0);
+            card.balance = BigDecimal.ZERO;
             person.setBankCard(card);
             bank.addCustomer(person);
             return card;
