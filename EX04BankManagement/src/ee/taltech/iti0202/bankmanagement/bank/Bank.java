@@ -101,6 +101,7 @@ public class Bank {
             return Optional.empty();
         }
         List<Person> customerByGender = customers.stream()
+                .filter(person -> person.getBankCard().isPresent())
                 .filter(person -> person.getGender().equals(gender))
                 .collect(Collectors.toList());
         if (customerByGender.isEmpty()) {

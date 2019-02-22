@@ -62,8 +62,8 @@ public class Main {
         SEB.addCustomer(juulius);
 
         BankCard anneBankCard = BankCard.createCard(BankCard.CardType.DEBIT, SEB, anne);
-        System.out.println(LHV.getAverageCustomerMonthlyIncome());
-        
+        System.out.println(LHV.getRichestCustomerByGender(Person.Gender.MALE));
+
 
 
 
