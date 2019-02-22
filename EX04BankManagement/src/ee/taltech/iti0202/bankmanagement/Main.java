@@ -54,10 +54,18 @@ public class Main {
 
         System.out.println("- - - - CREDIT - - - -");
 
-        BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
+        // BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
 
+        SEB.addCustomer(anne);
+        SEB.addCustomer(valdo);
+        SEB.addCustomer(malle);
+        SEB.addCustomer(juulius);
+
+        BankCard anneBankCard = BankCard.createCard(BankCard.CardType.DEBIT, SEB, anne);
+
+        // System.out.println(peep.getBankCard().isPresent());
         System.out.println(SEB.getAllCustomersWithDebitCards());
-        System.out.println(SEB.getAllCustomersWithCreditCards());
+        // System.out.println(SEB.getAllCustomersWithCreditCards());
 
 
 

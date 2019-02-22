@@ -76,4 +76,9 @@ public abstract class BankCard {
     public Person getPerson() {
         return person;
     }
+
+    @Override
+    public String toString() {
+        return cardType.toString();
+    }
 }
