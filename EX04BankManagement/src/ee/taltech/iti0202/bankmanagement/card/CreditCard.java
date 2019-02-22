@@ -7,16 +7,13 @@ import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
 import java.math.BigDecimal;
 
 public final class CreditCard extends BankCard {
-    final private int maxDebt = -5000;
 
     CreditCard() {
-
-
-
     }
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
+        int maxDebt = -5000;
         if (!((balance.intValue() - value.intValue()) <= maxDebt)) {
             return balance = balance.subtract(value);
         } else {
