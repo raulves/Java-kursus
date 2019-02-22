@@ -54,7 +54,7 @@ public class Main {
 
         System.out.println("- - - - CREDIT - - - -");
 
-        // BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
+        BankCard peepCreditCard = BankCard.createCard(BankCard.CardType.CREDIT, LHV, peep);
 
         System.out.println(SEB.addCustomer(anne));
         SEB.addCustomer(valdo);
@@ -62,7 +62,7 @@ public class Main {
         SEB.addCustomer(juulius);
 
         BankCard anneBankCard = BankCard.createCard(BankCard.CardType.DEBIT, SEB, anne);
-        System.out.println(SEB.getAverageCustomerMonthlyIncome());
+        System.out.println(LHV.getAverageCustomerMonthlyIncome());
 
 
 

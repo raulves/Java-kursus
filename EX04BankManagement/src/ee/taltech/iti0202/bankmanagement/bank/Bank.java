@@ -3,10 +3,8 @@ import ee.taltech.iti0202.bankmanagement.card.BankCard;
 import ee.taltech.iti0202.bankmanagement.card.CreditCard;
 import ee.taltech.iti0202.bankmanagement.person.Person;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Bank {
@@ -99,7 +97,24 @@ public class Bank {
     }
 
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
-        return null;
+        if (customers.isEmpty()) {
+            return Optional.empty();
+        }
+        List<Person> customerByGender = customers.stream()
+                .filter(person -> person.getGender().equals(gender))
+                .collect(Collectors.toList());
+        if (customerByGender.isEmpty()) {
+            return Optional.empty();
+        }
+        BigDecimal richest = new BigDecimal(0);
+        Person richestPerson = customerByGender.get(0);
+        for (Person person : customerByGender) {
+            if (person.getBankCard().get().getBalance().compareTo(richest) == 1) {
+                richest = new BigDecimal("person.getBankCard().get().getBalance()");
+                richestPerson = person;
+            }
+        }
+        return Optional.of(richestPerson);
     }
     
     @Override
