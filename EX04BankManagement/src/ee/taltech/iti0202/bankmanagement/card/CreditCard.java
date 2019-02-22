@@ -24,7 +24,7 @@ public final class CreditCard extends BankCard {
         if (!((balance.intValue() - value.intValue()) < -5000)) {
             return balance = balance.subtract(value);
         } else {
-            throw new TransactionException();
+            throw new TransactionException(TransactionException.Reason.NOT_ENOUGH_MONEY);
         }
     }
 

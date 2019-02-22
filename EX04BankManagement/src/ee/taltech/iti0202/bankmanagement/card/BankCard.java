@@ -41,7 +41,7 @@ public abstract class BankCard {
      */
     public void deposit(BigDecimal value) throws TransactionException {
         if (value.intValue() <= 0) {
-            throw new TransactionException();
+            throw new TransactionException(TransactionException.Reason.DEPOSIT_MUST_BE_POSITIVE);
         }
         balance = balance.add(value);
     }
