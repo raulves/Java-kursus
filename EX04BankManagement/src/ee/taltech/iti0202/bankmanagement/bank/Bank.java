@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Bank {
 
     private String name;
-    private static Set<Person> customers = new HashSet<>();
+    private Set<Person> customers = new HashSet<>();
 
     public Bank(String name) {
 
