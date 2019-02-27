@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.tk2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public class Exam {
@@ -16,27 +17,29 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
-        int min = nums.get(0);
-        int max = nums.get(0);
-        for (Integer num : nums) {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.addAll(nums);
+        int min = numbers.get(0);
+        int max = numbers.get(0);
+        for (Integer num : numbers) {
             if (num < min) {
                 min = num;
             }
         }
-        for (Integer num : nums) {
+        for (Integer num : numbers) {
             if (num > max) {
                 max = num;
             }
         }
-        nums.remove(nums.indexOf(min));
-        nums.remove(nums.indexOf(max));
+        numbers.remove(numbers.indexOf(min));
+        numbers.remove(numbers.indexOf(max));
 
 
         int sum = 0;
-        for (Integer num : nums) {
+        for (Integer num : numbers) {
             sum += num;
         }
-        return sum / nums.size();
+        return sum / numbers.size();
     }
 
 
