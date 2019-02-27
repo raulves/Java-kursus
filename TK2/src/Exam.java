@@ -35,6 +35,7 @@ public class Exam {
         }
         if (b == a && a <= 21) {
             return a;
+
         }
         return 0;
     }
