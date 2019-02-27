@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.tk2;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 public class Exam {
@@ -31,6 +30,7 @@ public class Exam {
         }
         nums.remove(nums.indexOf(min));
         nums.remove(nums.indexOf(max));
+
 
         int sum = 0;
         for (Integer num : nums) {
@@ -93,6 +93,7 @@ public class Exam {
      mapAB2({"a": "aaa", "b": "bbb", "c": "aaa"}) → {"a": "aaa", "b": "bbb", "c": "aaa"}
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
+
         return null;
     }
 }
