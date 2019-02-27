@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 public class Exam {
 
-
+    private static final int blackj = 21;
     /**
      * Return the "centered" average of an array of ints, which we'll say is the mean average of the values,
      * except ignoring the largest and smallest values in the array. If there are multiple copies of the
@@ -52,8 +52,8 @@ public class Exam {
      * blackjack(19, 22) → 19
      */
     public static int blackjack(int a, int b) {
-        int aDif = 21 - a;
-        int bDif = 21 - b;
+        int aDif = blackj - a;
+        int bDif = blackj - b;
 
         if (a >= 0 && a < b) {
             return a;
