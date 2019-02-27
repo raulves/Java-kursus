@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 public class Exam {
@@ -14,7 +15,26 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
-        return 0;
+        int min = nums.get(0);
+        int max = nums.get(0);
+        for (Integer num : nums) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        for (Integer num : nums) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        nums.remove(nums.indexOf(min));
+        nums.remove(nums.indexOf(max));
+
+        int sum = 0;
+        for (Integer num : nums) {
+            sum += num;
+        }
+        return sum / nums.size();
     }
 
 
