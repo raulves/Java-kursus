@@ -73,7 +73,12 @@ public class Exam {
      repeatEnd("Hello", 1) → "o"
      */
     public static String repeatEnd(String str, int n) {
-        return "";
+        String end = str.substring(str.length() - n);
+        String result = "";
+        for (int i = 0; i < n; i++) {
+            result += end;
+        }
+        return result;
 
     }
 
