@@ -24,7 +24,6 @@ public class MultiLevelParkingLot extends ParkingLot {
         this.parkingLotType = "multi";
     }
 
-
     @Override
     public void processQueue() {
 
