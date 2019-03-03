@@ -1,4 +1,7 @@
 package ee.taltech.iti0202.parking.car;
+
+import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
+
 /**
  * Represents a car with priority and size.
  * The size can be one of 1, 2, 4 (the code doesn't have to validate it).
@@ -13,6 +16,15 @@ public class Car implements Comparable<Car> {
 
     private PriorityStatus status;
     private int size;
+    private ParkingLot parkedWhere;
+
+    public void setParkedWhere(ParkingLot parkedWhere) {
+        this.parkedWhere = parkedWhere;
+    }
+
+    public ParkingLot getParkedWhere() {
+        return parkedWhere;
+    }
 
     public enum PriorityStatus {
         HIGHEST, PRIORITY, COMMON
@@ -26,6 +38,7 @@ public class Car implements Comparable<Car> {
     public Car(PriorityStatus status, int size) {
         this.status = status;
         this.size = size;
+        this.parkedWhere = null;
     }
 
     /**
@@ -53,6 +66,12 @@ public class Car implements Comparable<Car> {
      * @return True if the car was parking, false otherwise.
      */
     public boolean unpark() {
+        if (parkedWhere == null) {
+            return false;
+        }
+        parkedWhere.getParkedCars().remove(this);
+        setParkedWhere(null);
+
        return true;
     }
 }

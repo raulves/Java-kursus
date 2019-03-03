@@ -2,6 +2,7 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 import ee.taltech.iti0202.parking.car.Car;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -26,9 +27,12 @@ abstract public class ParkingLot {
 
     private final int width;
     private final int height;
-    private Car[][] parkingSlot;
+    protected int totalLots;
+    private Car[][] parkingSlot;  // Car objektid lähevad sisse.
     private Car[][][] parkingSlotMultiLevel;
     protected String parkingLotType;
+    protected List<Car> carsInQueue;
+    protected List<Car> parkedCars;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -37,17 +41,22 @@ abstract public class ParkingLot {
      * @param width Length of horizontal side.
      */
     public ParkingLot(int height, int width) {
+        this.totalLots = height * width;
         this.width = width;
         this.height = height;
         this.parkingSlot = new Car[height][width];
+        this.carsInQueue = new ArrayList<>();
+        this.parkedCars = new ArrayList<>();
 
     }
 
     public ParkingLot(int height, int width, int levels) {
+        this.totalLots = height * width * levels;
         this.width = width;
         this.height = height;
         this.parkingSlotMultiLevel = new Car[height][width][levels];
-
+        this.carsInQueue = new ArrayList<>();
+        this.parkedCars = new ArrayList<>();
     }
 
 
@@ -57,7 +66,11 @@ abstract public class ParkingLot {
      * @param car Car to be added
      */
     public boolean addToQueue(Car car) {
-        return true;
+        if (!carsInQueue.contains(car)) {
+            carsInQueue.add(car);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -80,7 +93,7 @@ abstract public class ParkingLot {
      * @return A list of parked cars.
      */
     public List<Car> getParkedCars() {
-        return null;
+        return parkedCars;
     }
 
     /**
@@ -117,7 +130,16 @@ abstract public class ParkingLot {
      * @return String representation of the parking lot
      */
     public String getTable() {
-        return "";
+        String[][] parkingArea = new String[width * 2][height * 2];
+        String result = "";
+        for (String[] strings : parkingArea) {
+            Arrays.fill(strings, ".");
+            result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "");
+            result += "\n";
+        }
+
+
+        return result.substring(0, result.length() - 1);
     }
 
 
@@ -127,6 +149,10 @@ abstract public class ParkingLot {
 
     public String getParkingLotType() {
         return parkingLotType;
+    }
+
+    public List<Car> getCarsInQueue() {
+        return carsInQueue;
     }
 }
 

@@ -1,5 +1,11 @@
 
 package ee.taltech.iti0202.parking.parkinglot;
+
+import ee.taltech.iti0202.parking.car.Car;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Modern parking lot located under ground.
  * The parking lot has several levels.
@@ -26,6 +32,30 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
+        List<Car> waitingList = List.copyOf(getCarsInQueue());
+        List<Car.PriorityStatus> priorities = new ArrayList<>();
+        priorities.add(Car.PriorityStatus.HIGHEST);
+        priorities.add(Car.PriorityStatus.PRIORITY);
+        priorities.add(Car.PriorityStatus.COMMON);
+
+        List<Integer> sizes = new ArrayList<>();
+        sizes.add(1);
+        sizes.add(2);
+        sizes.add(4);
+
+        while (getParkedCars().size() < totalLots && getCarsInQueue().size() > 0) {
+            for (Car.PriorityStatus priority : priorities) {
+                for (Integer size : sizes) {
+                    for (Car car : waitingList) {
+                        if (priority.equals(car.getPriorityStatus()) && size == car.getSize()) {
+                            car.setParkedWhere(this);
+                            parkedCars.add(car);
+                            carsInQueue.remove(car);
+                        }
+                    }
+                }
+            }
+        }
 
     }
 

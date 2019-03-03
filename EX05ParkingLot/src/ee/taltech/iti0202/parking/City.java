@@ -2,18 +2,19 @@ package ee.taltech.iti0202.parking;
 import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class City {
 
     private String name;
-    private static List<ParkingLot> parkingLotsInCity = new ArrayList<>();
+    private List<ParkingLot> parkingLotsInCity;
 
     public City(String name) {
         this.name = name;
+        this.parkingLotsInCity = new ArrayList<>();
     }
 
     /**
@@ -25,10 +26,9 @@ public class City {
     public boolean addParkingLot(ParkingLot parkingLot) {
         if (!parkingLotsInCity.contains(parkingLot)) {
             parkingLotsInCity.add(parkingLot);
-            System.out.println(true);
             return true;
         }
-        System.out.println(false);
+
         return false;
     }
 
@@ -48,7 +48,72 @@ public class City {
      *          empty() in case no parking lot is suitable.
      */
     public Optional<ParkingLot> parkCar(Car car) {
+
+        // Kontrollime, kas auto on juba järjekorras/pargitud. Valime parklad, kuhu auto vastu võetakse.
+        List<ParkingLot> acceptedParkingLots = new ArrayList<>();
+        for (ParkingLot parkingLot : parkingLotsInCity) {
+            if (parkingLot.getCarsInQueue().contains(car) || parkingLot.getParkedCars().contains(car)) {
+                return Optional.empty();
+            }
+            if (acceptParkinglot(parkingLot, car)) {
+                acceptedParkingLots.add(parkingLot);
+            }
+
+        }
+        if (acceptedParkingLots.size() == 0) {
+            return Optional.empty();
+        }
+        // Kui valikusse jäi ainult üks parkla, siis lisatakse auto sinna.
+        if (acceptedParkingLots.size() == 1) {
+            acceptedParkingLots.get(0).addToQueue(car);
+            acceptedParkingLots.get(0).processQueue();
+            return Optional.of(acceptedParkingLots.get(0));
+        }
+        // Kui valikusse jäi mitu parklat, siis vaadatakse, kus kõige väiksem järjekord.
+        List<ParkingLot> shortestQueueParkingLot = shortestQueue(acceptedParkingLots);
+        if (shortestQueueParkingLot.size() == 1) {
+            shortestQueueParkingLot.get(0).addToQueue(car);
+            shortestQueueParkingLot.get(0).processQueue();
+            return Optional.of(shortestQueueParkingLot.get(0));
+        } else if (shortestQueueParkingLot.size() > 1) {  // Kui järjekorra pikkus oli mitmel parklal sama,
+                                                          // siis valitakse nendest parklatest auto, mis lisati linna esimesena
+            shortestQueueParkingLot.get(0).addToQueue(car);
+            shortestQueueParkingLot.get(0).processQueue();
+            return Optional.of(shortestQueueParkingLot.get(0));
+        }
+
+
         return Optional.empty();
+    }
+
+    private List<ParkingLot> shortestQueue(List<ParkingLot> checkParkinglotQueue) {
+        List<ParkingLot> parkinglots = checkParkinglotQueue;
+        int minQueue = parkinglots.get(0).getCarsInQueue().size();
+        for (ParkingLot parkingLot : parkinglots) {
+            if (parkingLot.getCarsInQueue().size() < minQueue) {
+                minQueue = parkingLot.getCarsInQueue().size();
+            }
+        }
+        List<ParkingLot> shortestQueuePL = new ArrayList<>();
+
+        for (ParkingLot parkinglot : parkinglots) {
+            if (parkinglot.getCarsInQueue().size() == minQueue) {
+                shortestQueuePL.add(parkinglot);
+            }
+        }
+
+        return shortestQueuePL;
+    }
+
+    private boolean acceptParkinglot(ParkingLot parkingLot, Car car) {
+        if (parkingLot.getParkingLotType().equals("small") && car.getSize() == 1) {
+            return true;
+        } else if (parkingLot.getParkingLotType().equals("priority") && parkingLot.getCarsInQueue().size() < 4) {
+            return true;
+        } else if (parkingLot.getParkingLotType().equals("multi") && parkingLot.getCarsInQueue().size() <= 10) {
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -67,7 +132,20 @@ public class City {
      * @return map with priority-size counts
      */
     public Map<String, Integer> getParkedCarCountBySizeAndPriority() {
-        return null;
+        Map<String, Integer> parkedCarsBySizePriority = new HashMap<>();
+        parkedCarsBySizePriority.put("H1", getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
+        parkedCarsBySizePriority.put("H2", getParkedCarCount(Car.PriorityStatus.HIGHEST, 2));
+        parkedCarsBySizePriority.put("H4", getParkedCarCount(Car.PriorityStatus.HIGHEST, 4));
+        parkedCarsBySizePriority.put("P1", getParkedCarCount(Car.PriorityStatus.PRIORITY, 1));
+        parkedCarsBySizePriority.put("P2", getParkedCarCount(Car.PriorityStatus.PRIORITY, 2));
+        parkedCarsBySizePriority.put("P4", getParkedCarCount(Car.PriorityStatus.PRIORITY, 4));
+        parkedCarsBySizePriority.put("C1", getParkedCarCount(Car.PriorityStatus.COMMON, 1));
+        parkedCarsBySizePriority.put("C2", getParkedCarCount(Car.PriorityStatus.COMMON, 2));
+        parkedCarsBySizePriority.put("C4", getParkedCarCount(Car.PriorityStatus.COMMON, 4));
+
+
+
+        return parkedCarsBySizePriority;
     }
 
     /**
@@ -77,7 +155,15 @@ public class City {
      * @return Count of cars in queue.
      */
     public int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
-        return -1;
+        List<Car> carsInQueue = new ArrayList<>();
+        for (ParkingLot parkingLot : parkingLotsInCity) {
+            carsInQueue.addAll(parkingLot.getCarsInQueue());
+        }
+        List<Car> carInQueueByPrioritySize = carsInQueue.stream()
+                .filter(car -> car.getPriorityStatus().equals(priorityStatus))
+                .filter(car -> car.getSize() == size)
+                .collect(toList());
+        return carInQueueByPrioritySize.size();
     }
 
     /**
@@ -87,7 +173,15 @@ public class City {
      * @return Count of parked cars.
      */
     public int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
-        return -1;
+        List<Car> parkedCars = new ArrayList<>();
+        for (ParkingLot parkingLot : parkingLotsInCity) {
+            parkedCars.addAll(parkingLot.getParkedCars());
+        }
+        List<Car> parkedCarsByPrioritySize = parkedCars.stream()
+                .filter(car -> car.getPriorityStatus().equals(priorityStatus))
+                .filter(car -> car.getSize() == size)
+                .collect(toList());
+        return parkedCarsByPrioritySize.size();
     }
 
     public String getName() {
