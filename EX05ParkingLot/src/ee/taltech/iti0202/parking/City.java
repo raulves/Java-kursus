@@ -108,7 +108,7 @@ public class City {
     private boolean acceptParkinglot(ParkingLot parkingLot, Car car) {
         if (parkingLot.getParkingLotType().equals("small") && car.getSize() == 1) {
             return true;
-        } else if (parkingLot.getParkingLotType().equals("priority") && parkingLot.getCarsInQueue().size() < 6) {
+        } else if (parkingLot.getParkingLotType().equals("priority") && parkingLot.getCarsInQueue().size() < 5) {
             return true;
         } else if (parkingLot.getParkingLotType().equals("multi") && parkingLot.getCarsInQueue().size() <= 10) {
             return true;
