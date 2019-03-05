@@ -2,6 +2,9 @@ package ee.taltech.iti0202.parking.car;
 
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a car with priority and size.
  * The size can be one of 1, 2, 4 (the code doesn't have to validate it).
@@ -32,8 +35,19 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
+        Map<PriorityStatus, Integer> priorityRate = new HashMap<>();
+        priorityRate.put(PriorityStatus.HIGHEST, 3);
+        priorityRate.put(PriorityStatus.PRIORITY, 2);
+        priorityRate.put(PriorityStatus.COMMON, 1);
 
-        return 0;
+        if (this.getPriorityStatus() == o.getPriorityStatus()) {
+            return this.getSize() - o.getSize();
+        }
+        if (priorityRate.get(this.getPriorityStatus()) > priorityRate.get(o.getPriorityStatus())) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     public Car(PriorityStatus status, int size) {
