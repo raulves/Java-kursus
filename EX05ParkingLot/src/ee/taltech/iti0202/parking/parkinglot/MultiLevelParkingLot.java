@@ -81,6 +81,7 @@ public class MultiLevelParkingLot extends ParkingLot {
      */
     @Override
     public String getTable() {
+
         return super.getTable();
     }
 }
