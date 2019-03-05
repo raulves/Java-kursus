@@ -28,6 +28,7 @@ abstract public class ParkingLot {
     private final int width;
     private final int height;
     protected int totalLots;
+    protected int availableLots;
     private Car[][] parkingSlot;  // Car objektid lähevad sisse.
     private Car[][][] parkingSlotMultiLevel;
     protected String parkingLotType;
@@ -42,6 +43,7 @@ abstract public class ParkingLot {
      */
     public ParkingLot(int height, int width) {
         this.totalLots = height * width;
+        this.availableLots = 0;
         this.width = width;
         this.height = height;
         this.parkingSlot = new Car[height][width];
@@ -52,6 +54,7 @@ abstract public class ParkingLot {
 
     public ParkingLot(int height, int width, int levels) {
         this.totalLots = height * width * levels;
+        this.availableLots = 0;
         this.width = width;
         this.height = height;
         this.parkingSlotMultiLevel = new Car[height][width][levels];

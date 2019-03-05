@@ -31,13 +31,14 @@ public class SmallCarParkingLot extends ParkingLot {
         priorities.add(Car.PriorityStatus.PRIORITY);
         priorities.add(Car.PriorityStatus.COMMON);
 
-        while (getParkedCars().size() < totalLots && getCarsInQueue().size() > 0) {
+        while (availableLots < totalLots && getCarsInQueue().size() > 0) {
             for (Car.PriorityStatus priority : priorities) {
                 for (Car car : waitingList) {
                     if (priority.equals(car.getPriorityStatus())) {
                         car.setParkedWhere(this);
                         parkedCars.add(car);
                         carsInQueue.remove(car);
+                        availableLots++;
                     }
                 }
             }

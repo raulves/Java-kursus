@@ -38,7 +38,7 @@ public class PriorityParkingLot extends ParkingLot {
         sizes.add(2);
         sizes.add(4);
 
-        while (getParkedCars().size() < totalLots && getCarsInQueue().size() > 0) {
+        while (availableLots < totalLots && getCarsInQueue().size() > 0) {
             for (Car.PriorityStatus priority : priorities) {
                 for (Integer size : sizes) {
                     for (Car car : waitingList) {
@@ -46,6 +46,13 @@ public class PriorityParkingLot extends ParkingLot {
                             car.setParkedWhere(this);
                             parkedCars.add(car);
                             carsInQueue.remove(car);
+                            if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && car.getSize() == 1) {
+                                availableLots++;
+                            } else if (car.getSize() == 1) {
+                                availableLots += 0.5;
+                            } else {
+                                availableLots++;
+                            }
                         }
                     }
                 }
