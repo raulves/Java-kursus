@@ -55,12 +55,9 @@ public class City {
     public Optional<ParkingLot> parkCar(Car car) {
 
         // Kontrollime, kas auto on juba järjekorras/pargitud, igas linnas.
-        for (City city : cities) {
-            for (ParkingLot parkingLot : city.parkingLotsInCity) {
-                if (parkingLot.getCarsInQueue().contains(car) || parkingLot.getParkedCars().contains(car)) {
-                    return Optional.empty();
-                }
-            }
+        if (!(car.getParkedWhere() == null && car.getInQueue().equals("NO"))) {
+
+            return Optional.empty();
         }
 
         // Valime parklad, kuhu auto vastu võetakse.
