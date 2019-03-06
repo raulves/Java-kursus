@@ -5,7 +5,7 @@ import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalShelter{
+public class AnimalShelter {
 
 
     private AnimalProvider animalProvider;
