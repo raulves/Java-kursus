@@ -71,12 +71,7 @@ public class City {
         }
         // Kui valikusse jäi mitu parklat, siis vaadatakse, kus kõige väiksem järjekord.
         List<ParkingLot> shortestQueueParkingLot = shortestQueue(acceptedParkingLots);
-        if (shortestQueueParkingLot.size() == 1) {
-            shortestQueueParkingLot.get(0).addToQueue(car);
-            shortestQueueParkingLot.get(0).processQueue();
-            return Optional.of(shortestQueueParkingLot.get(0));
-        } else if (shortestQueueParkingLot.size() > 1) {  // Kui järjekorra pikkus oli mitmel parklal sama,
-                                                          // siis valitakse nendest parklatest auto, mis lisati linna esimesena
+        if (shortestQueueParkingLot.size() >= 1) {
             shortestQueueParkingLot.get(0).addToQueue(car);
             shortestQueueParkingLot.get(0).processQueue();
             return Optional.of(shortestQueueParkingLot.get(0));
