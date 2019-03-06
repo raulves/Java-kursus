@@ -27,10 +27,7 @@ public class City {
      * @return true if parking lot was added.
      */
     public boolean addParkingLot(ParkingLot parkingLot) {
-        if (parkingLotsInCity.contains(parkingLot)) {
 
-            return false;
-        }
         for (City city : cities) {
             if (city.parkingLotsInCity.contains(parkingLot)) {
                 return false;
