@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 public class City {
 
 
-    private List<City> cities = new ArrayList<>();
+    private static List<City> cities = new ArrayList<>();
     private String name;
     private List<ParkingLot> parkingLotsInCity;
 
