@@ -84,7 +84,8 @@ public class Car implements Comparable<Car> {
         if (parkedWhere == null) {
             return false;
         }
-        parkedWhere.getParkedCars().remove(this);
+
+        parkedWhere.removeParkedCar(this);
         setParkedWhere(null);
 
        return true;

@@ -89,6 +89,10 @@ abstract public class ParkingLot {
         return parkedCars;
     }
 
+    public void removeParkedCar(Car car) {
+        parkedCars.remove(car);
+    }
+
     /**
      * Returns string presentation of the parking lot.
      *
