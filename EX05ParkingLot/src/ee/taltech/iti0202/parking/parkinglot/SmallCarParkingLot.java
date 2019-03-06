@@ -27,10 +27,14 @@ public class SmallCarParkingLot extends ParkingLot {
     public void processQueue() {
 
         while (getCarsInQueue().size() > 0) {
-            Car nextCar = carsInQueue.remove();
-            nextCar.setParkedWhere(this);
-            parkedCars.add(nextCar);
-            carsInQueue.remove(nextCar);
+            String table = getTable();
+            if (table.contains("..")) {
+                Car nextCar = carsInQueue.remove();
+                nextCar.setParkedWhere(this);
+                parkedCars.add(nextCar);
+                carsInQueue.remove(nextCar);
+            }
+
         }
     }
 }

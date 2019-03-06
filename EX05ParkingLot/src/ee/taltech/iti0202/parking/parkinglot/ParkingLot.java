@@ -27,10 +27,6 @@ abstract public class ParkingLot {
 
     private final int width;
     private final int height;
-    protected int totalLots;
-    protected int availableLots;
-    private Car[][] parkingSlot;  // Car objektid lähevad sisse.
-    private Car[][][] parkingSlotMultiLevel;
     protected String parkingLotType;
     protected PriorityQueue<Car> carsInQueue;  // PriorityQueue  ja .peek meetod on seal!!!
     protected List<Car> parkedCars;
@@ -42,22 +38,16 @@ abstract public class ParkingLot {
      * @param width Length of horizontal side.
      */
     public ParkingLot(int height, int width) {
-        this.totalLots = height * width;
-        this.availableLots = 0;
         this.width = width;
         this.height = height;
-        this.parkingSlot = new Car[height][width];
         this.carsInQueue = new PriorityQueue<>();
         this.parkedCars = new ArrayList<>();
 
     }
 
     public ParkingLot(int height, int width, int levels) {
-        this.totalLots = height * width * levels;
-        this.availableLots = 0;
         this.width = width;
         this.height = height;
-        this.parkingSlotMultiLevel = new Car[height][width][levels];
         this.carsInQueue = new PriorityQueue<>();
         this.parkedCars = new ArrayList<>();
     }
@@ -133,12 +123,40 @@ abstract public class ParkingLot {
      * @return String representation of the parking lot
      */
     public String getTable() {
-        String[][] parkingArea = new String[width * 2][height * 2];
         String result = "";
-        for (String[] strings : parkingArea) {
-            Arrays.fill(strings, ".");
-            result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "");
-            result += "\n";
+
+        if (this.getParkingLotType().equals("small")) {
+            List<Car> copyParkedCars = new ArrayList<>(parkedCars);
+            String[][] parkingArea = new String[height][width];
+
+
+
+            for (int i = 0; i < parkingArea.length; i++) {
+                for (int j = 0; j < parkingArea[i].length; j++) {
+                    if (copyParkedCars.size() > 0 && parkingArea[i][j] == null) {
+                        parkingArea[i][j] = copyParkedCars.get(0).getPriorityStatus().toString().substring(0, 1) + "1";
+                        copyParkedCars.remove(0);
+                    }
+
+                }
+
+            }
+
+
+            for (int i = 0; i < parkingArea.length; i++) {
+                for (int j = 0; j < parkingArea[i].length; j++) {
+                    if (parkingArea[i][j] == null) {
+                        parkingArea[i][j] = "..";
+                    }
+                }
+            }
+
+
+            for (String[] strings : parkingArea) {
+                result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "");
+                result += "\n";
+            }
+
         }
 
 
@@ -146,9 +164,6 @@ abstract public class ParkingLot {
     }
 
 
-    public Car[][] getParkingSlot() {
-        return parkingSlot;
-    }
 
     public String getParkingLotType() {
         return parkingLotType;
