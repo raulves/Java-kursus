@@ -55,17 +55,24 @@ public class City {
      */
     public Optional<ParkingLot> parkCar(Car car) {
 
-        // Kontrollime, kas auto on juba järjekorras/pargitud. Valime parklad, kuhu auto vastu võetakse.
-        List<ParkingLot> acceptedParkingLots = new ArrayList<>();
-        for (ParkingLot parkingLot : parkingLotsInCity) {
-            if (parkingLot.getCarsInQueue().contains(car) || parkingLot.getParkedCars().contains(car)) {
-                return Optional.empty();
+        // Kontrollime, kas auto on juba järjekorras/pargitud, igas linnas.
+        for (City city : cities) {
+            for (ParkingLot parkingLot : city.parkingLotsInCity) {
+                if (parkingLot.getCarsInQueue().contains(car) || parkingLot.getParkedCars().contains(car)) {
+                    return Optional.empty();
+                }
             }
+        }
+
+        // Valime parklad, kuhu auto vastu võetakse.
+        List<ParkingLot> acceptedParkingLots = new ArrayList<>();
+
+        for (ParkingLot parkingLot : parkingLotsInCity) {
             if (acceptParkinglot(parkingLot, car)) {
                 acceptedParkingLots.add(parkingLot);
             }
-
         }
+
         if (acceptedParkingLots.size() == 0) {
             return Optional.empty();
         }
