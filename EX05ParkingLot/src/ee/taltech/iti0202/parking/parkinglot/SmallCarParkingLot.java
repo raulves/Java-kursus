@@ -25,23 +25,12 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        List<Car> waitingList = List.copyOf(getCarsInQueue());
-        List<Car.PriorityStatus> priorities = new ArrayList<>();
-        priorities.add(Car.PriorityStatus.HIGHEST);
-        priorities.add(Car.PriorityStatus.PRIORITY);
-        priorities.add(Car.PriorityStatus.COMMON);
 
-        while (availableLots < totalLots && getCarsInQueue().size() > 0) {
-            for (Car.PriorityStatus priority : priorities) {
-                for (Car car : waitingList) {
-                    if (priority.equals(car.getPriorityStatus())) {
-                        car.setParkedWhere(this);
-                        parkedCars.add(car);
-                        carsInQueue.remove(car);
-                        availableLots++;
-                    }
-                }
-            }
+        while (getCarsInQueue().size() > 0) {
+            Car nextCar = carsInQueue.remove();
+            nextCar.setParkedWhere(this);
+            parkedCars.add(nextCar);
+            carsInQueue.remove(nextCar);
         }
     }
 }

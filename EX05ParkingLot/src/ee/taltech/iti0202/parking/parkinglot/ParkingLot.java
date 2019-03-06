@@ -32,7 +32,7 @@ abstract public class ParkingLot {
     private Car[][] parkingSlot;  // Car objektid lähevad sisse.
     private Car[][][] parkingSlotMultiLevel;
     protected String parkingLotType;
-    protected List<Car> carsInQueue;
+    protected PriorityQueue<Car> carsInQueue;  // PriorityQueue  ja .peek meetod on seal!!!
     protected List<Car> parkedCars;
 
     /**
@@ -47,7 +47,7 @@ abstract public class ParkingLot {
         this.width = width;
         this.height = height;
         this.parkingSlot = new Car[height][width];
-        this.carsInQueue = new ArrayList<>();
+        this.carsInQueue = new PriorityQueue<>();
         this.parkedCars = new ArrayList<>();
 
     }
@@ -58,7 +58,7 @@ abstract public class ParkingLot {
         this.width = width;
         this.height = height;
         this.parkingSlotMultiLevel = new Car[height][width][levels];
-        this.carsInQueue = new ArrayList<>();
+        this.carsInQueue = new PriorityQueue<>();
         this.parkedCars = new ArrayList<>();
     }
 
@@ -155,7 +155,8 @@ abstract public class ParkingLot {
     }
 
     public List<Car> getCarsInQueue() {
-        return carsInQueue;
+        List<Car> carsWaitingQueue = new ArrayList<>(carsInQueue);
+        return carsWaitingQueue;
     }
 }
 
