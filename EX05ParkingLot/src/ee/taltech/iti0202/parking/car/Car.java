@@ -90,5 +90,14 @@ public class Car implements Comparable<Car> {
 
        return true;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "status=" + status +
+                ", size=" + size +
+                ", parkedWhere=" + parkedWhere +
+                '}';
+    }
 }
 

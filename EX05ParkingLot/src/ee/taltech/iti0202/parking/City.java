@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
 public class City {
-
+    private static List<City> cities = new ArrayList<>();
     private String name;
     private List<ParkingLot> parkingLotsInCity;
 
     public City(String name) {
         this.name = name;
         this.parkingLotsInCity = new ArrayList<>();
+        cities.add(this);
     }
 
     /**
@@ -27,6 +28,11 @@ public class City {
         if (parkingLotsInCity.contains(parkingLot)) {
 
             return false;
+        }
+        for (City city : cities) {
+            if (city.parkingLotsInCity.contains(parkingLot)) {
+                return false;
+            }
         }
         parkingLotsInCity.add(parkingLot);
         return true;
