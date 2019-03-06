@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
+import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.lang.reflect.Array;
@@ -59,11 +60,13 @@ abstract public class ParkingLot {
      * @param car Car to be added
      */
     public boolean addToQueue(Car car) {
-        if (!(carsInQueue.contains(car) || parkedCars.contains(car))) {
-            carsInQueue.add(car);
-            return true;
+
+        if (carsInQueue.contains(car) || parkedCars.contains(car)) {
+            return false;
         }
-        return false;
+        carsInQueue.add(car);
+        processQueue();
+        return true;
     }
 
     /**
