@@ -24,12 +24,12 @@ public class City {
      * @return true if parking lot was added.
      */
     public boolean addParkingLot(ParkingLot parkingLot) {
-        if (!parkingLotsInCity.contains(parkingLot)) {
-            parkingLotsInCity.add(parkingLot);
-            return true;
-        }
+        if (parkingLotsInCity.contains(parkingLot)) {
 
-        return false;
+            return false;
+        }
+        parkingLotsInCity.add(parkingLot);
+        return true;
     }
 
     /**
