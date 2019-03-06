@@ -59,7 +59,7 @@ abstract public class ParkingLot {
      * @param car Car to be added
      */
     public boolean addToQueue(Car car) {
-        if (!(carsInQueue.contains(car) && parkedCars.contains(car))) {
+        if (!(carsInQueue.contains(car) || parkedCars.contains(car))) {
             carsInQueue.add(car);
             return true;
         }
