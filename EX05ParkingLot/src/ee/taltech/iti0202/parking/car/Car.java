@@ -20,6 +20,7 @@ public class Car implements Comparable<Car> {
     private PriorityStatus status;
     private int size;
     private ParkingLot parkedWhere;
+    private String inQueue;
 
     public void setParkedWhere(ParkingLot parkedWhere) {
         this.parkedWhere = parkedWhere;
@@ -27,6 +28,14 @@ public class Car implements Comparable<Car> {
 
     public ParkingLot getParkedWhere() {
         return parkedWhere;
+    }
+
+    public String getInQueue() {
+        return inQueue;
+    }
+
+    public void setInQueue(String inQueue) {
+        this.inQueue = inQueue;
     }
 
     public enum PriorityStatus {
@@ -54,6 +63,7 @@ public class Car implements Comparable<Car> {
         this.status = status;
         this.size = size;
         this.parkedWhere = null;
+        this.inQueue = "NO";
     }
 
     /**

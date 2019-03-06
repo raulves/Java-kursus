@@ -31,6 +31,7 @@ public class SmallCarParkingLot extends ParkingLot {
             if (table.contains("..")) {
                 Car nextCar = carsInQueue.remove();
                 nextCar.setParkedWhere(this);
+                nextCar.setInQueue("NO");
                 parkedCars.add(nextCar);
                 carsInQueue.remove(nextCar);
             }

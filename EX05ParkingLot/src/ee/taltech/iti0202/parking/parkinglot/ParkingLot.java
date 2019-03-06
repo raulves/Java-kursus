@@ -60,13 +60,14 @@ abstract public class ParkingLot {
      * @param car Car to be added
      */
     public boolean addToQueue(Car car) {
-
-        if (carsInQueue.contains(car) || parkedCars.contains(car)) {
-            return false;
+        if (car.getParkedWhere() == null && car.getInQueue().equals("NO")) {
+            car.setInQueue("YES");
+            carsInQueue.add(car);
+            processQueue();
+            return true;
         }
-        carsInQueue.add(car);
-        processQueue();
-        return true;
+        return false;
+
     }
 
     /**
