@@ -133,11 +133,15 @@ abstract public class ParkingLot {
             List<Car> copyParkedCars = new ArrayList<>(parkedCars);
             String[][] parkingArea = new String[height][width];
 
+            for (String[] row : parkingArea) {
+                Arrays.fill(row, "..");
+            }
+
 
 
             for (int i = 0; i < parkingArea.length; i++) {
                 for (int j = 0; j < parkingArea[i].length; j++) {
-                    if (copyParkedCars.size() > 0 && parkingArea[i][j] == null) {
+                    if (copyParkedCars.size() > 0 && parkingArea[i][j].equals("..")) {
                         parkingArea[i][j] = copyParkedCars.get(0).getPriorityStatus().toString().substring(0, 1) + "1";
                         copyParkedCars.remove(0);
                     }
@@ -147,13 +151,7 @@ abstract public class ParkingLot {
             }
 
 
-            for (int i = 0; i < parkingArea.length; i++) {
-                for (int j = 0; j < parkingArea[i].length; j++) {
-                    if (parkingArea[i][j] == null) {
-                        parkingArea[i][j] = "..";
-                    }
-                }
-            }
+
 
 
             for (String[] strings : parkingArea) {
