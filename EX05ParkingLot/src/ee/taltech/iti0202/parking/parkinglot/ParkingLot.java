@@ -180,4 +180,3 @@ abstract public class ParkingLot {
         return carsWaitingQueue;
     }
 }
-

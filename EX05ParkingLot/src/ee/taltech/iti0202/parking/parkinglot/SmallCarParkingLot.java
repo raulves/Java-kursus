@@ -34,6 +34,8 @@ public class SmallCarParkingLot extends ParkingLot {
                 nextCar.setInQueue("NO");
                 parkedCars.add(nextCar);
                 carsInQueue.remove(nextCar);
+            } else {
+                break;
             }
 
         }
