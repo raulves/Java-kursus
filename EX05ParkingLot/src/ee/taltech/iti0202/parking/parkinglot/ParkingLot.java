@@ -106,9 +106,9 @@ abstract public class ParkingLot {
                                  commonCars.remove(0);
                              }
                          }
+
                      }
                  }
-
             } else if (!result) {
                 break;
             } else {
@@ -142,9 +142,6 @@ abstract public class ParkingLot {
                         } else if (j + 1 == carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i + 2][j] == null && carsInP[i + 3][j] == null) {
                             return true;
                         }
-                    } else if (car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)) {
-                        return false;
-
                     } else if (car.getSize() == 1) {
                         for (int k = 0; k < carsInP.length; k += 2) {
                             for (int l = 0; l < carsInP[k].length; l++) {
