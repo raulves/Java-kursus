@@ -99,7 +99,7 @@ abstract public class ParkingLot {
                     }
                 }
                 Car[][] carsInParkingLot = carsInArray();
-                 while (highestCars.size() > 0 && getCarsInQueue().size() == 5) {
+                 while (highestCars.size() > 0) {
                      for (int i = 0; i < carsInParkingLot.length; i += 2) {
                          for (int j = 0; j < carsInParkingLot[i].length; j++) {
                              if (highestCars.size() > 0) {
@@ -117,9 +117,11 @@ abstract public class ParkingLot {
 
 
                          }
+
                      }
+
                  }
-                 break;
+
             } else if (!result) {
                 break;
             } else {
