@@ -91,39 +91,25 @@ abstract public class ParkingLot {
             Car car = carsInQueue.peek();  // peek ei eemalda!!
             boolean result = processCar(car);
             if (getParkingLotType().equals("priority") && !result) {
-                List<Car> highestCars = new ArrayList<>();
-
-                for (Car car1 : carsInQueue) {
-                    if (car1.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)) {
-                        highestCars.add(car1);
+                List<Car> commonCars = new ArrayList<>();
+                for (Car parkedCar : parkedCars) {
+                    if (parkedCar.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                        commonCars.add(parkedCar);
                     }
                 }
-                Car[][] carsInParkingLot = carsInArray();
-                 while (highestCars.size() > 0) {
-                     for (int i = 0; i < carsInParkingLot.length; i += 2) {
-                         for (int j = 0; j < carsInParkingLot[i].length; j++) {
-                             if (highestCars.size() > 0) {
-                                 if (carsInParkingLot[i][j].getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
-                                     parkedCars.add(highestCars.get(0));
-                                     parkedCars.remove(carsInParkingLot[i][j]);
-                                     carsInQueue.add(carsInParkingLot[i][j]);
-                                     carsInQueue.remove(highestCars.get(0));
-                                     highestCars.remove(highestCars.get(0));
-                                     if (carsInParkingLot[i + 1][j] != null) {
-                                         parkedCars.remove(carsInParkingLot[i + 1][j]);
-                                     }
-                                 }
-                             }
+                if (commonCars.size() > 0) {
+                    for (Car car1 : carsInQueue) {
+                        if (commonCars.size() > 0) {
+                            if (car1.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)) {
+                                parkedCars.add(car1);
+                                carsInQueue.add(commonCars.get(0));
+                                commonCars.remove(0);
+                            }
+                        }
 
-
-                         }
-
-                     }
-
-
-                 }
-                 break;
-
+                    }
+                }
+                break;
             } else if (!result) {
                 break;
             } else {
