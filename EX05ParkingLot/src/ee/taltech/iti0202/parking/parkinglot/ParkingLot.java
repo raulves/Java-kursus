@@ -102,7 +102,9 @@ abstract public class ParkingLot {
                         if (commonCars.size() > 0) {
                             if (car1.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)) {
                                 parkedCars.add(car1);
+                                parkedCars.remove(commonCars.get(0));
                                 carsInQueue.add(commonCars.get(0));
+                                carsInQueue.remove(car1);
                                 commonCars.remove(0);
                             }
                         }
