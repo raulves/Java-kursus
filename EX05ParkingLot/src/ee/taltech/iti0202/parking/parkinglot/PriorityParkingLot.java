@@ -27,12 +27,7 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        while (getCarsInQueue().size() > 0) {
-            Car nextCar = carsInQueue.remove();
-            nextCar.setParkedWhere(this);
-            parkedCars.add(nextCar);
-            carsInQueue.remove(nextCar);
-        }
+        processHelper();
 
     }
 }
