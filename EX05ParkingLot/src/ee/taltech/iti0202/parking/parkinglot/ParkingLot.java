@@ -116,7 +116,7 @@ abstract public class ParkingLot {
         List<Car> parkedCars = new ArrayList<>(getParkedCars());
         Car[][] carsIn = new Car[height * 2][width];
 
-        for (int i = 0; i < carsIn.length; i += 2) {
+        for (int i = 0; i < carsIn.length; i++) {
             for (int j = 0; j < carsIn[i].length; j++) {
                 if (parkedCars.size() > 0) {
                     carsIn[i][j] = parkedCars.get(0);
@@ -183,13 +183,15 @@ abstract public class ParkingLot {
             Car[][] parkedCars = carsInArray();
             String[][] parkedTable = new String[height * 2][width];
 
-            for (int i = 0; i < parkedCars.length; i++) {
+            for (int i = 0; i < parkedCars.length; i += 2) {
                 for (int j = 0; j < parkedCars[i].length; j++) {
                     if (parkedCars[i][j] == null) {
                         parkedTable[i][j] = "..";
+                        parkedTable[i + 1][j] = "..";
 
                     } else {
                         parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1) + parkedCars[i][j].getSize();
+                        parkedTable[i +1][j] = "..";
                     }
                 }
             }
