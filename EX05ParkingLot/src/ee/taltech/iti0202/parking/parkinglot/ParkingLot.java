@@ -100,7 +100,7 @@ abstract public class ParkingLot {
 
         }
     }
-    // Siin peaksin küsima, kas auto mahub parklasse.
+    // Siin peaksin küsima, kas uus auto mahub parklasse. Pean tegema kotnrolli igas suunas, kas auto mahub.
     protected boolean processCar(Car car) {
         Car[][] carsInP = carsInArray();
         for (Car[] cars : carsInP) {
@@ -111,14 +111,16 @@ abstract public class ParkingLot {
         return false;
     }
 
+    // Siin paigutan autod parklasse
     protected Car[][] carsInArray() {
         List<Car> parkedCars = new ArrayList<>(getParkedCars());
-        Car[][] carsIn = new Car[height][width];
+        Car[][] carsIn = new Car[height * 2][width];
 
-        for (int i = 0; i < carsIn.length; i++) {
+        for (int i = 0; i < carsIn.length; i += 2) {
             for (int j = 0; j < carsIn[i].length; j++) {
                 if (parkedCars.size() > 0) {
                     carsIn[i][j] = parkedCars.get(0);
+                    carsIn[i + 1][j] = parkedCars.get(0);
                     parkedCars.remove(parkedCars.get(0));
                 }
 
@@ -179,12 +181,13 @@ abstract public class ParkingLot {
 
         if (this.getParkingLotType().equals("small")) {
             Car[][] parkedCars = carsInArray();
-            String[][] parkedTable = new String[height][width];
+            String[][] parkedTable = new String[height * 2][width];
 
             for (int i = 0; i < parkedCars.length; i++) {
                 for (int j = 0; j < parkedCars[i].length; j++) {
                     if (parkedCars[i][j] == null) {
                         parkedTable[i][j] = "..";
+
                     } else {
                         parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1) + parkedCars[i][j].getSize();
                     }
