@@ -90,7 +90,7 @@ abstract public class ParkingLot {
         while (carsInQueue.size() > 0) {
             Car car = carsInQueue.peek();  // peek ei eemalda!!
             boolean result = processCar(car);
-            if (getParkingLotType().equals("priority") && !result) {
+            if (getParkingLotType().equals("priority") && !result && getCarsInQueue().size() == 5) {
                 List<Car> commonCars = new ArrayList<>();
                 for (Car parkedCar : parkedCars) {
                     if (parkedCar.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
