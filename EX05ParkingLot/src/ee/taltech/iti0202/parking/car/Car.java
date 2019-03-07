@@ -22,13 +22,7 @@ public class Car implements Comparable<Car> {
     private ParkingLot parkedWhere;
     private String inQueue;
 
-    public void setParkedWhere(ParkingLot parkedWhere) {
-        this.parkedWhere = parkedWhere;
-    }
 
-    public ParkingLot getParkedWhere() {
-        return parkedWhere;
-    }
 
     public String getInQueue() {
         return inQueue;
@@ -101,6 +95,14 @@ public class Car implements Comparable<Car> {
         setParkedWhere(null);
 
        return true;
+    }
+
+    public void setParkedWhere(ParkingLot parkingLot) {
+        parkedWhere = parkingLot;
+    }
+
+    public ParkingLot getParkedWhere() {
+        return parkedWhere;
     }
 
     @Override

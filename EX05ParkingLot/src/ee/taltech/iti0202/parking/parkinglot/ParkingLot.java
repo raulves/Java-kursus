@@ -32,6 +32,7 @@ abstract public class ParkingLot {
     protected PriorityQueue<Car> carsInQueue;  // PriorityQueue  ja .peek meetod on seal!!!
     protected List<Car> parkedCars;
 
+
     /**
      * Initialize the parking slot with the given width and height.
      *
@@ -82,6 +83,49 @@ abstract public class ParkingLot {
      *
      */
     abstract public void processQueue();
+
+    protected void processHelper() {
+        while (carsInQueue.size() > 0) {
+            Car car = carsInQueue.peek();
+            boolean result = processCar(car);
+            if (!result) {
+                break;
+            } else {
+                car.setParkedWhere(this);
+                car.setInQueue("NO");
+                parkedCars.add(car);
+                carsInQueue.remove(car);
+            }
+
+
+        }
+    }
+    // Siin peaksin küsima, kas auto mahub parklasse.
+    protected boolean processCar(Car car) {
+        Car[][] carsInP = carsInArray();
+        for (Car[] cars : carsInP) {
+            for (Car car1 : cars) {
+                if (car1 == null) return true;
+            }
+        }
+        return false;
+    }
+
+    protected Car[][] carsInArray() {
+        List<Car> parkedCars = new ArrayList<>(getParkedCars());
+        Car[][] carsIn = new Car[height][width];
+
+        for (int i = 0; i < carsIn.length; i++) {
+            for (int j = 0; j < carsIn[i].length; j++) {
+                if (parkedCars.size() > 0) {
+                    carsIn[i][j] = parkedCars.get(0);
+                    parkedCars.remove(parkedCars.get(0));
+                }
+
+            }
+        }
+        return carsIn;
+    }
 
 
 
@@ -134,35 +178,30 @@ abstract public class ParkingLot {
         String result = "";
 
         if (this.getParkingLotType().equals("small")) {
-            List<Car> copyParkedCars = new ArrayList<>(parkedCars);
-            String[][] parkingArea = new String[height][width];
+            Car[][] parkedCars = carsInArray();
+            String[][] parkedTable = new String[height][width];
 
-            for (String[] row : parkingArea) {
-                Arrays.fill(row, "..");
-            }
-
-
-
-            for (int i = 0; i < parkingArea.length; i++) {
-                for (int j = 0; j < parkingArea[i].length; j++) {
-                    if (copyParkedCars.size() > 0 && parkingArea[i][j].equals("..")) {
-                        parkingArea[i][j] = copyParkedCars.get(0).getPriorityStatus().toString().substring(0, 1) + "1";
-                        copyParkedCars.remove(0);
+            for (int i = 0; i < parkedCars.length; i++) {
+                for (int j = 0; j < parkedCars[i].length; j++) {
+                    if (parkedCars[i][j] == null) {
+                        parkedTable[i][j] = "..";
+                    } else {
+                        parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1) + parkedCars[i][j].getSize();
                     }
-
                 }
-
             }
 
 
 
 
 
-            for (String[] strings : parkingArea) {
+            for (String[] strings : parkedTable) {
                 result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "");
                 result += "\n";
             }
 
+        } else {
+            return result;
         }
 
 
