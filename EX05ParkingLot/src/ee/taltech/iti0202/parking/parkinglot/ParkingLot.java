@@ -136,13 +136,20 @@ abstract public class ParkingLot {
         List<Car> parkedCars = new ArrayList<>(getParkedCars());
         Car[][] carsIn = new Car[height * 2][width];
 
-        for (int i = 0; i < carsIn.length; i++) {
+        for (int i = 0; i < carsIn.length; i += 2) {
             for (int j = 0; j < carsIn[i].length; j++) {
                 if (parkedCars.size() > 0) {
                     if (parkingLotType.equals("small")) {
                         carsIn[i][j] = parkedCars.get(0);
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
+                    } else if (parkingLotType.equals("priority")) {
+                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && parkedCars.get(0).getSize() == 1) {
+                            if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                                carsIn[i][j] = parkedCars.get(0);
+                                carsIn[i + 1][j] = parkedCars.get(0);
+                            }
+                        }
                     }
 
                 }
