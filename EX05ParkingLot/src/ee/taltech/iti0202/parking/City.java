@@ -81,7 +81,7 @@ public class City {
             return Optional.ofNullable(acceptedParkingLots.get(0));
         }
         // Kui valikusse jäi mitu parklat, siis vaadatakse, kus kõige väiksem järjekord.
-        List<ParkingLot> shortestQueueParkingLot = shortestQueue(acceptedParkingLots);
+        List<ParkingLot> shortestQueueParkingLot = new ArrayList<>(shortestQueue(acceptedParkingLots));
         if (shortestQueueParkingLot.size() >= 1) {
             shortestQueueParkingLot.get(0).addToQueue(car);
             return Optional.ofNullable(shortestQueueParkingLot.get(0));
