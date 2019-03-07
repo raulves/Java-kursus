@@ -86,7 +86,7 @@ abstract public class ParkingLot {
 
     protected void processHelper() {
         while (carsInQueue.size() > 0) {
-            Car car = carsInQueue.peek();
+            Car car = carsInQueue.peek();  // peek ei eemalda!!
             boolean result = processCar(car);
             if (!result) {
                 break;
@@ -94,7 +94,7 @@ abstract public class ParkingLot {
                 car.setParkedWhere(this);
                 car.setInQueue("NO");
                 parkedCars.add(car);
-                carsInQueue.remove(car);
+                carsInQueue.poll();
             }
 
 
