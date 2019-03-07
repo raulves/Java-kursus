@@ -26,7 +26,7 @@ import java.util.PriorityQueue;
  * in its queue and how the queue is processed.
  * See the class description for more information.
  */
-abstract public class ParkingLot {
+public abstract class ParkingLot {
 
     private final int width;
     private final int height;
@@ -181,30 +181,7 @@ abstract public class ParkingLot {
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
                     } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
-
-                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
-                                && parkedCars.get(0).getSize() == 1
-                                && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
-                            carsIn[i][j] = parkedCars.get(0);
-                            parkedCars.remove(parkedCars.get(0));
-                        } else if (parkedCars.get(0).getSize() == 4) {
-                            if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null
-                                    && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
-                                carsIn[i][j] = parkedCars.get(0);
-                                carsIn[i][j + 1] = parkedCars.get(0);
-                                carsIn[i + 1][j] = parkedCars.get(0);
-                                carsIn[i + 1][j + 1] = parkedCars.get(0);
-                                parkedCars.remove(parkedCars.get(0));
-                            } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null
-                                    && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null
-                                    && carsIn[i + 3][j] == null) {
-                                carsIn[i][j] = parkedCars.get(0);
-                                carsIn[i + 1][j] = parkedCars.get(0);
-                                carsIn[i + 2][j] = parkedCars.get(0);
-                                carsIn[i + 3][j] = parkedCars.get(0);
-                                parkedCars.remove(parkedCars.get(0));
-                            }
-                        } else if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                        if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
                             boolean letMeKnow = true;
                             for (int k = 0; k < carsIn.length; k += 2) {
                                 for (int l = 0; l < carsIn[k].length; l++) {
@@ -216,7 +193,6 @@ abstract public class ParkingLot {
                                             carsIn[k + 1][l] = parkedCars.get(0);
                                             parkedCars.remove(parkedCars.get(0));
                                             letMeKnow = false;
-
                                         }
                                     }
                                 }
@@ -227,20 +203,43 @@ abstract public class ParkingLot {
                                     parkedCars.remove(parkedCars.get(0));
                                 }
                             }
-                        } else {
-                            if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                        }
+                        if (parkedCars.size() > 0) {
+                            if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
+                                    && parkedCars.get(0).getSize() == 1
+                                    && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
                                 carsIn[i][j] = parkedCars.get(0);
-                                carsIn[i + 1][j] = parkedCars.get(0);
                                 parkedCars.remove(parkedCars.get(0));
+                            } else if (parkedCars.get(0).getSize() == 4) {
+                                if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null
+                                        && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
+                                    carsIn[i][j] = parkedCars.get(0);
+                                    carsIn[i][j + 1] = parkedCars.get(0);
+                                    carsIn[i + 1][j] = parkedCars.get(0);
+                                    carsIn[i + 1][j + 1] = parkedCars.get(0);
+                                    parkedCars.remove(parkedCars.get(0));
+                                } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null
+                                        && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null
+                                        && carsIn[i + 3][j] == null) {
+                                    carsIn[i][j] = parkedCars.get(0);
+                                    carsIn[i + 1][j] = parkedCars.get(0);
+                                    carsIn[i + 2][j] = parkedCars.get(0);
+                                    carsIn[i + 3][j] = parkedCars.get(0);
+                                    parkedCars.remove(parkedCars.get(0));
+                                }
+                            } else {
+                                if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                                    carsIn[i][j] = parkedCars.get(0);
+                                    carsIn[i + 1][j] = parkedCars.get(0);
+                                    parkedCars.remove(parkedCars.get(0));
+                                }
                             }
-
                         }
                     }
-
                 }
-
             }
         }
+
         return carsIn;
     }
 
