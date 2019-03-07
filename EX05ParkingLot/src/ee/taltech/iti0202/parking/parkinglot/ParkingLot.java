@@ -168,7 +168,8 @@ abstract public class ParkingLot {
                                 carsIn[i + 3][j] = parkedCars.get(0);
                                 parkedCars.remove(parkedCars.get(0));
                             }
-                        } else if (parkedCars.get(0).getSize() == 1 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                        } else if (parkedCars.get(0).getSize() == 1) {
+                            boolean letMeKnow = true;
                             for (int k = 0; k < carsIn.length; k += 2) {
                                 for (int l = 0; l < carsIn[k].length; l++) {
                                     if (carsIn[i][j] == null) {
@@ -178,14 +179,17 @@ abstract public class ParkingLot {
                                         if (carsIn[i + 1][j] == null) {
                                             carsIn[i + 1][j] = parkedCars.get(0);
                                             parkedCars.remove(parkedCars.get(0));
+                                            letMeKnow = false;
                                         }
                                     }
                                 }
-
                             }
-                            carsIn[i][j] = parkedCars.get(0);
-                            carsIn[i + 1][j] = parkedCars.get(0);
-                            parkedCars.remove(parkedCars.get(0));
+                            if (letMeKnow) {
+                                if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                                    carsIn[i][j] = parkedCars.get(0);
+                                    parkedCars.remove(parkedCars.get(0));
+                                }
+                            }
                         } else {
                             if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
                                 carsIn[i][j] = parkedCars.get(0);
