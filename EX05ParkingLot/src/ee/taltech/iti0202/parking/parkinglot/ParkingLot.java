@@ -109,6 +109,9 @@ abstract public class ParkingLot {
                                      carsInQueue.add(carsInParkingLot[i][j]);
                                      carsInQueue.remove(highestCars.get(0));
                                      highestCars.remove(highestCars.get(0));
+                                     if (carsInParkingLot[i + 1][j] != null) {
+                                         parkedCars.remove(carsInParkingLot[i + 1][j]);
+                                     }
                                  }
                              }
 
