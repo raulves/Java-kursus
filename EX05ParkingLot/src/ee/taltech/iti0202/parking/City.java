@@ -2,8 +2,8 @@ package ee.taltech.iti0202.parking;
 import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -120,7 +120,6 @@ public class City {
         }
         return false;
     }
-    
     /**
      * Gets all parking lots in a city.
      * @return List of parking lots.

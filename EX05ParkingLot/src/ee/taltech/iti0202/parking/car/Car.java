@@ -107,11 +107,14 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "status=" + status +
-                ", size=" + size +
-                ", parkedWhere=" + parkedWhere +
-                '}';
+        return "Car{"
+                + "status="
+                + status
+                + ", size="
+                + size
+                + ", parkedWhere="
+                + parkedWhere
+                + '}';
     }
 }
 

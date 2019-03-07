@@ -1,10 +1,12 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
+
 
 /**
  * Parking lot is a rectangular area with fixed with and height.
@@ -144,17 +146,20 @@ abstract public class ParkingLot {
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
                     } else if (parkingLotType.equals("priority")) {
-                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && parkedCars.get(0).getSize() == 1 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
+                                && parkedCars.get(0).getSize() == 1 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
                             carsIn[i][j] = parkedCars.get(0);
                             parkedCars.remove(parkedCars.get(0));
                         } else if (parkedCars.get(0).getSize() == 4) {
-                            if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
+                            if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null
+                                    && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
                                 carsIn[i][j] = parkedCars.get(0);
                                 carsIn[i][j + 1] = parkedCars.get(0);
                                 carsIn[i + 1][j] = parkedCars.get(0);
                                 carsIn[i + 1][j + 1] = parkedCars.get(0);
                                 parkedCars.remove(parkedCars.get(0));
-                            } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null && carsIn[i + 3][j] == null) {
+                            } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null
+                                    && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null && carsIn[i + 3][j] == null) {
                                 carsIn[i][j] = parkedCars.get(0);
                                 carsIn[i + 1][j] = parkedCars.get(0);
                                 carsIn[i + 2][j] = parkedCars.get(0);

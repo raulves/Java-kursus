@@ -1,10 +1,4 @@
-
 package ee.taltech.iti0202.parking.parkinglot;
-
-import ee.taltech.iti0202.parking.car.Car;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Modern parking lot located under ground.
@@ -61,4 +55,3 @@ public class MultiLevelParkingLot extends ParkingLot {
         return super.getTable();
     }
 }
-

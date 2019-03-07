@@ -1,10 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.car.Car;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Accepts all cars if the queue size is less than 5.
  * Small car (size 1) with the highest priority can park alone.
