@@ -144,11 +144,34 @@ abstract public class ParkingLot {
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
                     } else if (parkingLotType.equals("priority")) {
-                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && parkedCars.get(0).getSize() == 1) {
+                        if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && parkedCars.get(0).getSize() == 1 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                            carsIn[i][j] = parkedCars.get(0);
+                            parkedCars.remove(parkedCars.get(0));
+                        } else if (parkedCars.get(0).getSize() == 4) {
+                            if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
+                                carsIn[i][j] = parkedCars.get(0);
+                                carsIn[i][j + 1] = parkedCars.get(0);
+                                carsIn[i + 1][j] = parkedCars.get(0);
+                                carsIn[i + 1][j + 1] = parkedCars.get(0);
+                                parkedCars.remove(parkedCars.get(0));
+                            } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null && carsIn[i + 3][j] == null) {
+                                carsIn[i][j] = parkedCars.get(0);
+                                carsIn[i + 1][j] = parkedCars.get(0);
+                                carsIn[i + 2][j] = parkedCars.get(0);
+                                carsIn[i + 3][j] = parkedCars.get(0);
+                                parkedCars.remove(parkedCars.get(0));
+                            }
+                        } else if (parkedCars.get(0).getSize() == 1 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
+                            carsIn[i][j] = parkedCars.get(0);
+                            carsIn[i + 1][j] = parkedCars.get(0);
+                            parkedCars.remove(parkedCars.get(0));
+                        } else {
                             if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
                                 carsIn[i][j] = parkedCars.get(0);
                                 carsIn[i + 1][j] = parkedCars.get(0);
+                                parkedCars.remove(parkedCars.get(0));
                             }
+
                         }
                     }
 
@@ -208,17 +231,15 @@ abstract public class ParkingLot {
      */
     public String getTable() {
         String result = "";
+        Car[][] parkedCars = carsInArray();
+        String[][] parkedTable = new String[height * 2][width];
 
         if (this.getParkingLotType().equals("small")) {
-            Car[][] parkedCars = carsInArray();
-            String[][] parkedTable = new String[height * 2][width];
-
             for (int i = 0; i < parkedCars.length; i += 2) {
                 for (int j = 0; j < parkedCars[i].length; j++) {
                     if (parkedCars[i][j] == null) {
                         parkedTable[i][j] = "..";
                         parkedTable[i + 1][j] = "..";
-
                     } else {
                         parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1) + parkedCars[i][j].getSize();
                         parkedTable[i +1][j] = "..";
@@ -227,16 +248,20 @@ abstract public class ParkingLot {
             }
 
 
-
-
-
-            for (String[] strings : parkedTable) {
-                result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "").replace(" ", "");
-                result += "\n";
+        } else if (this.getParkingLotType().equals("priority")) {
+            for (int i = 0; i < parkedCars.length; i++) {
+                for (int j = 0; j < parkedCars[i].length; j++) {
+                    if (parkedCars[i][j] == null) {
+                        parkedTable[i][j] = "..";
+                    } else {
+                        parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1) + parkedCars[i][j].getSize();
+                    }
+                }
             }
-
-        } else {
-            return result;
+        }
+        for (String[] strings : parkedTable) {
+            result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "").replace(" ", "");
+            result += "\n";
         }
 
 
