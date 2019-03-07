@@ -3,7 +3,11 @@ import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 

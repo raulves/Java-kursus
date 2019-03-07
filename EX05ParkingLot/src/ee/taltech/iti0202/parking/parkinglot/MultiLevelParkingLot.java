@@ -5,7 +5,6 @@ package ee.taltech.iti0202.parking.parkinglot;
  * The parking lot has several levels.
  * Always prefer the smallest level (starting from 1).
  * If the car cannot fit to a level, then proceed to the next level.
- * 
  * This parking lot only accepts maximum 10 vehicle in the queue.
  * So, if there queue already has 10 cars, this parking lot should not
  * be available for new cars.
