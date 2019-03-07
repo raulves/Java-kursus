@@ -119,9 +119,12 @@ abstract public class ParkingLot {
         for (int i = 0; i < carsIn.length; i++) {
             for (int j = 0; j < carsIn[i].length; j++) {
                 if (parkedCars.size() > 0) {
-                    carsIn[i][j] = parkedCars.get(0);
-                    carsIn[i + 1][j] = parkedCars.get(0);
-                    parkedCars.remove(parkedCars.get(0));
+                    if (parkingLotType.equals("small")) {
+                        carsIn[i][j] = parkedCars.get(0);
+                        carsIn[i + 1][j] = parkedCars.get(0);
+                        parkedCars.remove(parkedCars.get(0));
+                    }
+
                 }
 
             }
