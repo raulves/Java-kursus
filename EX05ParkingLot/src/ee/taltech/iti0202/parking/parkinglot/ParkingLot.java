@@ -145,7 +145,7 @@ abstract public class ParkingLot {
                         carsIn[i][j] = parkedCars.get(0);
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
-                    } else if (parkingLotType.equals("priority")) {
+                    } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
                         if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
                                 && parkedCars.get(0).getSize() == 1
                                 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
@@ -274,7 +274,7 @@ abstract public class ParkingLot {
             }
 
 
-        } else if (this.getParkingLotType().equals("priority")) {
+        } else if (this.getParkingLotType().equals("priority") || this.getParkingLotType().equals("multi")) {
             for (int i = 0; i < parkedCars.length; i++) {
                 for (int j = 0; j < parkedCars[i].length; j++) {
                     if (parkedCars[i][j] == null) {
