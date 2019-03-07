@@ -78,13 +78,13 @@ public class City {
         // Kui valikusse jäi ainult üks parkla, siis lisatakse auto sinna.
         if (acceptedParkingLots.size() == 1) {
             acceptedParkingLots.get(0).addToQueue(car);
-            return Optional.of(acceptedParkingLots.get(0));
+            return Optional.ofNullable(acceptedParkingLots.get(0));
         }
         // Kui valikusse jäi mitu parklat, siis vaadatakse, kus kõige väiksem järjekord.
         List<ParkingLot> shortestQueueParkingLot = shortestQueue(acceptedParkingLots);
         if (shortestQueueParkingLot.size() >= 1) {
             shortestQueueParkingLot.get(0).addToQueue(car);
-            return Optional.of(shortestQueueParkingLot.get(0));
+            return Optional.ofNullable(shortestQueueParkingLot.get(0));
         }
 
 
