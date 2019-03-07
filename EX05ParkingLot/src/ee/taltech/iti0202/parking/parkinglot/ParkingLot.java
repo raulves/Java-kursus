@@ -251,7 +251,7 @@ abstract public class ParkingLot {
                     } else {
                         parkedTable[i][j] = parkedCars[i][j].getPriorityStatus().toString().substring(0, 1)
                                 + parkedCars[i][j].getSize();
-                        parkedTable[i +1][j] = "..";
+                        parkedTable[i + 1][j] = "..";
                     }
                 }
             }
