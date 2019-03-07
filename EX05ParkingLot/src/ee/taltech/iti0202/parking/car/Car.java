@@ -91,9 +91,7 @@ public class Car implements Comparable<Car> {
      * @return True if the car was parking, false otherwise.
      */
     public boolean unpark() {
-        if (inQueue.equals("YES")) {
-            return false;
-        }
+
         if (parkedWhere == null) {
             return false;
         }
