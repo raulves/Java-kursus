@@ -116,7 +116,7 @@ abstract public class ParkingLot {
                          }
                      }
                  }
-
+                 break;
             } else if (!result) {
                 break;
             } else {
