@@ -92,16 +92,16 @@ public class City {
     }
 
     private List<ParkingLot> shortestQueue(List<ParkingLot> checkParkinglotQueue) {
-        List<ParkingLot> parkinglots = checkParkinglotQueue;
-        int minQueue = parkinglots.get(0).getCarsInQueue().size();
-        for (ParkingLot parkingLot : parkinglots) {
+        List<ParkingLot> parking = new ArrayList<>(checkParkinglotQueue);
+        int minQueue = parking.get(0).getCarsInQueue().size();
+        for (ParkingLot parkingLot : parking) {
             if (parkingLot.getCarsInQueue().size() < minQueue) {
                 minQueue = parkingLot.getCarsInQueue().size();
             }
         }
         List<ParkingLot> shortestQueuePL = new ArrayList<>();
 
-        for (ParkingLot parkinglot : parkinglots) {
+        for (ParkingLot parkinglot : parking) {
             if (parkinglot.getCarsInQueue().size() == minQueue) {
                 shortestQueuePL.add(parkinglot);
             }
