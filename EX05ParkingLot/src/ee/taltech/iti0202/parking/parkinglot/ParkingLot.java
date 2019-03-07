@@ -84,7 +84,7 @@ abstract public class ParkingLot {
      * which could initialize the process.
      *
      */
-    abstract public void processQueue();
+    public abstract void processQueue();
 
     protected void processHelper() {   // Priority puhul pean ka kontrollima, kas Common auto saab välja võtta.
         while (carsInQueue.size() > 0) {
@@ -181,6 +181,7 @@ abstract public class ParkingLot {
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
                     } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
+
                         if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
                                 && parkedCars.get(0).getSize() == 1
                                 && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
