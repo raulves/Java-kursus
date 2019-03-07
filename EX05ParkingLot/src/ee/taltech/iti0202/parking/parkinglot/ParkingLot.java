@@ -109,8 +109,7 @@ abstract public class ParkingLot {
 
                      }
                  }
-            }
-            if (!result) {
+            } else if (!result) {
                 break;
             } else {
                 car.setParkedWhere(this);
@@ -125,9 +124,45 @@ abstract public class ParkingLot {
     // Siin peaksin küsima, kas uus auto mahub parklasse. Pean tegema kotnrolli igas suunas, kas auto mahub.
     protected boolean processCar(Car car) {
         Car[][] carsInP = carsInArray();
-        for (Car[] cars : carsInP) {
-            for (Car car1 : cars) {
-                if (car1 == null) return true;
+        if (getParkingLotType().equals("small")) {
+            for (Car[] cars : carsInP) {
+                for (Car car1 : cars) {
+                    if (car1 == null) return true;
+                }
+            }
+            return false;
+        } else if (getParkingLotType().equals("priority")) {
+            for (int i = 0; i < carsInP.length; i += 2) {
+                for (int j = 0; j < carsInP[i].length; j++) {
+                    if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && car.getSize() == 1 && carsInP[i][j] == null && carsInP[i + 1][j] == null) {
+                        return true;
+                    } else if (car.getSize() == 4) {
+                        if (j + 1 < carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i][j + 1] == null && carsInP[i + 1][j + 1] == null) {
+                            return true;
+                        } else if (j + 1 == carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i + 2][j] == null && carsInP[i + 3][j] == null) {
+                            return true;
+                        }
+                    } else if (car.getSize() == 1) {
+                        for (int k = 0; k < carsInP.length; k += 2) {
+                            for (int l = 0; l < carsInP[k].length; l++) {
+                                if (carsInP[i][j] == null) {
+                                    continue;
+                                }
+                                if (carsInP[i][j].getPriorityStatus().equals(car.getPriorityStatus()) && carsInP[i][j].getSize() == 1) {
+                                    if (carsInP[i + 1][j] == null) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        if (carsInP[i][j] == null && carsInP[i + 1][j] == null) {
+                            return true;
+                        }
+
+                    } else if (carsInP[i][j] == null && carsInP[i + 1][j] == null) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
