@@ -201,18 +201,19 @@ abstract public class ParkingLot {
                                 carsIn[i + 3][j] = parkedCars.get(0);
                                 parkedCars.remove(parkedCars.get(0));
                             }
-                        } else if (parkedCars.get(0).getSize() == 1) {
+                        } else if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
                             boolean letMeKnow = true;
                             for (int k = 0; k < carsIn.length; k += 2) {
                                 for (int l = 0; l < carsIn[k].length; l++) {
-                                    if (carsIn[i][j] == null) {
+                                    if (carsIn[k][l] == null) {
                                         continue;
                                     }
-                                    if (carsIn[i][j].getPriorityStatus().equals(parkedCars.get(0).getPriorityStatus()) && carsIn[i][j].getSize() == 1) {
-                                        if (carsIn[i + 1][j] == null) {
-                                            carsIn[i + 1][j] = parkedCars.get(0);
+                                    if (carsIn[k][l].getPriorityStatus().equals(parkedCars.get(0).getPriorityStatus()) && carsIn[k][l].getSize() == 1) {
+                                        if (carsIn[k + 1][l] == null) {
+                                            carsIn[k + 1][l] = parkedCars.get(0);
                                             parkedCars.remove(parkedCars.get(0));
                                             letMeKnow = false;
+
                                         }
                                     }
                                 }
