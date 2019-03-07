@@ -196,7 +196,7 @@ abstract public class ParkingLot {
 
 
             for (String[] strings : parkedTable) {
-                result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "");
+                result += Arrays.toString(strings).replace(",", "").replace("[", "").replace("]", "").replace(" ", "");
                 result += "\n";
             }
 
