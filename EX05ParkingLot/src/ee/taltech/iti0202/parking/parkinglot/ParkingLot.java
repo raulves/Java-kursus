@@ -84,17 +84,37 @@ abstract public class ParkingLot {
      */
     abstract public void processQueue();
 
-    protected void processHelper() {
+    protected void processHelper() {   // Priority puhul pean ka kontrollima, kas Common auto saab välja võtta.
         while (carsInQueue.size() > 0) {
             Car car = carsInQueue.peek();  // peek ei eemalda!!
             boolean result = processCar(car);
+            if (getParkingLotType().equals("priority") && !result) {
+                List<Car> commonCars = new ArrayList<>();
+                 for (Car parkedCar : parkedCars) {
+                    if (parkedCar.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                        commonCars.add(parkedCar);
+                    }
+                }
+                 if (commonCars.size() > 0) {
+                     for (Car car1 : carsInQueue) {
+                         if (commonCars.size() > 0) {
+                             if (car1.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)) {
+                                 parkedCars.add(car1);
+                                 carsInQueue.add(commonCars.get(0));
+                                 commonCars.remove(0);
+                             }
+                         }
+
+                     }
+                 }
+            }
             if (!result) {
                 break;
             } else {
                 car.setParkedWhere(this);
                 car.setInQueue("NO");
                 parkedCars.add(car);
-                carsInQueue.poll();
+                carsInQueue.poll();  // poll eemaldab
             }
 
 
