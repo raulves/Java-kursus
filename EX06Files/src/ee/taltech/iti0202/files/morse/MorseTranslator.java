@@ -1,4 +1,6 @@
 package ee.taltech.iti0202.files.morse;
+import ee.taltech.iti0202.files.input.InputFilesReader;
+import ee.taltech.iti0202.files.input.InputFilesScanner;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ public class MorseTranslator {
     }
 
     public List<String> translateLinesToMorse(List<String> lines) {
+
         return null;
     }
 
@@ -24,7 +27,24 @@ public class MorseTranslator {
     }
 
     private String translateLineToMorse(String line) {
-        return null;
+        String translationToMorse = "";
+
+        String[] splitLine = line.split(" ");
+        List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
+        Map<String, String> morseCodes = addMorseCodes(lines);
+        for (String s : splitLine) {
+            String oneWordToMorse = "";
+            String[] wordToLetters = s.split("");
+            for (String letter : wordToLetters) {
+                oneWordToMorse += " ";
+                oneWordToMorse += morseCodes.get(letter);
+
+
+            }
+            translationToMorse += "\t";
+            translationToMorse += oneWordToMorse.substring(1);
+        }
+        return translationToMorse.substring(1);
     }
 
     private String translateLineFromMorse(String line) {
