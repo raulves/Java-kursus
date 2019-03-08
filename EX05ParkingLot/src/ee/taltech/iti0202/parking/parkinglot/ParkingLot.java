@@ -193,8 +193,10 @@ public abstract class ParkingLot {
                                             carsIn[k + 1][l] = parkedCars.get(0);
                                             parkedCars.remove(parkedCars.get(0));
                                             letMeKnow = false;
+
                                         }
                                     }
+
                                 }
                             }
                             if (letMeKnow) {
@@ -202,6 +204,7 @@ public abstract class ParkingLot {
                                     carsIn[i][j] = parkedCars.get(0);
                                     parkedCars.remove(parkedCars.get(0));
                                 }
+
                             }
                         }
                         if (parkedCars.size() > 0) {
