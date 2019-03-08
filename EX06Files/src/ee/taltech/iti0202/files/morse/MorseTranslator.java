@@ -37,7 +37,7 @@ public class MorseTranslator {
             String[] wordToLetters = s.split("");
             for (String letter : wordToLetters) {
                 oneWordToMorse += " ";
-                oneWordToMorse += morseCodes.get(letter);
+                oneWordToMorse += morseCodes.get(letter.toLowerCase());
 
 
             }
