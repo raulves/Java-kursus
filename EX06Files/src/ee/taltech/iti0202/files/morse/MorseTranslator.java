@@ -1,12 +1,18 @@
 package ee.taltech.iti0202.files.morse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MorseTranslator {
 
     public Map<String, String> addMorseCodes(List<String> lines) {
+        Map<String, String> morseCodes = new HashMap<>();
+        for (String s : lines) {
+            String[] splitS = s.split(" ");
+            morseCodes.put(splitS[0].toLowerCase(), splitS[1]);
+        }
 
-        return null;
+        return morseCodes;
     }
 
     public List<String> translateLinesToMorse(List<String> lines) {
