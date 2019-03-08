@@ -5,6 +5,7 @@ import java.util.Map;
 public class MorseTranslator {
 
     public Map<String, String> addMorseCodes(List<String> lines) {
+
         return null;
     }
 
