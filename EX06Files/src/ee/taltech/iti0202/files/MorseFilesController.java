@@ -1,14 +1,15 @@
 package ee.taltech.iti0202.files;
 import ee.taltech.iti0202.files.input.InputFilesBufferReader;
+import ee.taltech.iti0202.files.input.InputFilesScanner;
 
 import java.util.List;
 
 public class MorseFilesController {
 
     public static void main(String[] args) {
-        // InputFilesScanner scanner = new InputFilesScanner();
-        // List<String> lines = scanner.readTextFromFile("morse.txt");
-        // lines.forEach(System.out::println); //lines in morse.txt which contains Morse codes
+        InputFilesScanner scanner = new InputFilesScanner();
+        List<String> lines = scanner.readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
+        lines.forEach(System.out::println); //lines in morse.txt which contains Morse codes
 
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
         List<String> lines2 = bufferReader.readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
