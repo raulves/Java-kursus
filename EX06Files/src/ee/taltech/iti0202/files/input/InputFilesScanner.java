@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class InputFilesScanner implements InputFilesReader {
 
     @Override
-    public List<String> readTextFromFile(String filename) {
+    public List<String> readTextFromFile(String filename) throws FileReaderException {
         List<String> textFromFileInList = new ArrayList<>();
         File file = new File(filename);
         try {
