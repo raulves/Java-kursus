@@ -29,6 +29,7 @@ public class MorseFilesController {
         morseLines.forEach(System.out::println); //your input lines in Morse
 
         List<String> normalLines = translator.translateLinesFromMorse(morseLines);
+        System.out.println(normalLines);
         normalLines.forEach(System.out::println); //your input lines in regular text
 
         // OutputFilesWriter writer = new OutputFilesWriter();

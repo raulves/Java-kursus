@@ -72,11 +72,10 @@ public class MorseTranslator {
             String oneWordFromMorse = "";
             String[] separateMorseWord = s.split(" ");
             for (String s1 : separateMorseWord) {
-                oneWordFromMorse += " ";
                 oneWordFromMorse += morseCodesUpsideDown.get(s1);
             }
             translationFromMorse += " ";
-            translationFromMorse += oneWordFromMorse.substring(1);
+            translationFromMorse += oneWordFromMorse;
 
         }
 
