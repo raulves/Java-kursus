@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.files.output;
-import ee.taltech.iti0202.files.exception.FileReaderException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
