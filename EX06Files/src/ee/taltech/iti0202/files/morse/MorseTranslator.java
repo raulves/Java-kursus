@@ -28,7 +28,11 @@ public class MorseTranslator {
     }
 
     public List<String> translateLinesFromMorse(List<String> lines) {
-        return null;
+        List<String> linesFromMorse = new ArrayList<>();
+        for (String line : lines) {
+            linesFromMorse.add(translateLineFromMorse(line));
+        }
+        return linesFromMorse;
     }
 
     private String translateLineToMorse(String line) {
@@ -56,6 +60,27 @@ public class MorseTranslator {
     }
 
     private String translateLineFromMorse(String line) {
-        return null;
+        String translationFromMorse = "";
+        List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
+        Map<String, String> morseCodes = addMorseCodes(lines);
+        Map<String, String> morseCodesUpsideDown = new HashMap<>();
+        for (String key : morseCodes.keySet()) {
+            morseCodesUpsideDown.put(morseCodes.get(key), key);
+        }
+        String[] splitLine = line.split("\t");
+        for (String s : splitLine) {
+            String oneWordFromMorse = "";
+            String[] separateMorseWord = s.split(" ");
+            for (String s1 : separateMorseWord) {
+                oneWordFromMorse += " ";
+                oneWordFromMorse += morseCodesUpsideDown.get(s1);
+            }
+            translationFromMorse += " ";
+            translationFromMorse += oneWordFromMorse.substring(1);
+
+        }
+
+
+        return translationFromMorse.substring(1);
     }
 }

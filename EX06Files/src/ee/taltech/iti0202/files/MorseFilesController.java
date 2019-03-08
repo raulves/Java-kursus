@@ -25,10 +25,11 @@ public class MorseFilesController {
         input.forEach(System.out::println); //your input lines
 
         List<String> morseLines = translator.translateLinesToMorse(input);
+        System.out.println(morseLines);
         morseLines.forEach(System.out::println); //your input lines in Morse
 
-        // List<String> normalLines = translator.translateLinesFromMorse(morseLines);
-        // normalLines.forEach(System.out::println); //your input lines in regular text
+        List<String> normalLines = translator.translateLinesFromMorse(morseLines);
+        normalLines.forEach(System.out::println); //your input lines in regular text
 
         // OutputFilesWriter writer = new OutputFilesWriter();
         // System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
