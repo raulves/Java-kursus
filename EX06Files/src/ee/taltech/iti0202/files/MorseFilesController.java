@@ -21,11 +21,11 @@ public class MorseFilesController {
         Map<String, String> codes = translator.addMorseCodes(lines);
         codes.forEach((key, value) -> System.out.println(key + " " + value)); //key and value
 
-        // List<String> input = scanner.readTextFromFile("input.txt");
-        // input.forEach(System.out::println); //your input lines
+        List<String> input = scanner.readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/input.txt");
+        input.forEach(System.out::println); //your input lines
 
-        // List<String> morseLines = translator.translateLinesToMorse(input);
-        // morseLines.forEach(System.out::println); //your input lines in Morse
+        List<String> morseLines = translator.translateLinesToMorse(input);
+        morseLines.forEach(System.out::println); //your input lines in Morse
 
         // List<String> normalLines = translator.translateLinesFromMorse(morseLines);
         // normalLines.forEach(System.out::println); //your input lines in regular text

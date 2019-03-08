@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.files.morse;
 import ee.taltech.iti0202.files.input.InputFilesReader;
 import ee.taltech.iti0202.files.input.InputFilesScanner;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +20,11 @@ public class MorseTranslator {
     }
 
     public List<String> translateLinesToMorse(List<String> lines) {
-
-        return null;
+        List<String> linesInMorse = new ArrayList<>();
+        for (String line : lines) {
+            linesInMorse.add(translateLineToMorse(line));
+        }
+        return linesInMorse;
     }
 
     public List<String> translateLinesFromMorse(List<String> lines) {
