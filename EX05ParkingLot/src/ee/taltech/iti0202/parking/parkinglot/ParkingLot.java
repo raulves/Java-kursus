@@ -33,6 +33,7 @@ public abstract class ParkingLot {
     protected String parkingLotType;
     protected PriorityQueue<Car> carsInQueue;  // PriorityQueue  ja .peek meetod on seal!!!
     protected List<Car> parkedCars;
+    protected Car[][] carsInArrayTable;
 
 
     /**
@@ -46,6 +47,7 @@ public abstract class ParkingLot {
         this.height = height;
         this.carsInQueue = new PriorityQueue<>();
         this.parkedCars = new ArrayList<>();
+        this.carsInArrayTable = new Car[height * 2][width];
 
     }
 
@@ -89,7 +91,7 @@ public abstract class ParkingLot {
     protected void processHelper() {   // Priority puhul pean ka kontrollima, kas Common auto saab välja võtta.
         while (carsInQueue.size() > 0) {
             Car car = carsInQueue.peek();  // peek ei eemalda!!
-            boolean result = processCar(car);
+            boolean result = addCarToArray(car);
             if (getParkingLotType().equals("priority") && !result && getCarsInQueue().size() == 5) {
                 List<Car> commonCars = new ArrayList<>();
                 for (Car parkedCar : parkedCars) {
@@ -124,126 +126,84 @@ public abstract class ParkingLot {
 
         }
     }
-    // Siin peaksin küsima, kas uus auto mahub parklasse. Pean tegema kotnrolli igas suunas, kas auto mahub.
-    protected boolean processCar(Car car) {
-        Car[][] carsInP = carsInArray();
-        if (getParkingLotType().equals("small")) {
-            for (Car[] cars : carsInP) {
-                for (Car car1 : cars) {
-                    if (car1 == null) return true;
-                }
-            }
-            return false;
-        } else if (getParkingLotType().equals("priority")) {
-            for (int i = 0; i < carsInP.length; i += 2) {
-                for (int j = 0; j < carsInP[i].length; j++) {
-                    if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && car.getSize() == 1 && carsInP[i][j] == null && carsInP[i + 1][j] == null) {
-                        return true;
-                    } else if (car.getSize() == 4) {
-                        if (j + 1 < carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i][j + 1] == null && carsInP[i + 1][j + 1] == null) {
-                            return true;
-                        } else if (j + 1 == carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i + 2][j] == null && carsInP[i + 3][j] == null) {
-                            return true;
-                        }
-                    } else if (car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
-                        for (int k = 0; k < carsInP.length; k += 2) {
-                            for (int l = 0; l < carsInP[k].length; l++) {
-                                if (carsInP[k][l] == null) {
-                                    continue;
-                                }
 
-                                if (carsInP[k][l].getPriorityStatus().equals(car.getPriorityStatus()) && carsInP[k][l].getSize() == 1 && carsInP[k + 1][l] == null) return true;
-                            }
-                        }
-                        if (carsInP[i][j] == null && carsInP[i + 1][j] == null) {
-                            return true;
-                        }
-
-                    } else if (carsInP[i][j] == null && carsInP[i + 1][j] == null) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
 
     // Siin paigutan autod parklasse
     protected Car[][] carsInArray() {
-        List<Car> parkedCars = new ArrayList<>(getParkedCars());
-        Car[][] carsIn = new Car[height * 2][width];
+        for (Car car : parkedCars) {
+            addCarToArray(car);
+        }
+        return carsInArrayTable;
+    }
 
-        for (int i = 0; i < carsIn.length; i += 2) {
-            for (int j = 0; j < carsIn[i].length; j++) {
-                if (parkedCars.size() > 0) {
-                    if (parkingLotType.equals("small")) {
-                        carsIn[i][j] = parkedCars.get(0);
-                        carsIn[i + 1][j] = parkedCars.get(0);
-                        parkedCars.remove(parkedCars.get(0));
-                    } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
-                        if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
-                            boolean letMeKnow = true;
-                            for (int k = 0; k < carsIn.length; k += 2) {
-                                for (int l = 0; l < carsIn[k].length; l++) {
-                                    if (carsIn[k][l] == null) {
-                                        continue;
-                                    }
-                                    if (carsIn[k][l].getPriorityStatus().equals(parkedCars.get(0).getPriorityStatus()) && carsIn[k][l].getSize() == 1) {
-                                        if (carsIn[k + 1][l] == null) {
-                                            carsIn[k + 1][l] = parkedCars.get(0);
-                                            parkedCars.remove(parkedCars.get(0));
-                                            letMeKnow = false;
-
-                                        }
-                                    }
-
-                                }
-                            }
-                            if (letMeKnow) {
-                                if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
-                                    carsIn[i][j] = parkedCars.get(0);
-                                    parkedCars.remove(parkedCars.get(0));
-                                }
-
-                            }
+    public boolean addCarToArray(Car car) {
+        for (int i = 0; i < carsInArrayTable.length; i += 2) {
+            for (int j = 0; j < carsInArrayTable[i].length; j++) {
+                if (parkingLotType.equals("small")) {
+                    carsInArrayTable[i][j] = car;
+                    carsInArrayTable[i + 1][j] = car;
+                    return true;
+                } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
+                    if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
+                            && car.getSize() == 1
+                            && carsInArrayTable[i][j] == null && carsInArrayTable[i + 1][j] == null) {
+                        carsInArrayTable[i][j] = car;
+                        return true;
+                    } else if (car.getSize() == 4) {
+                        if (j + 1 < carsInArrayTable[i].length && carsInArrayTable[i][j] == null && carsInArrayTable[i + 1][j] == null
+                                && carsInArrayTable[i][j + 1] == null && carsInArrayTable[i + 1][j + 1] == null) {
+                            carsInArrayTable[i][j] = car;
+                            carsInArrayTable[i][j + 1] = car;
+                            carsInArrayTable[i + 1][j] = car;
+                            carsInArrayTable[i + 1][j + 1] = car;
+                            return true;
+                        } else if (j + 1 == carsInArrayTable[i].length && carsInArrayTable[i][j] == null
+                                && carsInArrayTable[i + 1][j] == null && carsInArrayTable[i + 2][j] == null
+                                && carsInArrayTable[i + 3][j] == null) {
+                            carsInArrayTable[i][j] = car;
+                            carsInArrayTable[i + 1][j] = car;
+                            carsInArrayTable[i + 2][j] = car;
+                            carsInArrayTable[i + 3][j] = car;
+                            return true;
                         }
-                        if (parkedCars.size() > 0) {
-                            if (parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
-                                    && parkedCars.get(0).getSize() == 1
-                                    && carsIn[i][j] == null && carsIn[i + 1][j] == null) {
-                                carsIn[i][j] = parkedCars.get(0);
-                                parkedCars.remove(parkedCars.get(0));
-                            } else if (parkedCars.get(0).getSize() == 4) {
-                                if (j + 1 < carsIn[i].length && carsIn[i][j] == null && carsIn[i + 1][j] == null
-                                        && carsIn[i][j + 1] == null && carsIn[i + 1][j + 1] == null) {
-                                    carsIn[i][j] = parkedCars.get(0);
-                                    carsIn[i][j + 1] = parkedCars.get(0);
-                                    carsIn[i + 1][j] = parkedCars.get(0);
-                                    carsIn[i + 1][j + 1] = parkedCars.get(0);
-                                    parkedCars.remove(parkedCars.get(0));
-                                } else if (j + 1 == carsIn[i].length && carsIn[i][j] == null
-                                        && carsIn[i + 1][j] == null && carsIn[i + 2][j] == null
-                                        && carsIn[i + 3][j] == null) {
-                                    carsIn[i][j] = parkedCars.get(0);
-                                    carsIn[i + 1][j] = parkedCars.get(0);
-                                    carsIn[i + 2][j] = parkedCars.get(0);
-                                    carsIn[i + 3][j] = parkedCars.get(0);
-                                    parkedCars.remove(parkedCars.get(0));
+                    } else if (car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                        boolean letMeKnow = true;
+                        for (int k = 0; k < carsInArrayTable.length; k += 2) {
+                            for (int l = 0; l < carsInArrayTable[k].length; l++) {
+                                if (carsInArrayTable[k][l] == null) {
+                                    continue;
                                 }
-                            } else {
-                                if (carsIn[i][j] == null && carsIn[i + 1][j] == null) {
-                                    carsIn[i][j] = parkedCars.get(0);
-                                    carsIn[i + 1][j] = parkedCars.get(0);
-                                    parkedCars.remove(parkedCars.get(0));
+                                if (carsInArrayTable[k][l].getPriorityStatus().equals(car.getPriorityStatus()) && carsInArrayTable[k][l].getSize() == 1) {
+                                    if (carsInArrayTable[k + 1][l] == null) {
+                                        carsInArrayTable[k + 1][l] = car;
+                                        letMeKnow = false;
+                                        return true;
+
+                                    }
                                 }
                             }
                         }
+                        if (letMeKnow) {
+                            if (carsInArrayTable[i][j] == null && carsInArrayTable[i + 1][j] == null) {
+                                carsInArrayTable[i][j] = car;
+                                return true;
+                            }
+                        }
+                    } else {
+                        if (carsInArrayTable[i][j] == null && carsInArrayTable[i + 1][j] == null) {
+                            carsInArrayTable[i][j] = car;
+                            carsInArrayTable[i + 1][j] = car;
+                            return true;
+                        }
+
                     }
                 }
+
+
+
             }
         }
-
-        return carsIn;
+        return false;
     }
 
 
