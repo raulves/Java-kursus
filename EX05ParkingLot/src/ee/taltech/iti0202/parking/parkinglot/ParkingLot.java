@@ -139,22 +139,27 @@ public abstract class ParkingLot {
         } else if (getParkingLotType().equals("priority")) {
             for (int i = 0; i < carsInP.length; i += 2) {
                 for (int j = 0; j < carsInP[i].length; j++) {
-                    if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST) && car.getSize() == 1 && carsInP[i][j] == null && carsInP[i + 1][j] == null) {
+                    if (car.getPriorityStatus().equals(Car.PriorityStatus.HIGHEST)
+                            && car.getSize() == 1 && carsInP[i][j] == null && carsInP[i + 1][j] == null) {
                         return true;
                     } else if (car.getSize() == 4) {
-                        if (j + 1 < carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i][j + 1] == null && carsInP[i + 1][j + 1] == null) {
+                        if (j + 1 < carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null
+                                && carsInP[i][j + 1] == null && carsInP[i + 1][j + 1] == null) {
                             return true;
-                        } else if (j + 1 == carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null && carsInP[i + 2][j] == null && carsInP[i + 3][j] == null) {
+                        } else if (j + 1 == carsInP[i].length && carsInP[i][j] == null && carsInP[i + 1][j] == null
+                                && carsInP[i + 2][j] == null && carsInP[i + 3][j] == null) {
                             return true;
                         }
-                    } else if (car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                    } else if (car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.PRIORITY)
+                            || car.getSize() == 1 && car.getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
                         for (int k = 0; k < carsInP.length; k += 2) {
                             for (int l = 0; l < carsInP[k].length; l++) {
                                 if (carsInP[k][l] == null) {
                                     continue;
                                 }
 
-                                if (carsInP[k][l].getPriorityStatus().equals(car.getPriorityStatus()) && carsInP[k][l].getSize() == 1 && carsInP[k + 1][l] == null) return true;
+                                if (carsInP[k][l].getPriorityStatus().equals(car.getPriorityStatus())
+                                        && carsInP[k][l].getSize() == 1 && carsInP[k + 1][l] == null) return true;
                             }
                         }
                         if (carsInP[i][j] == null && carsInP[i + 1][j] == null) {
@@ -183,14 +188,17 @@ public abstract class ParkingLot {
                         carsIn[i + 1][j] = parkedCars.get(0);
                         parkedCars.remove(parkedCars.get(0));
                     } else if (parkingLotType.equals("priority") || parkingLotType.equals("multi")) {
-                        if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
+                        if (parkedCars.get(0).getSize() == 1 && parkedCars.get(0).getPriorityStatus()
+                                .equals(Car.PriorityStatus.PRIORITY) || parkedCars.get(0).getSize() == 1
+                                && parkedCars.get(0).getPriorityStatus().equals(Car.PriorityStatus.COMMON)) {
                             boolean letMeKnow = true;
                             for (int k = 0; k < carsIn.length; k += 2) {
                                 for (int l = 0; l < carsIn[k].length; l++) {
                                     if (carsIn[k][l] == null) {
                                         continue;
                                     }
-                                    if (carsIn[k][l].getPriorityStatus().equals(parkedCars.get(0).getPriorityStatus()) && carsIn[k][l].getSize() == 1) {
+                                    if (carsIn[k][l].getPriorityStatus().equals(parkedCars.get(0).getPriorityStatus())
+                                            && carsIn[k][l].getSize() == 1) {
                                         if (carsIn[k + 1][l] == null) {
                                             carsIn[k + 1][l] = parkedCars.get(0);
                                             parkedCars.remove(parkedCars.get(0));
