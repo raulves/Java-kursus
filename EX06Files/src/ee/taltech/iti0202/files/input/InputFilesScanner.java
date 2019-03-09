@@ -19,7 +19,7 @@ public class InputFilesScanner implements InputFilesReader {
                 String line = scanner.nextLine();
                 textFromFileInList.add(line);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new FileReaderException("No such file");
         }
         return textFromFileInList;

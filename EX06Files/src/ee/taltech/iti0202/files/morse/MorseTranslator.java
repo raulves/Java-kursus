@@ -2,10 +2,7 @@ package ee.taltech.iti0202.files.morse;
 import ee.taltech.iti0202.files.input.InputFilesReader;
 import ee.taltech.iti0202.files.input.InputFilesScanner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MorseTranslator {
 
@@ -42,19 +39,20 @@ public class MorseTranslator {
         List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
         Map<String, String> morseCodes = addMorseCodes(lines);
         for (String s : splitLine) {
+            System.out.println(s);
             String oneWordToMorse = "";
+            System.out.println(oneWordToMorse + "YES");
             String[] wordToLetters = s.split("");
+            System.out.println(Arrays.toString(wordToLetters));
             for (String letter : wordToLetters) {
-                if (morseCodes.containsKey(letter.toLowerCase())) {
-                    oneWordToMorse += " ";
-                    oneWordToMorse += morseCodes.get(letter.toLowerCase());
-                }
-
-
-
+                System.out.println(letter);
+                // oneWordToMorse += " ";
+                oneWordToMorse += " " + morseCodes.get(letter.toLowerCase());
             }
-            translationToMorse += "\t";
-            translationToMorse += oneWordToMorse.substring(1);
+            System.out.println(oneWordToMorse.substring(1));
+            // translationToMorse += "\t";
+            translationToMorse += "\t" + oneWordToMorse.substring(1);
+            System.out.println(translationToMorse);
         }
         return translationToMorse.substring(1);
     }

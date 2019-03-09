@@ -24,7 +24,7 @@ public class InputFilesBufferReader implements InputFilesReader {
             }
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new FileReaderException("No such file");
         }
 
