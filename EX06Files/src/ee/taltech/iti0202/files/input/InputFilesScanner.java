@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class InputFilesScanner implements InputFilesReader {
 
+
+
     @Override
     public List<String> readTextFromFile(String filename) {
         List<String> textFromFileInList = new ArrayList<>();
@@ -20,7 +22,7 @@ public class InputFilesScanner implements InputFilesReader {
                 textFromFileInList.add(line);
             }
         } catch (Exception e) {
-            throw new FileReaderException("No such file");
+            throw new FileReaderException("No such file", e);
         }
         return textFromFileInList;
     }

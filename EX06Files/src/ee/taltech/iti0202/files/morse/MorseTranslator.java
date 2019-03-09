@@ -6,6 +6,13 @@ import java.util.*;
 
 public class MorseTranslator {
 
+
+
+    public MorseTranslator() {
+
+
+    }
+
     public Map<String, String> addMorseCodes(List<String> lines) {
         Map<String, String> morseCodes = new HashMap<>();
         for (String s : lines) {
@@ -39,20 +46,14 @@ public class MorseTranslator {
         List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
         Map<String, String> morseCodes = addMorseCodes(lines);
         for (String s : splitLine) {
-            System.out.println(s);
             String oneWordToMorse = "";
-            System.out.println(oneWordToMorse + "YES");
             String[] wordToLetters = s.split("");
-            System.out.println(Arrays.toString(wordToLetters));
             for (String letter : wordToLetters) {
-                System.out.println(letter);
                 // oneWordToMorse += " ";
                 oneWordToMorse += " " + morseCodes.get(letter.toLowerCase());
             }
-            System.out.println(oneWordToMorse.substring(1));
             // translationToMorse += "\t";
             translationToMorse += "\t" + oneWordToMorse.substring(1);
-            System.out.println(translationToMorse);
         }
         return translationToMorse.substring(1);
     }

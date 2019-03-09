@@ -2,15 +2,9 @@ package ee.taltech.iti0202.files.exception;
 
 public class FileReaderException extends RuntimeException {
 
-
-    private String message;
-
-    public FileReaderException(String message) {
-        this.message = message;
+    public FileReaderException(String message, Throwable cause) {
+        super(message, cause);
     }
 
-    @Override
-    public String toString() {
-        return message;
-    }
+
 }
