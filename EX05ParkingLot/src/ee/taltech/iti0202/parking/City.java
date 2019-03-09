@@ -84,6 +84,7 @@ public class City {
         if (shortestQueueParkingLot.size() >= 1) {
             shortestQueueParkingLot.get(0).addToQueue(car);
             return Optional.ofNullable(shortestQueueParkingLot.get(0));
+
         }
 
 
