@@ -2,7 +2,6 @@ package ee.taltech.iti0202.files.input;
 import ee.taltech.iti0202.files.exception.FileReaderException;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

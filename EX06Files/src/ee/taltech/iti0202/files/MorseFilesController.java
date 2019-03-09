@@ -2,6 +2,7 @@ package ee.taltech.iti0202.files;
 import ee.taltech.iti0202.files.input.InputFilesBufferReader;
 import ee.taltech.iti0202.files.input.InputFilesScanner;
 import ee.taltech.iti0202.files.morse.MorseTranslator;
+import ee.taltech.iti0202.files.output.OutputFilesWriter;
 
 import java.util.List;
 import java.util.Map;
@@ -32,8 +33,8 @@ public class MorseFilesController {
         System.out.println(normalLines);
         normalLines.forEach(System.out::println); //your input lines in regular text
 
-        // OutputFilesWriter writer = new OutputFilesWriter();
-        // System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
-        //This should also create a new file/ write in an existing file
+        OutputFilesWriter writer = new OutputFilesWriter();
+        System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
+        // This should also create a new file/ write in an existing file
     }
 }

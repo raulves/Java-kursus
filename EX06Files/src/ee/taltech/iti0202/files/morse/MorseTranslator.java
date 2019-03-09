@@ -1,6 +1,4 @@
 package ee.taltech.iti0202.files.morse;
-import ee.taltech.iti0202.files.input.InputFilesReader;
-import ee.taltech.iti0202.files.input.InputFilesScanner;
 
 import java.util.*;
 

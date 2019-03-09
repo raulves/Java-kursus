@@ -4,7 +4,6 @@ import ee.taltech.iti0202.files.exception.FileReaderException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
