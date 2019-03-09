@@ -6,12 +6,9 @@ import java.util.*;
 
 public class MorseTranslator {
 
+    private static Map<String, String> morseCodesMap;
 
 
-    public MorseTranslator() {
-
-
-    }
 
     public Map<String, String> addMorseCodes(List<String> lines) {
         Map<String, String> morseCodes = new HashMap<>();
@@ -19,6 +16,7 @@ public class MorseTranslator {
             String[] splitS = s.split(" ");
             morseCodes.put(splitS[0].toLowerCase(), splitS[1]);
         }
+        morseCodesMap = morseCodes;
 
         return morseCodes;
     }
@@ -43,8 +41,7 @@ public class MorseTranslator {
         String translationToMorse = "";
 
         String[] splitLine = line.split(" ");
-        List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
-        Map<String, String> morseCodes = addMorseCodes(lines);
+        Map<String, String> morseCodes = morseCodesMap;
         for (String s : splitLine) {
             String oneWordToMorse = "";
             String[] wordToLetters = s.split("");
@@ -60,8 +57,7 @@ public class MorseTranslator {
 
     private String translateLineFromMorse(String line) {
         String translationFromMorse = "";
-        List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files/src/ee/taltech/iti0202/files/input/morse.txt");
-        Map<String, String> morseCodes = addMorseCodes(lines);
+        Map<String, String> morseCodes = morseCodesMap;
         Map<String, String> morseCodesUpsideDown = new HashMap<>();
         for (String key : morseCodes.keySet()) {
             morseCodesUpsideDown.put(morseCodes.get(key), key);

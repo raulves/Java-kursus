@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class InputFilesScanner implements InputFilesReader {
 
 
-
     @Override
     public List<String> readTextFromFile(String filename) {
         List<String> textFromFileInList = new ArrayList<>();
