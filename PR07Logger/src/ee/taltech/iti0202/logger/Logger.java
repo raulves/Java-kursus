@@ -35,8 +35,6 @@ public abstract class Logger {
      */
     public Logger(String tag, Level level) {
         this(tag, level, new SimpleFormatter());
-        // LogFormatter log = new SimpleFormatter();
-
         this.level = level;
     }
 

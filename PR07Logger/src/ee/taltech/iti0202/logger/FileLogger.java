@@ -33,11 +33,11 @@ public class FileLogger extends Logger {
     @Override
     protected void writeLog(String message) {
         try (PrintWriter printWriter = new PrintWriter(logFilePath)) {
-            printWriter.println(message);
+            printWriter.append(message);
 
 
         } catch (IOException e) {
-
+            System.out.println("File not found!");
 
         }
         // append to log file if exists
