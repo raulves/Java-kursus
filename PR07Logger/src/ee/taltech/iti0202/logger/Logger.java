@@ -5,7 +5,6 @@ import ee.taltech.iti0202.logger.filter.LogFilter;
 import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.formatter.SimpleFormatter;
 import ee.taltech.iti0202.logger.level.Level;
-import ee.taltech.iti0202.logger.level.LevelProvider;
 import ee.taltech.iti0202.logger.log.Log;
 
 public abstract class Logger {
@@ -51,6 +50,7 @@ public abstract class Logger {
      */
     public Logger(String tag, Level level, LogFormatter formatter) {
         this(tag, new LevelFilter(() -> level), formatter);
+
     }
 
     /**
@@ -64,6 +64,8 @@ public abstract class Logger {
         this.filter = filter;
         this.tag = tag;
         this.formatter = formatter;
+
+
     }
 
     /**
@@ -73,7 +75,6 @@ public abstract class Logger {
         // check if should log
         // get formatted message from formatter
         // tell subclass to log the message.
-
         if (getFilter().isLoggable(log)) {
             writeLog(formatter.format(log));
         }
@@ -91,6 +92,7 @@ public abstract class Logger {
      */
     public final void severe(String message) {
         log = new Log(message, tag, Level.SEVERE);
+        log(level, message);
     }
 
     /**
@@ -98,6 +100,7 @@ public abstract class Logger {
      */
     public final void error(String message) {
         log = new Log(message, tag, Level.ERROR);
+        log(level, message);
     }
 
     /**
@@ -105,6 +108,7 @@ public abstract class Logger {
      */
     public final void warning(String message) {
         log = new Log(message, tag, Level.WARNING);
+        log(level, message);
     }
 
     /**
@@ -112,6 +116,7 @@ public abstract class Logger {
      */
     public final void info(String message) {
         log = new Log(message, tag, Level.INFO);
+        log(level, message);
     }
 
     /**
@@ -119,6 +124,7 @@ public abstract class Logger {
      */
     public final void debug(String message) {
         log = new Log(message, tag, Level.DEBUG);
+        log(level, message);
     }
 
     public LogFilter getFilter() {
