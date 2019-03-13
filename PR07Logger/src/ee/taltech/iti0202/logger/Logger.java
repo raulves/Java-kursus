@@ -6,7 +6,6 @@ import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.formatter.SimpleFormatter;
 import ee.taltech.iti0202.logger.level.Level;
 import ee.taltech.iti0202.logger.level.LevelProvider;
-import ee.taltech.iti0202.logger.log.Log;
 
 public abstract class Logger {
 

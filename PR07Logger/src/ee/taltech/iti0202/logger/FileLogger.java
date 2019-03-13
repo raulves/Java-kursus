@@ -12,7 +12,6 @@ public class FileLogger extends Logger {
 
     public FileLogger(String tag, String logFilePath) {
     	super(tag);
-
         this.logFilePath = logFilePath;
     }
 
