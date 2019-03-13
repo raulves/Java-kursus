@@ -6,6 +6,7 @@ import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.formatter.SimpleFormatter;
 import ee.taltech.iti0202.logger.level.Level;
 import ee.taltech.iti0202.logger.level.LevelProvider;
+import ee.taltech.iti0202.logger.log.Log;
 
 public abstract class Logger {
 
@@ -13,6 +14,7 @@ public abstract class Logger {
     private LogFormatter formatter;
     private LogFilter filter;
     private Level level;
+    private Log log;
 
     /**
      * Creates logger that logs messages with Level.Warning or higher.
@@ -71,7 +73,16 @@ public abstract class Logger {
     /**
      * Logs the message.
      */
-    public final void log(Level level, String message) { }
+    public final void log(Level level, String message) {
+        // check if should log
+        // get formatted message from formatter
+        // tell subclass to log the message.
+
+        if (getFilter().isLoggable(log)) {
+            writeLog(formatter.format(log));
+        }
+
+    }
 
     /**
      * Abstract method that is called with formatted message.
@@ -82,26 +93,39 @@ public abstract class Logger {
     /**
      * Creates log with Level.SEVERE
      */
-    public final void severe(String message) { }
+    public final void severe(String message) {
+        log = new Log(message, tag, level);
+    }
 
     /**
      * Creates log with Level.ERROR
      */
-    public final void error(String message) { }
+    public final void error(String message) {
+        log = new Log(message, tag, level);
+    }
 
     /**
      * Creates log with Level.WARNING
      */
-    public final void warning(String message) { }
+    public final void warning(String message) {
+        log = new Log(message, tag, level);
+    }
 
     /**
      * Creates log with Level.INFO
      */
-    public final void info(String message) { }
+    public final void info(String message) {
+        log = new Log(message, tag, level);
+    }
 
     /**
      * Creates log with Level.DEBUG
      */
-    public final void debug(String message) { }
+    public final void debug(String message) {
+        log = new Log(message, tag, level);
+    }
 
+    public LogFilter getFilter() {
+        return filter;
+    }
 }
