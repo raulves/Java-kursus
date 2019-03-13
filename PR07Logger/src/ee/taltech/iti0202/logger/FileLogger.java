@@ -3,6 +3,7 @@ import ee.taltech.iti0202.logger.filter.LogFilter;
 import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.level.Level;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -32,7 +33,7 @@ public class FileLogger extends Logger {
 
     @Override
     protected void writeLog(String message) {
-        try (PrintWriter printWriter = new PrintWriter(logFilePath)) {
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(logFilePath, true))) {
             printWriter.append(message);
 
 
