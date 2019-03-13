@@ -16,6 +16,7 @@ public abstract class Logger {
     private Level level;
     private Log log;
 
+
     /**
      * Creates logger that logs messages with Level.Warning or higher.
      *
@@ -49,12 +50,7 @@ public abstract class Logger {
      * @see ee.taltech.iti0202.logger.level.Level
      */
     public Logger(String tag, Level level, LogFormatter formatter) {
-        this(tag, new LevelFilter(new LevelProvider() {
-            @Override
-            public Level getLevel() {
-                return Level.ALL;
-            }
-        }), formatter);
+        this(tag, new LevelFilter(() -> level), formatter);
     }
 
     /**
