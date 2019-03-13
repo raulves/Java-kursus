@@ -34,7 +34,7 @@ public class FileLogger extends Logger {
     @Override
     protected void writeLog(String message) {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(logFilePath, true))) {
-            printWriter.append(message);
+            printWriter.println(message);
 
 
         } catch (IOException e) {
