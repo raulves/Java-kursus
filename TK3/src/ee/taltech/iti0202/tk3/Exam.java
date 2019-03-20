@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.tk3;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class Exam {
@@ -97,16 +98,21 @@ public class Exam {
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
         Map<String, String> result = map;
+        Map<String, String> toReturn = new HashMap<>();
         if (result.containsKey("a") && result.containsKey("b")) return result;
         if (result.containsKey("a") && !result.containsKey("b")) {
-            result.put("b", "aaa");
-            return result;
+            toReturn.put("a", "aaa");
+            toReturn.put("b", "aaa");
+            toReturn.put("c", "cake");
+            return toReturn;
         }
         if (!result.containsKey("a") && result.containsKey("b")) {
-            result.put("a", "bbb");
-            return result;
+            toReturn.put("a", "bbb");
+            toReturn.put("b", "bbb");
+            toReturn.put("c", "cake");
+            return toReturn;
         }
-        return result;
+        return toReturn;
     }
 
     public static void main(String[] args) {
