@@ -71,7 +71,20 @@ public class Exam {
      * oneTwo("tcagdo") => "catdog"
      */
     public static String oneTwo(String str) {
-        return null;
+        String input = str;
+
+        List<String> subString = new ArrayList<>();
+
+        while (input.length() > 2) {
+            subString.add(input.substring(0, 3));
+            input = input.substring(3);
+        }
+
+        String result = "";
+        for (String s : subString) {
+            result += s.substring(1) + s.substring(0, 1);
+        }
+        return result;
     }
 
     /**
@@ -100,5 +113,6 @@ public class Exam {
         System.out.println(sum67(nr));
         System.out.println(14 % 10);
         System.out.println(roundSum(12, 13, 14));
+        System.out.println(oneTwo("tcagdo"));
     }
 }
