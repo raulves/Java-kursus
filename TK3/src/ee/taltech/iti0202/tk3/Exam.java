@@ -99,11 +99,11 @@ public class Exam {
         Map<String, String> result = map;
         if (result.containsKey("a") && result.containsKey("b")) return result;
         if (result.containsKey("a") && !result.containsKey("b")) {
-            result.put("b", "bbb");
+            result.put("b", "aaa");
             return result;
         }
         if (!result.containsKey("a") && result.containsKey("b")) {
-            result.put("a", "aaa");
+            result.put("a", "bbb");
             return result;
         }
         return result;
