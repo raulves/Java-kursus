@@ -1,9 +1,7 @@
 package ee.taltech.iti0202.tk3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 public class Exam {
 
     /**
@@ -97,8 +95,8 @@ public class Exam {
      * mapAXorB({"a": "aaa", "b": "bbb", "c": "cake"}) => {"a": "aaa", "b": "bbb", "c": "cake"}
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
-        Map<String, String> result = map;
-        Map<String, String> toReturn = new HashMap<>();
+        Map<String, String> result = new LinkedHashMap<>(map);
+        Map<String, String> toReturn = new LinkedHashMap<>();
         if (result.containsKey("a") && result.containsKey("b")) return result;
         if (result.containsKey("a") && !result.containsKey("b")) {
             toReturn.put("a", "aaa");
