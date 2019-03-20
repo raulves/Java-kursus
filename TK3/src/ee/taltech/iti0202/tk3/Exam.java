@@ -97,16 +97,22 @@ public class Exam {
     public static Map<String, String> mapAXorB(Map<String, String> map) {
         Map<String, String> result = new LinkedHashMap<>(map);
 
-        if (result.containsKey("a") && result.containsKey("b")) return result;
         if (result.containsKey("a") && !result.containsKey("b")) {
             result.put("b", "aaa");
-            return result;
+
         }
         if (!result.containsKey("a") && result.containsKey("b")) {
             result.put("a", "bbb");
-            return result;
         }
-        return result;
+
+        Map<String, String> toReturn = new LinkedHashMap<>();
+         List<String> keys = new ArrayList<>(result.keySet());
+         Collections.sort(keys);
+        for (String key : keys) {
+            toReturn.put(key, result.get(key));
+        }
+
+        return toReturn;
     }
 
     public static void main(String[] args) {
@@ -124,5 +130,10 @@ public class Exam {
         System.out.println(14 % 10);
         System.out.println(roundSum(12, 13, 14));
         System.out.println(oneTwo("tcagdo"));
+
+        Map<String, String> toReturn = new LinkedHashMap<>();
+        toReturn.put("b", "bbb");
+        toReturn.put("c", "cake");
+        System.out.println(mapAXorB(toReturn));
     }
 }
