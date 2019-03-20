@@ -96,21 +96,17 @@ public class Exam {
      */
     public static Map<String, String> mapAXorB(Map<String, String> map) {
         Map<String, String> result = new LinkedHashMap<>(map);
-        Map<String, String> toReturn = new LinkedHashMap<>();
+
         if (result.containsKey("a") && result.containsKey("b")) return result;
         if (result.containsKey("a") && !result.containsKey("b")) {
-            toReturn.put("a", "aaa");
-            toReturn.put("b", "aaa");
-            toReturn.put("c", "cake");
-            return toReturn;
+            result.put("b", "aaa");
+            return result;
         }
         if (!result.containsKey("a") && result.containsKey("b")) {
-            toReturn.put("a", "bbb");
-            toReturn.put("b", "bbb");
-            toReturn.put("c", "cake");
-            return toReturn;
+            result.put("a", "bbb");
+            return result;
         }
-        return toReturn;
+        return result;
     }
 
     public static void main(String[] args) {
