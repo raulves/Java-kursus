@@ -1,8 +1,8 @@
 package ee.taltech.iti0202.geometry;
 
-import ee.taltech.iti0202.geometry.shapes.Circle;
-import ee.taltech.iti0202.geometry.shapes.Shape;
-import ee.taltech.iti0202.geometry.shapes.Square;
+// import ee.taltech.iti0202.geometry.shapes.Circle;
+// import ee.taltech.iti0202.geometry.shapes.Shape;
+// import ee.taltech.iti0202.geometry.shapes.Square;
 
 public class Main {
 
