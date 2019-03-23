@@ -17,10 +17,7 @@ public class TypeGame extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
-
         loginScene();
-
-
     }
 
     public void loginScene() throws IOException {
