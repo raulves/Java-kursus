@@ -1,6 +1,6 @@
 package game;
 
-import javafx.animation.PauseTransition;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,7 +34,7 @@ public class GameController {
             for (Label label1 : labelToShow) {
                 if (keyEvent.getText().equals(label1.getText())) {
 
-                    RotateTransition rt = new RotateTransition(Duration.millis(1000), label1);
+                    RotateTransition rt = new RotateTransition(Duration.millis(200), label1);
                     rt.setByAngle(360);
                     rt.setCycleCount(1);
                     rt.play();
