@@ -1,0 +1,39 @@
+.root {
+    -fx-background-color: black;
+}
+
+
+.button:hover {
+    -fx-background-color: green;
+
+}
+
+.button:pressed {
+    -fx-background-color: red;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-font-size: 14;
+    -fx-font-style: italic;
+}
+
+.label {
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+}
+
+#clickedCookiesCount {
+    -fx-font-size: 30;
+    -fx-text-fill: green;
+}
+
+
+.text-id {
+    -fx-font-size: 14;
+}
+
+#info {
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}
