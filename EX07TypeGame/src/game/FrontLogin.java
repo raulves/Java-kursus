@@ -24,7 +24,6 @@ public class FrontLogin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void getPlayScene(TypeGame game) {
