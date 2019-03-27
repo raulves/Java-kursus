@@ -21,6 +21,8 @@ public class Player {
         this.powerClickers = 0;
         this.powerClickerPrice = 200;
 
+
+
     }
 
     public int getCursors() {
