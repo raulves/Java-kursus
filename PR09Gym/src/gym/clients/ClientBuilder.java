@@ -67,8 +67,8 @@ public class ClientBuilder {
     public String toString() {
         return "Client name: " + name
                 + ". Membership fee: "
-                + membershipFee +
-                ". Training partner: "
+                + membershipFee
+                + ". Training partner: "
                 + partner;
     }
 }
