@@ -65,8 +65,10 @@ public class ClientBuilder {
 
     @Override
     public String toString() {
-        return "Client name: " + name +
-                ". Membership fee: " + membershipFee +
-                ". Training partner: " + partner;
+        return "Client name: " + name
+                + ". Membership fee: "
+                + membershipFee +
+                ". Training partner: "
+                + partner;
     }
 }

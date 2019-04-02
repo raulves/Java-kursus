@@ -6,6 +6,7 @@ import gym.trainings.Trainings;
 public class Main {
 
     public static void main(String[] args) {
+        /*
         Gym gym = new Gym();
         ClientBuilder client1 = new ClientBuilder("Raul")
                 .setAge(28)
@@ -33,5 +34,6 @@ public class Main {
 
         System.out.println(gym.getClients());
         System.out.println(gym.getTrainings());
+        */
     }
 }

@@ -27,10 +27,10 @@ public abstract class Trainings {
 
     public static Trainings makeClass(TrainingType type, DifficultyLevel xpLevel, Integer maxPeople) {
         switch (type) {
-            case SPINNING:return new MakeSpinningClass(type, xpLevel, maxPeople);
-            case CROSSTRAINING:return new MakeCrossTrainingClass(type, xpLevel, maxPeople);
-            case SWIMMING:return new MakeSwimmingClass(type, xpLevel, maxPeople);
-            default:return null;
+            case SPINNING: return new MakeSpinningClass(type, xpLevel, maxPeople);
+            case CROSSTRAINING: return new MakeCrossTrainingClass(type, xpLevel, maxPeople);
+            case SWIMMING: return new MakeSwimmingClass(type, xpLevel, maxPeople);
+            default: return null;
         }
 
     }

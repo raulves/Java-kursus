@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Gym {
     private static final double MEMBERSHIP_FEE = 50;
+    private static final double DISCOUNT = 0.5;
     private List<Trainings> trainings = new ArrayList<>();
     private List<ClientBuilder> clients = new ArrayList<>();
 
@@ -17,7 +18,7 @@ public class Gym {
 
     public void addClients(ClientBuilder client) {
         if (client.getHasDiscount()) {
-            client.setMembershipFee(MEMBERSHIP_FEE * 0.5);
+            client.setMembershipFee(MEMBERSHIP_FEE * DISCOUNT);
         } else {
             client.setMembershipFee(MEMBERSHIP_FEE);
         }
