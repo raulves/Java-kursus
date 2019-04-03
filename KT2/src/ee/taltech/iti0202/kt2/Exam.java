@@ -48,7 +48,7 @@ public class Exam {
         String result = "";
 
         for (int i = 0; i < count; i++) {
-            result += word + sep;
+            result = result +  word + sep;
         }
 
         return result.substring(0, result.length() - sep.length());
