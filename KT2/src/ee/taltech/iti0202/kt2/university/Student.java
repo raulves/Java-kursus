@@ -20,7 +20,7 @@ public class Student {
         this.name = name;
     }
 
-    public Integer getEap() {
+    public int getEap() {
         return eap;
     }
 
