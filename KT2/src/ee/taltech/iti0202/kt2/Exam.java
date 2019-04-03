@@ -1,5 +1,5 @@
 package ee.taltech.iti0202.kt2;
-import java.util.Arrays;
+
 import java.util.List;
 
 public class Exam {
@@ -48,16 +48,12 @@ public class Exam {
         String result = "";
 
         for (int i = 0; i < count; i++) {
-            result = result +  word + sep;
+            result += word + sep;
         }
 
         return result.substring(0, result.length() - sep.length());
     }
 
-    public static void main(String[] args) {
-        System.out.println(repeatSeparator("Word", "X", 3));
-        System.out.println(repeatSeparator("This", "And", 2));
-        System.out.println(repeatSeparator("This", "And", 1));
-    }
+
 
 }
