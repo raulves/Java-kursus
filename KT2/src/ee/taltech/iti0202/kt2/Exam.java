@@ -38,6 +38,13 @@ public class Exam {
      */
     public static String repeatSeparator(String word, String sep, int count) {
 
+        if (word.length() == 0) {
+            return "";
+        }
+        if (count == 0) {
+            return "";
+        }
+
         String result = "";
 
         for (int i = 0; i < count; i++) {
