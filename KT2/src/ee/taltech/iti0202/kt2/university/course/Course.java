@@ -14,10 +14,10 @@ public class Course {
     private List<Student> studentsInCourse = new ArrayList<>();
     private boolean hasFinished;
 
-    public Course(String courseName, University nameOfUniversity, Integer eap) {
+    public Course(String courseName, University nameOfUniv, Integer eap) {
         this.hasFinished = false;
         this.courseName = courseName;
-        this.nameOfUniversity = nameOfUniversity;
+        this.nameOfUniversity = nameOfUniv;
         this.eap = eap;
     }
 

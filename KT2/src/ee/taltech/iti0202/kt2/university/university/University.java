@@ -19,10 +19,14 @@ public class University {
         this.name = name;
     }
 
+    public Course createCourse(String name, Integer eap) {
+        return new Course(name, this, eap);
+    }
+
     public boolean addStudent(Student student) {
         if (!studentInUniversity.contains(student)) {
             studentInUniversity.add(student);
-            student.setUniversity(this.name);
+            student.setUniversity(this);
             return true;
         }
         return false;

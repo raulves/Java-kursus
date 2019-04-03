@@ -1,10 +1,12 @@
 package ee.taltech.iti0202.kt2.university.student;
 
+import ee.taltech.iti0202.kt2.university.university.University;
+
 public class Student {
 
     private String name;
     private Integer eap;
-    private String university;
+    private University university;
 
     public Student(String name) {
         this.eap = 0;
@@ -33,11 +35,11 @@ public class Student {
         return name + " (" + eap + ")";
     }
 
-    public String getUniversity() {
+    public University getUniversity() {
         return university;
     }
 
-    public void setUniversity(String university) {
+    public void setUniversity(University university) {
         this.university = university;
     }
 }
