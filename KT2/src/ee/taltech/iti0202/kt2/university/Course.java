@@ -1,7 +1,4 @@
-package ee.taltech.iti0202.kt2.university.course;
-
-import ee.taltech.iti0202.kt2.university.student.Student;
-import ee.taltech.iti0202.kt2.university.university.University;
+package ee.taltech.iti0202.kt2.university;
 
 import java.util.ArrayList;
 import java.util.List;

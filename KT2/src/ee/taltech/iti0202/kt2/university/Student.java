@@ -1,6 +1,4 @@
-package ee.taltech.iti0202.kt2.university.student;
-
-import ee.taltech.iti0202.kt2.university.university.University;
+package ee.taltech.iti0202.kt2.university;
 
 public class Student {
 
