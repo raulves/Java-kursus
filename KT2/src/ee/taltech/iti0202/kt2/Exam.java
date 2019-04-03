@@ -37,15 +37,18 @@ public class Exam {
      * repeatSeparator("This", "And", 1) => "This"
      */
     public static String repeatSeparator(String word, String sep, int count) {
-
-        if (word.length() == 0) {
-            return "";
+        String result = "";
+        if (word.length() == 0 && count > 0) {
+            for (int i = 0; i < count - 1; i++) {
+                result += sep;
+            }
+            return result;
         }
         if (count == 0) {
             return "";
         }
 
-        String result = "";
+
 
         for (int i = 0; i < count; i++) {
             result += word + sep;
@@ -54,6 +57,10 @@ public class Exam {
         return result.substring(0, result.length() - sep.length());
     }
 
-
+    public static void main(String[] args) {
+        System.out.println(repeatSeparator("Word", "X", 3));
+        System.out.println(repeatSeparator("This", "And", 2));
+        System.out.println(repeatSeparator("This", "And", 1));
+    }
 
 }
