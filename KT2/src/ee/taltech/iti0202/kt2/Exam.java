@@ -38,11 +38,19 @@ public class Exam {
      */
     public static String repeatSeparator(String word, String sep, int count) {
 
+        String result = "";
+        if (count == 1) {
+            return word;
+        }
+        for (int i = 0; i < count; i++) {
+            result += word + sep;
+        }
 
-        return "wat";
+        return result.substring(0, result.length() - sep.length());
     }
 
     public static void main(String[] args) {
+        System.out.println(repeatSeparator("Word", "X", 3));
 
     }
 
