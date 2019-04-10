@@ -202,11 +202,6 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "");
     }
 
-    @Test
-    public void testEquals_UpperCaseToLowerCaseInMiddle() {
-        Sentence sentence = new Sentence("i like Honey and Money.");
 
-        assertEquals(sentence.toString(), "I like honey and money.");
-    }
 
 }

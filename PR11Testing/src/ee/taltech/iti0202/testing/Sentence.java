@@ -25,12 +25,12 @@ public class Sentence {
         for (String word : text.split(" ")) {
             if (word.endsWith(".") || word.endsWith("!") || word.endsWith("?")) {
                 String wordWithoutPunctuation = word.substring(0, word.length() - 1);
-                words.add(wordWithoutPunctuation.toLowerCase());
+                words.add(wordWithoutPunctuation);
                 punctuationForSentence = word.substring(word.length() - 1);
                 break;
             } else {
                 if (word.length() != 0) {
-                    words.add(word.toLowerCase());
+                    words.add(word);
                 }
             }
         }
