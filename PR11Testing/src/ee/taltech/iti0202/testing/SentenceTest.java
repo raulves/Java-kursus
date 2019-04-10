@@ -138,7 +138,7 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "I like honey...");
     }
 
-    /*
+
     @Test
     public void testToString_SentenceWithPunctuationRemovePunctuationAddWordAddPunctuation() {
         Sentence sentence = new Sentence("i like honey.");
@@ -150,7 +150,7 @@ public class SentenceTest {
 
         assertEquals(sentence.toString(), "I like honey and money!");
     }
-    */
+
 
     /*
     @Test
