@@ -125,9 +125,16 @@ public class SentenceTest {
     }
 
     @Test
-    public void testSentenceManyPunctuations_LeavesOnePunctuation() {
+    public void testToString_SentenceManyPunctuations_LeavesOnePunctuation() {
         Sentence sentence = new Sentence("i like. honey and! money.");
 
         assertEquals(sentence.toString(), "I like.");
+    }
+
+    @Test
+    public void testToString_SentenceHasMultipleWhitespaces_RemovesExcessWhitespaces() {
+        Sentence sentence = new Sentence("i   like       honey");
+
+        assertEquals(sentence.toString(), "I like honey...");
     }
 }
