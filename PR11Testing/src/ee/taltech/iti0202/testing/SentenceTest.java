@@ -123,4 +123,11 @@ public class SentenceTest {
 
         assertEquals(sentence.toString(), "");
     }
+
+    @Test
+    public void testSentenceManyPunctuations_LeavesOnePunctuation() {
+        Sentence sentence = new Sentence("i like. honey and! money.");
+
+        assertEquals(sentence.toString(), "I like.");
+    }
 }
