@@ -137,4 +137,25 @@ public class SentenceTest {
 
         assertEquals(sentence.toString(), "I like honey...");
     }
+
+    @Test
+    public void testToString_SentenceWithPunctuationRemovePunctuationAddWordAddPunctuation() {
+        Sentence sentence = new Sentence("i like honey.");
+
+        sentence.removePunctuation();
+        sentence.addWord("and");
+        sentence.addWord("money");
+        sentence.addPunctuation("!");
+
+        assertEquals(sentence.toString(), "I like honey and money!");
+    }
+
+    @Test
+    public void testAddWord_AddWordWithWhitespace_IsFalse() {
+        Sentence sentence = new Sentence("i like honey");
+
+        boolean result = sentence.addWord("and money");
+
+        assertFalse(result);
+    }
 }

@@ -67,7 +67,7 @@ public class Sentence {
      * @return Whether word was added to sentence (false if sentence has punctuation).
      */
     public boolean addWord(String word) {
-        if (word.length() == 0) {
+        if (word.length() == 0 || word.contains(" ")) {
             return false;
         }
         if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
