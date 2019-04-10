@@ -151,7 +151,6 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "I like honey and money!");
     }
 
-
     /*
     @Test
     public void testAddWord_AddWordWithWhitespace_IsFalse() {
