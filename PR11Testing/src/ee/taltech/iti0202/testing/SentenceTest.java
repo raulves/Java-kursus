@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.testing;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -169,5 +170,12 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "So.me po.in.ts he,re but only end counts.");
     }
 
+    @Test
+    public void testEquals_TwoSentencesPunctuationIgnored_IsFalse() {
+        Sentence sentence = new Sentence("I like honey.");
+        Sentence sentence1 = new Sentence("i like honey");
+
+        assertFalse(sentence.equals(sentence1));
+    }
 
 }
