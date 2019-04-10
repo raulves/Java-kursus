@@ -168,4 +168,11 @@ public class SentenceTest {
 
         assertEquals(sentence.toString(), "So.me po.in.ts he,re but only end counts.");
     }
+
+    @Test
+    public void testToString_TwoSentences_ReturnsOnlyOne() {
+        Sentence sentence = new Sentence("Hello! I like honey.");
+
+        assertEquals(sentence.toString(), "Hello!");
+    }
 }
