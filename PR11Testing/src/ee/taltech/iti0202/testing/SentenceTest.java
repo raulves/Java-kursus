@@ -195,4 +195,11 @@ public class SentenceTest {
         assertFalse(sentence1.equals(sentence));
     }
 
+    @Test
+    public void testSentencePunctuation() {
+        Sentence sentence = new Sentence(".");
+
+        assertEquals(sentence.toString(), "");
+    }
+
 }
