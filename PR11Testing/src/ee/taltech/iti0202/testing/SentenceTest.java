@@ -151,7 +151,7 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "I like honey and money!");
     }
 
-    /*
+
     @Test
     public void testAddWord_AddWordWithWhitespace_IsFalse() {
         Sentence sentence = new Sentence("i like honey");
@@ -160,7 +160,7 @@ public class SentenceTest {
 
         assertFalse(result);
     }
-    */
+
 
     @Test
     public void testPunctuationPartOfWord_PunctuationsStays() {
