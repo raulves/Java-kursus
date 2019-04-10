@@ -3,15 +3,8 @@ package ee.taltech.iti0202.geometry.shapes;
 
 public class Circle extends Shape {
 
-    public Circle(ShapeType shapeType, Integer angles, Color color, Integer size) {
-        super(shapeType, angles, color, size);
-    }
-
-    @Override
-    public void draw() {
-        String draw = "Shape: " + super.getShapeType() + ", Color: " + super.getColor()
-                + ", Radius: " + super.getSize();
-        System.out.println(draw);
+    public Circle(ShapeType shapeType, Color color, Integer size) {
+        super(shapeType, color, size);
     }
 
     @Override

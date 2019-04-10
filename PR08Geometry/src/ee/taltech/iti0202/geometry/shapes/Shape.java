@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.geometry.shapes;
 
-public class Shape {
+public abstract class Shape {
+    // Factory class
 
     private ShapeType shapeType;
     private Integer angles;
@@ -11,21 +12,28 @@ public class Shape {
         BLUE, GREEN, RED, YELLOW, BLACK
     }
 
+
+    public static Shape createShape(ShapeType shapeType, Color color, Integer size) {
+        switch (shapeType) {
+            case CIRCLE:return new Circle(shapeType, color, size);
+            case SQUARE: return new Square(shapeType, color, size);
+            case TRIANGLE:return new Triangle(shapeType ,color, size);
+            default: return null;
+
+        }
+    }
+
     public enum ShapeType {
         SQUARE, CIRCLE, TRIANGLE
     }
 
-    public Shape(ShapeType shapeType, Integer angles, Color color, Integer size) {
+    protected Shape(ShapeType shapeType, Color color, Integer size) {
         this.shapeType = shapeType;
-        this.angles = angles;
         this.color = color;
         this.size = size;
     }
 
-    public void draw() {
-        String draw = "Shape: " + shapeType + ", Number of angles: " + angles + ", Color: " + color + ", Size: " + size;
-        System.out.println(draw);
-    }
+
 
     public void changeSize(Integer size) {
         int previousSize = getSize();
