@@ -208,10 +208,5 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "I like honey!");
     }
 
-    @Test
-    public void testUpperCase() {
-        Sentence sentence = new Sentence("TERE siin on!");
 
-        assertEquals(sentence.toString(), "Tere siin on!");
-    }
 }

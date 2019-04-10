@@ -124,7 +124,7 @@ public class Sentence {
         if (words.size() == 0) {
             return "";
         }
-        words.add(0, words.remove(0).toLowerCase());
+
         String result = String.join(" ", words);
         if (punctuationForSentence.equals("")) {
             punctuationForSentence = "...";
