@@ -197,9 +197,16 @@ public class SentenceTest {
 
     @Test
     public void testSentencePunctuation() {
-        Sentence sentence = new Sentence(".");
+        Sentence sentence = new Sentence("I like honey?");
 
-        assertEquals(sentence.toString(), "");
+        assertEquals(sentence.toString(), "I like honey?");
+    }
+
+    @Test
+    public void testSentencePunctuation2() {
+        Sentence sentence = new Sentence("I like honey!");
+
+        assertEquals(sentence.toString(), "I like honey!");
     }
 
 
