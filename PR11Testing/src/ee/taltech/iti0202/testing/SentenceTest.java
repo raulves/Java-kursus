@@ -83,6 +83,15 @@ public class SentenceTest {
     }
 
     @Test
+    public void testRemoveWord_RemoveWordEmptySentence_IsFalse() {
+        Sentence sentence = new Sentence();
+
+        boolean result = sentence.removeWord("car");
+
+        assertFalse(result);
+    }
+
+    @Test
     public void testAddWord_AddEmptyWord_IsFalse() {
         Sentence sentence = new Sentence("welcome to Estonia");
 

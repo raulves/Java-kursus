@@ -49,6 +49,9 @@ public class Sentence {
      * @return Whether word was in the sentence and removed.
      */
     public boolean removeWord(String word) {
+        if (words.size() == 0) {
+            return false;
+        }
         if (words.contains(word)) {
             if (punctuationForSentence.equals("") || punctuationForSentence.equals("...")) {
                 words.remove(word);
