@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.testing;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -208,7 +207,4 @@ public class SentenceTest {
 
         assertEquals(sentence.toString(), "I like honey!");
     }
-
-
-
 }
