@@ -178,4 +178,12 @@ public class SentenceTest {
         assertFalse(sentence.equals(sentence1));
     }
 
+    @Test
+    public void testEquals_IsFalse() {
+        Sentence sentence = new Sentence("I like honey.");
+        Sentence sentence1 = new Sentence("i like honey");
+
+        assertFalse(sentence1.equals(sentence));
+    }
+
 }
