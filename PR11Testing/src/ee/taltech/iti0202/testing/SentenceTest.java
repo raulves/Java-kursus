@@ -197,9 +197,9 @@ public class SentenceTest {
 
     @Test
     public void testSentencePunctuation() {
-        Sentence sentence = new Sentence("..");
+        Sentence sentence = new Sentence(".");
 
-        assertEquals(sentence.toString(), "..");
+        assertEquals(sentence.toString(), "");
     }
 
 }

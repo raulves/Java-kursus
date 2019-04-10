@@ -121,6 +121,9 @@ public class Sentence {
 
     @Override
     public String toString() {
+        if (words.size() == 0) {
+            return "";
+        }
 
         String result = String.join(" ", words);
         if (punctuationForSentence.equals("")) {
