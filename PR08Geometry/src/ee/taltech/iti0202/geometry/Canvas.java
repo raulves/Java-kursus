@@ -13,6 +13,5 @@ public class Canvas {
         shapes.add(shape);
         String draw = "Shape: " + shape.getShapeType() + ", Color: " + shape.getColor() + ", Size: " + shape.getSize();
         System.out.println(draw);
-
     }
 }
