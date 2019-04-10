@@ -1,7 +1,11 @@
 package ee.taltech.iti0202.testing;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 
 public class SentenceTest {
 
