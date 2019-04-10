@@ -164,7 +164,7 @@ public class SentenceTest {
 
     @Test
     public void testPunctuationPartOfWord_PunctuationsStays() {
-        Sentence sentence = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
+        Sentence sentence = new Sentence("so.me po.in.ts he,re but only end counts. yes.");
 
         assertEquals(sentence.toString(), "So.me po.in.ts he,re but only end counts.");
     }
