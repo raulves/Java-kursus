@@ -74,7 +74,7 @@ public class SentenceTest {
 
     @Test
     public void testRemoveWord_RemovableWordInSentenceNoPunctuation_IsTrue() {
-        Sentence sentence = new Sentence("welcome to Estonia");
+        Sentence sentence = new Sentence("welcome welcome to Estonia");
 
         boolean result = sentence.removeWord("welcome");
 
@@ -169,10 +169,5 @@ public class SentenceTest {
         assertEquals(sentence.toString(), "So.me po.in.ts he,re but only end counts.");
     }
 
-    @Test
-    public void testToString_TwoSentences_ReturnsOnlyOne() {
-        Sentence sentence = new Sentence("Hello! I like honey.");
 
-        assertEquals(sentence.toString(), "Hello!");
-    }
 }
