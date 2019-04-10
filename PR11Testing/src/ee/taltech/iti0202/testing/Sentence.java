@@ -156,7 +156,6 @@ public class Sentence {
         System.out.println(s3); // Hello world!
         System.out.println(s1.equals(s3)); // false
 
-
         Sentence s4 = new Sentence("Hi! Ignore those.");
         System.out.println(s4); // Hi!
         Sentence s5 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
