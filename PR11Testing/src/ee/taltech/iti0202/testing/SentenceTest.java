@@ -212,7 +212,7 @@ public class SentenceTest {
     public void testSentenceUpperCase() {
         Sentence sentence = new Sentence("CAR DRIVES.");
 
-        assertEquals(sentence.toString(), "Car DRIVES.");
+        assertEquals(sentence.toString(), "CAR DRIVES.");
     }
 
 }
