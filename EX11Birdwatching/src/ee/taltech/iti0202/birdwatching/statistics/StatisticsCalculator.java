@@ -3,7 +3,12 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import ee.taltech.iti0202.birdwatching.bird.BirdDataController;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.Set;
+import java.util.Map;
+
 
 public class StatisticsCalculator {
 
