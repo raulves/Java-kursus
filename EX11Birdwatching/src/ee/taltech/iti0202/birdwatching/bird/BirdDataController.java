@@ -18,7 +18,7 @@ public class BirdDataController {
 
         List<String> lines;
         try {
-            lines = Files.readAllLines(Paths.get("src/poly/customer/data.txt"));
+            lines = Files.readAllLines(Paths.get(filename));
             for (String line : lines) {
                 String[] splittedLine = line.split(",");
 
