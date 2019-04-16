@@ -34,6 +34,11 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findAverageWeight() {
+        if (countBirds() > 0) {
+            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n.doubleValue()).average();
+        } else {
+            return OptionalDouble.empty();
+        }
     }
 
     public OptionalDouble findMinWeight() {
