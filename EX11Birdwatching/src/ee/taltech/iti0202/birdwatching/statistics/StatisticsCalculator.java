@@ -21,12 +21,16 @@ public class StatisticsCalculator {
     }
 
     public void prepareBirdData(String filename) {
+        controller.readBirdDataFromCsvFile(filename);
     }
 
     public List<Bird> getBirds() {
+        return controller.getBirds();
     }
 
     public long countBirds() {
+        long count = controller.getBirds().stream().count();
+        return count;
     }
 
     public OptionalDouble findAverageWeight() {
