@@ -3,7 +3,7 @@ package ee.taltech.iti0202.birdwatching.bird;
 public class BirdBuilder {
     private String species;
     private double weight;
-    private double wingspan;
+    private int wingspan;
     private Bird.Age age;
     private Bird.Sex sex;
 
@@ -17,7 +17,7 @@ public class BirdBuilder {
         return this;
     }
 
-    public BirdBuilder setWingspan(double wingspan) {
+    public BirdBuilder setWingspan(int wingspan) {
         this.wingspan = wingspan;
         return this;
     }

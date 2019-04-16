@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class WingspanFilter implements BirdFilter {
 
-    private Double min;
-    private Double max;
+    private Integer min;
+    private Integer max;
 
-    public WingspanFilter(Double min, Double max) {
+    public WingspanFilter(Integer min, Integer max) {
         this.min = min;
         this.max = max;
     }

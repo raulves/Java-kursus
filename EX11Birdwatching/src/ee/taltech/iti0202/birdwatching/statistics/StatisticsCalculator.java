@@ -12,7 +12,12 @@ import java.util.Map;
 
 public class StatisticsCalculator {
 
+    private BirdDataController controller;
+    private BirdFilter filter;
+
     public StatisticsCalculator(BirdDataController controller, BirdFilter filter) {
+        this.controller = controller;
+        this.filter = filter;
     }
 
     public void prepareBirdData(String filename) {

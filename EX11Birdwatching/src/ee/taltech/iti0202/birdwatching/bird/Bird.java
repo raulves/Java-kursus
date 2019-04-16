@@ -12,11 +12,11 @@ public class Bird {
 
     private String species;
     private double weight;
-    private double wingspan;
+    private int wingspan;
     private Age age;
     private Sex sex;
 
-    public Bird(String species, double weight, double wingspan, Sex sex, Age age) {
+    public Bird(String species, double weight, int wingspan, Sex sex, Age age) {
         this.species = species;
         this.weight = weight;
         this.wingspan = wingspan;
@@ -32,7 +32,7 @@ public class Bird {
         return weight;
     }
 
-    public double getWingspan() {
+    public int getWingspan() {
         return wingspan;
     }
 
