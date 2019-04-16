@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class WingspanFilter implements BirdFilter {
 
-    private Double min;
-    private Double max;
+    private Integer min;
+    private Integer max;
 
-    public WingspanFilter(Double min, Double max) {
+    public WingspanFilter(Integer min, Integer max) {
         this.min = min;
         this.max = max;
     }
@@ -19,9 +19,7 @@ public class WingspanFilter implements BirdFilter {
     public List<Bird> getSuitableBirds(List<Bird> birds) {
         return birds
                 .stream()
-                .filter(bird -> Double.compare(bird.getWingspan(), min) == 0
-                        || Double.compare(bird.getWingspan(), min) > 0
-                        && Double.compare(bird.getWingspan(), max) == 0 || Double.compare(bird.getWingspan(), max) < 0)
+                .filter(bird -> bird.getWingspan() >= min && bird.getWingspan() <= max)
                 .collect(Collectors.toList());
     }
 }
