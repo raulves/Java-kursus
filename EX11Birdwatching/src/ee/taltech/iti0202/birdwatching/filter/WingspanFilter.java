@@ -19,7 +19,9 @@ public class WingspanFilter implements BirdFilter {
     public List<Bird> getSuitableBirds(List<Bird> birds) {
         return birds
                 .stream()
-                .filter(bird -> bird.getWingspan() >= min && bird.getWingspan() <= max)
+                .filter(bird -> Double.compare(bird.getWingspan(), min) == 0
+                        || Double.compare(bird.getWingspan(), min) > 0
+                        && Double.compare(bird.getWingspan(), max) == 0 || Double.compare(bird.getWingspan(), max) < 0)
                 .collect(Collectors.toList());
     }
 }

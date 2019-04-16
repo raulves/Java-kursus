@@ -19,7 +19,8 @@ public class WeightFilter implements BirdFilter {
     public List<Bird> getSuitableBirds(List<Bird> birds) {
         return birds
                 .stream()
-                .filter(bird -> bird.getWeight() >= min && bird.getWeight() <= max)
+                .filter(bird -> Double.compare(bird.getWeight(), min) == 0 || Double.compare(bird.getWeight(), min) > 0
+                        && Double.compare(bird.getWeight(), max) == 0 || Double.compare(bird.getWeight(), max) < 0)
                 .collect(Collectors.toList());
     }
 }
