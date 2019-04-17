@@ -16,7 +16,7 @@ public class Bird {
     private Age age;
     private Sex sex;
 
-    public Bird(String species, double weight, double wingspan, Sex sex, Age age) {
+    public Bird(String species, double weight, double wingspan, Bird.Sex sex, Bird.Age age) {
         this.species = species;
         this.weight = weight;
         this.wingspan = wingspan;

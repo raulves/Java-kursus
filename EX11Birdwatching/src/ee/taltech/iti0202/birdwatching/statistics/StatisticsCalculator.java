@@ -99,6 +99,7 @@ public class StatisticsCalculator {
     }
 
     public Optional<Bird> findSampleBird(String species, Bird.Sex sex, Bird.Age age) {
+
        return Optional.empty();
     }
 
