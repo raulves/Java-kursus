@@ -4,9 +4,13 @@ import ee.taltech.iti0202.birdwatching.bird.BirdDataController;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
 
 
-import java.util.*;
-import java.util.stream.Collector;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.Map;
 
 
 public class StatisticsCalculator {
@@ -33,35 +37,27 @@ public class StatisticsCalculator {
 
     public OptionalDouble findAverageWeight() {
 
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).average();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream()
+                .mapToDouble(bird -> bird.getWeight())
+                .average();
     }
 
     public OptionalDouble findMinWeight() {
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).min();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream()
+                .mapToDouble(bird -> bird.getWeight())
+                .min();
     }
 
     public OptionalDouble findMaxWeight()  {
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).max();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream()
+                .mapToDouble(bird -> bird.getWeight())
+                .max();
     }
 
     public OptionalDouble findAverageWingspan() {
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).average();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream()
+                .mapToDouble(bird -> bird.getWingspan())
+                .average();
     }
 
     public OptionalDouble findMinWingspan() {
@@ -71,19 +67,28 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findMaxWingspan() {
-        return getBirds().stream().mapToDouble(bird -> bird.getWingspan()).max();
+        return getBirds()
+                .stream()
+                .mapToDouble(bird -> bird.getWingspan())
+                .max();
     }
 
     public List<Double> getWingspanData() {
-        return getBirds().stream().map(bird -> bird.getWingspan()).collect(Collectors.toList());
+        return getBirds().stream()
+                .map(bird -> bird.getWingspan())
+                .collect(Collectors.toList());
     }
 
     public List<Double> getWeightDataInGrams() {
-        return getBirds().stream().map(bird -> bird.getWeight() * 1000).collect(Collectors.toList());
+        return getBirds().stream()
+                .map(bird -> bird.getWeight() * 1000)
+                .collect(Collectors.toList());
     }
 
     public List<Bird> getSample(int sampleSize) {
-        return getBirds().stream().limit(sampleSize).collect(Collectors.toList());
+        return getBirds().stream()
+                .limit(sampleSize)
+                .collect(Collectors.toList());
     }
 
     public Optional<Bird> findSampleBird(String species, Bird.Sex sex, Bird.Age age) {
@@ -96,11 +101,16 @@ public class StatisticsCalculator {
     }
 
     public Set<String> getAllEncounteredSpecies() {
-        return getBirds().stream().map(bird -> bird.getSpecies()).collect(Collectors.toSet());
+        return getBirds().stream()
+                .map(bird -> bird.getSpecies())
+                .collect(Collectors.toSet());
     }
 
     public List<Bird> getLargeBirds(int skipCount) {
-        return getBirds().stream().sorted(Comparator.comparing(bird -> bird.getWeight())).skip(skipCount).collect(Collectors.toList());
+        return getBirds().stream()
+                .sorted(Comparator.comparing(bird -> bird.getWeight()))
+                .skip(skipCount)
+                .collect(Collectors.toList());
     }
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
