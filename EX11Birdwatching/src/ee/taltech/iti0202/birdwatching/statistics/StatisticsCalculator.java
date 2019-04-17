@@ -34,11 +34,11 @@ public class StatisticsCalculator {
     }
 
     public long countBirds() {
-        long count = controller.getBirds().stream().count();
-        return count;
+        return getBirds().stream().count();
     }
 
     public OptionalDouble findAverageWeight() {
+
         if (countBirds() > 0) {
             return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n.doubleValue()).average();
         } else {

@@ -47,6 +47,10 @@ public class Bird {
 
     @Override
     public String toString() {
-        return species;
+        return "Species: " + species + ","
+                + "Weight: " + weight + ", "
+                + "Wingspan: " + wingspan + ", "
+                + "Age: " + age + ", "
+                + "Sex: " + sex + ".";
     }
 }
