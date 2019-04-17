@@ -78,11 +78,7 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findMaxWingspan() {
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).max();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).max();
     }
 
     public List<Double> getWingspanData() {
@@ -104,7 +100,7 @@ public class StatisticsCalculator {
     }
 
     public Set<String> getAllEncounteredSpecies() {
-        return getBirds().stream().map(bird -> bird.getSpecies()).distinct().collect(Collectors.toSet());
+        return getBirds().stream().map(bird -> bird.getSpecies()).collect(Collectors.toSet());
     }
 
     public List<Bird> getLargeBirds(int skipCount) {
