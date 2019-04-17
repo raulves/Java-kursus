@@ -4,13 +4,7 @@ import ee.taltech.iti0202.birdwatching.bird.BirdDataController;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.OptionalDouble;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -106,7 +100,7 @@ public class StatisticsCalculator {
     }
 
     public List<Bird> getLargeBirds(int skipCount) {
-        return getBirds().stream().filter(bird -> bird.getWeight() > skipCount).sorted().collect(Collectors.toList());
+        return getBirds().stream().filter(bird -> bird.getWeight() > skipCount).sorted(Comparator.comparing(bird -> bird.getWeight())).collect(Collectors.toList());
     }
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
