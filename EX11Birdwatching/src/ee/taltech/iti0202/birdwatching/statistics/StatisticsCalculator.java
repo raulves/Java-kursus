@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -102,13 +103,12 @@ public class StatisticsCalculator {
     }
 
     public List<Bird> getLargeBirds(int skipCount) {
-        List<Bird> lB = new ArrayList<>();
-        return lB;
+        return getBirds();
     }
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
-        Map<String, List<Bird>> mapB = new HashMap<>();
-        return mapB;
+        return getBirds().stream()
+                .collect(Collectors.groupingBy(bird -> bird.getSpecies()));
     }
 
 }
