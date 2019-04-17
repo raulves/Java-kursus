@@ -40,7 +40,7 @@ public class StatisticsCalculator {
     public OptionalDouble findAverageWeight() {
 
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n.doubleValue()).average();
+            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).average();
         } else {
             return OptionalDouble.empty();
         }
@@ -91,7 +91,7 @@ public class StatisticsCalculator {
     }
 
     public List<Double> getWeightDataInGrams() {
-        return getBirds().stream().map(bird -> bird.getWeight()).collect(Collectors.toList());
+        return getBirds().stream().map(bird -> bird.getWeight() * 1000).collect(Collectors.toList());
     }
 
     public List<Bird> getSample(int sampleSize) {
