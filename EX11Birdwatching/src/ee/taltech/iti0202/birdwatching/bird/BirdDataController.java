@@ -26,7 +26,9 @@ public class BirdDataController {
             for (String line : lines) {
                 String[] splittedLine = line.split(",");
 
-                birds.add(new BirdBuilder().setSpecies(splittedLine[0]).setWeight(Double.parseDouble(splittedLine[1]))
+                birds.add(new BirdBuilder()
+                        .setSpecies(splittedLine[0])
+                        .setWeight(Double.parseDouble(splittedLine[1]))
                         .setWingspan(Double.parseDouble(splittedLine[2]))
                         .setSex(Bird.Sex.valueOf(splittedLine[3].toUpperCase()))
                         .setAge(Bird.Age.valueOf(splittedLine[4].toUpperCase())).createBird());

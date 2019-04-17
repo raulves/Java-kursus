@@ -29,7 +29,7 @@ public class StatisticsCalculator {
     }
 
     public List<Bird> getBirds() {
-        return controller.getBirds();
+        return filter.getSuitableBirds(controller.getBirds());
     }
 
     public long countBirds() {
