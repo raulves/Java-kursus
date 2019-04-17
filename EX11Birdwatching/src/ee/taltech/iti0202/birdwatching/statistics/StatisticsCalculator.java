@@ -100,7 +100,7 @@ public class StatisticsCalculator {
     }
 
     public List<Bird> getLargeBirds(int skipCount) {
-        return getBirds().stream().filter(bird -> bird.getWeight() > skipCount).sorted(Comparator.comparing(bird -> bird.getWeight())).collect(Collectors.toList());
+        return getBirds().stream().sorted(Comparator.comparing(bird -> bird.getWeight())).skip(skipCount).collect(Collectors.toList());
     }
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
