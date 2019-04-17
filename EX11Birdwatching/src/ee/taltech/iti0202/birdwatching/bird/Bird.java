@@ -45,4 +45,8 @@ public class Bird {
     }
 
 
+    @Override
+    public String toString() {
+        return species;
+    }
 }
