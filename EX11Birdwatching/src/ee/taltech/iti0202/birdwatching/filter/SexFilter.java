@@ -17,7 +17,7 @@ public class SexFilter implements BirdFilter {
     public List<Bird> getSuitableBirds(List<Bird> birds) {
         return birds
                 .stream()
-                .filter(bird -> bird.getSex() == sex)
+                .filter(bird -> bird.getSex().compareTo(sex) == 0)
                 .collect(Collectors.toList());
     }
 }
