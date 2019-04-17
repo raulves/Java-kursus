@@ -70,15 +70,13 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findMinWingspan() {
-        if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).min();
-        } else {
-            return OptionalDouble.empty();
-        }
+        return getBirds().stream()
+                .mapToDouble(Bird::getWingspan)
+                .min();
     }
 
     public OptionalDouble findMaxWingspan() {
-        return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).max();
+        return getBirds().stream().mapToDouble(bird -> bird.getWingspan()).max();
     }
 
     public List<Double> getWingspanData() {
