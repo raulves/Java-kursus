@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class WeightFilter implements BirdFilter {
 
-    private Double min;
-    private Double max;
+    private double min;
+    private double max;
 
-    public WeightFilter(Double min, Double max) {
+    public WeightFilter(double min, double max) {
         this.min = min;
         this.max = max;
     }
