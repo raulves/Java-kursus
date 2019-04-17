@@ -93,8 +93,11 @@ public class StatisticsCalculator {
     }
 
     public Optional<Bird> findSampleBird(String species, Bird.Sex sex, Bird.Age age) {
-        return getBirds().stream().filter(bird -> bird.getSpecies().equals(species) && bird.getSex().equals(sex)
-                && bird.getAge().equals(age)).findFirst();
+        return getBirds().stream()
+                .filter(bird -> bird.getSpecies().equals(species))
+                .filter(bird -> bird.getSex().equals(sex))
+                .filter(bird -> bird.getAge().equals(age))
+                .findFirst();
 
     }
 
