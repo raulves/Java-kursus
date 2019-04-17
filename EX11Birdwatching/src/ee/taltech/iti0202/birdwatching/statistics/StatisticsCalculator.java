@@ -48,7 +48,7 @@ public class StatisticsCalculator {
 
     public OptionalDouble findMinWeight() {
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n.doubleValue()).min();
+            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).min();
         } else {
             return OptionalDouble.empty();
         }
@@ -56,7 +56,7 @@ public class StatisticsCalculator {
 
     public OptionalDouble findMaxWeight()  {
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n.doubleValue()).max();
+            return getBirds().stream().map(bird -> bird.getWeight()).mapToDouble(n -> n).max();
         } else {
             return OptionalDouble.empty();
         }
@@ -64,7 +64,7 @@ public class StatisticsCalculator {
 
     public OptionalDouble findAverageWingspan() {
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n.doubleValue()).average();
+            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).average();
         } else {
             return OptionalDouble.empty();
         }
@@ -72,7 +72,7 @@ public class StatisticsCalculator {
 
     public OptionalDouble findMinWingspan() {
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n.doubleValue()).min();
+            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).min();
         } else {
             return OptionalDouble.empty();
         }
@@ -80,7 +80,7 @@ public class StatisticsCalculator {
 
     public OptionalDouble findMaxWingspan() {
         if (countBirds() > 0) {
-            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n.doubleValue()).max();
+            return getBirds().stream().map(bird -> bird.getWingspan()).mapToDouble(n -> n).max();
         } else {
             return OptionalDouble.empty();
         }
