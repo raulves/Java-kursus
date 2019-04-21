@@ -10,7 +10,13 @@
          */
         public static String parentheses(String word) {
 
+
+
             if (word.length() == 0) {
+                return "";
+            }
+
+            if (!word.contains("(") && !word.contains(")")) {
                 return "";
             }
 
