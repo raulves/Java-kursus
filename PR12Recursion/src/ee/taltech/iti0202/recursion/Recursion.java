@@ -10,6 +10,10 @@
          */
         public static String parentheses(String word) {
 
+            if (!word.contains("(") && !word.contains(")")) {
+                return "";
+            }
+
             if (word.contains("(") && word.substring(0, 1).equals("(")) {
                 return word.substring(0, 1) + parentheses(word.substring(1));
             } else if (word.contains("(") && !word.substring(0, 1).equals("(")) {
@@ -31,7 +35,15 @@
          * @return a word without any duplicates
          */
         public static String removeDuplicates(String word) {
-            return "";
+
+            if (word.length() == 1) {
+                return word;
+            }
+            if (word.substring(0, 1).equals(word.substring(1, 2))) {
+                return removeDuplicates(word.substring(1));
+            } else {
+                return word.substring(0, 1) + removeDuplicates(word.substring(1));
+            }
         }
 
         /**
@@ -51,9 +63,9 @@
             System.out.println(parentheses("What do you do if (sentence has (many parentheses) and where it ends)")); // "(sentencce has (many parentheses) and where it ends)"
             // System.out.println();
 
-            // System.out.println(removeDuplicates("aabbccddeeffgg")); // "abcdefg"
-            // System.out.println(removeDuplicates("foakfjdirmdogmvooasf")); // "foakfjdirmdogmvoasf"
-            // System.out.println(removeDuplicates("ilIliiiiilIili1lilllliiilil1ilili111111lili1")); // "ilIlilIili1lililil1ilili1lili1"
+            System.out.println(removeDuplicates("aabbccddeeffgg")); // "abcdefg"
+            System.out.println(removeDuplicates("foakfjdirmdogmvooasf")); // "foakfjdirmdogmvoasf"
+            System.out.println(removeDuplicates("ilIliiiiilIili1lilllliiilil1ilili111111lili1")); // "ilIlilIili1lililil1ilili1lili1"
             // System.out.println();
 
             // System.out.println(pidginfy("Kūle'a ka'ōpopo'ōpiopio ma luna o ka'īlio palaualelo.")); // "Kūle'a ka'ōpopo'ōpiopio ma luna o ka'lio palaualelo."
