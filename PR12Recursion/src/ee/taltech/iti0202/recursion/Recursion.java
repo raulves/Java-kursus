@@ -20,8 +20,8 @@
                 return "";
             }
 
-            if (word.contains("(") && word.substring(0, 1).equals("(")) {
-                return word.substring(0, word.indexOf(")")) + parentheses(word.substring(word.indexOf(")")));
+            if (word.substring(0, 1).equals("(")) {
+                return word.substring(0, word.indexOf(")") + 1) + parentheses(word.substring(word.indexOf(")") + 1));
             } else if (word.contains("(") && !word.substring(0, 1).equals("(")) {
                 return parentheses(word.substring(1));
             }
