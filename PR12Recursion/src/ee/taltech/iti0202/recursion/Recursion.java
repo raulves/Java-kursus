@@ -20,16 +20,16 @@
                 return "";
             }
 
-            if (word.substring(0, 1).equals("(")) {
+            if (word.substring(0, 1).equals("(") && word.contains(")")) {
                 return word.substring(0, word.indexOf(")")) + parentheses(word.substring(word.indexOf(")")));
             } else if (word.contains("(") && !word.substring(0, 1).equals("(")) {
                 return parentheses(word.substring(1));
             }
 
-            if (word.contains(")")) {
+            if (word.contains(")") && word.length() > 1) {
                 return word.substring(0, 1) + parentheses(word.substring(1));
             } else {
-                return "";
+                return word.substring(0, 1);
             }
 
         }
