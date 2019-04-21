@@ -10,12 +10,12 @@
          */
         public static String parentheses(String word) {
 
-            if (!word.contains("(") && !word.contains(")")) {
+            if (word.length() == 0) {
                 return "";
             }
 
             if (word.contains("(") && word.substring(0, 1).equals("(")) {
-                return word.substring(0, 1) + parentheses(word.substring(1));
+                return word.substring(0, word.indexOf(")")) + parentheses(word.substring(word.indexOf(")")));
             } else if (word.contains("(") && !word.substring(0, 1).equals("(")) {
                 return parentheses(word.substring(1));
             }
