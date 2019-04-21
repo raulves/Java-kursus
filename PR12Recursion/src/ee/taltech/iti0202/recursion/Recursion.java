@@ -21,17 +21,9 @@
             }
 
             if (word.substring(0, 1).equals("(") && word.contains(")")) {
-                return word.substring(0, word.indexOf(")")) + parentheses(word.substring(word.indexOf(")")));
-            } else if (word.contains("(") && !word.substring(0, 1).equals("(")) {
-                return parentheses(word.substring(1));
+                return word.substring(0, word.lastIndexOf(")") + 1);
             }
-
-            if (word.contains(")") && word.length() > 1) {
-                return word.substring(0, 1) + parentheses(word.substring(1));
-            } else {
-                return word.substring(0, 1);
-            }
-
+            return parentheses(word.substring(1));
         }
 
         /**
