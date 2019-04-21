@@ -9,7 +9,7 @@
          * @return content between first and last parenthesis
          */
         public static String parentheses(String word) {
-            if (!word.contains("(") && !word.contains(")")) {
+            if (!word.contains("(") || !word.contains(")")) {
                 return "";
             }
             return "a";
