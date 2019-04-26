@@ -16,7 +16,7 @@ public class HerbGarden {
         PlantInRows strategy2 = new PlantInRows();
         PlantInColumns strategy3 = new PlantInColumns();
 
-        Gardener gardener = new Gardener("Els", strategy2);
+        Gardener gardener = new Gardener("Els", strategy3);
 
         Map<String, Integer> herbs = new HashMap<>();
         herbs.put("thyme", 7);
