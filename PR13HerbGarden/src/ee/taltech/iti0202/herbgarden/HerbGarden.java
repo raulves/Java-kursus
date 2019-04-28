@@ -19,7 +19,7 @@ public class HerbGarden {
         Gardener gardener = new Gardener("Els", strategy1);
 
         Map<String, Integer> herbs = new HashMap<>();
-        herbs.put("thyme", 7);
+        // herbs.put("thyme", 7);
         herbs.put("parsley", 3);
         herbs.put("rosemary", 2);
 
