@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PlantInRows implements PlantingStrategy {
+public class PlantInRows extends AbstractPlanting implements PlantingStrategy {
     @Override
     public String[][] plantHerbs(int height, int width, Map<String, Integer> plants) {
         Map<String, Integer> sortedByValues = plants.entrySet().stream()
@@ -23,13 +23,6 @@ public class PlantInRows implements PlantingStrategy {
             }
         }
 
-        String[][] plantedHerbs = new String[height][width];
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                plantedHerbs[i][j] = allPlants.get(0);
-                allPlants.remove(0);
-            }
-        }
-        return plantedHerbs;
+        return createArray(height, width, allPlants);
     }
 }

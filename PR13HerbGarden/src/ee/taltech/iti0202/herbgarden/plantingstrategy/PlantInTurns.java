@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PlantInTurns implements PlantingStrategy {
+public class PlantInTurns extends AbstractPlanting implements PlantingStrategy {
     @Override
     public String[][] plantHerbs(int height, int width, Map<String, Integer> plants) {
 
@@ -30,21 +30,7 @@ public class PlantInTurns implements PlantingStrategy {
             }
         }
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                plantedHerbs[i][j] = allPlants.get(0);
-                allPlants.remove(0);
-            }
-        }
 
-
-
-
-
-
-
-        // Hakkan sorditud Mapi läbi käima ning iga kord muudan koguse ära taime juures
-        // Kui kogus 0, siis skipi.
-        return plantedHerbs;
+        return createArray(height, width, allPlants);
     }
 }

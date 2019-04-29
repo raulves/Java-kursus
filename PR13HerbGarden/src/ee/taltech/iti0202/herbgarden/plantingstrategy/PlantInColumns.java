@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PlantInColumns implements PlantingStrategy {
+public class PlantInColumns extends AbstractPlanting implements PlantingStrategy {
     @Override
     public String[][] plantHerbs(int height, int width, Map<String, Integer> plants) {
         Map<String, Integer> sorted =
@@ -23,14 +23,7 @@ public class PlantInColumns implements PlantingStrategy {
             }
         }
 
-        String[][] plantedHerbs = new String[height][width];
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                plantedHerbs[j][i] = allPlants.get(0);
-                allPlants.remove(0);
-            }
-        }
-        return plantedHerbs;
+        return createArray(width, height, allPlants);
     }
 }
