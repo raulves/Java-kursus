@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.herbgarden.plantingstrategy;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

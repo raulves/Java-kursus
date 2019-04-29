@@ -1,11 +1,7 @@
 package ee.taltech.iti0202.herbgarden.plantingstrategy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PlantInRows extends AbstractPlanting implements PlantingStrategy {
     @Override
