@@ -15,13 +15,8 @@ public class PlantInColumns extends AbstractPlanting implements PlantingStrategy
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                                 (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
-        List<String> allPlants = new ArrayList<>();
+        List<String> allPlants = sortedList(sorted);
 
-        for (String plant : sorted.keySet()) {
-            for (int i = 0; i < sorted.get(plant); i++) {
-                allPlants.add(plant);
-            }
-        }
 
         String[][] plantedHerbs = new String[height][width];
 

@@ -11,14 +11,10 @@ public class PlantInTurns extends AbstractPlanting implements PlantingStrategy {
     @Override
     public String[][] plantHerbs(int height, int width, Map<String, Integer> plants) {
 
-        Map<String, Integer> sortedByValues = plants.entrySet().stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        Map<String, Integer> sortedByValues = sortMapToReverseOrder(plants);
 
         int totalPlants = sortedByValues.values().stream().mapToInt(nr -> nr).sum();
         List<String> allPlants = new ArrayList<>();
-        String[][] plantedHerbs = new String[height][width];
 
         for (int i = 0; i < totalPlants; i++) {
             for (String plant : sortedByValues.keySet()) {

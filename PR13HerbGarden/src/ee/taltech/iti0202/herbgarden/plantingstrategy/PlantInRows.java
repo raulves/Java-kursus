@@ -10,18 +10,10 @@ import java.util.stream.Collectors;
 public class PlantInRows extends AbstractPlanting implements PlantingStrategy {
     @Override
     public String[][] plantHerbs(int height, int width, Map<String, Integer> plants) {
-        Map<String, Integer> sortedByValues = plants.entrySet().stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        Map<String, Integer> sortedByValues = sortMapToReverseOrder(plants);
 
-        List<String> allPlants = new ArrayList<>();
+        List<String> allPlants = sortedList(sortedByValues);
 
-        for (String plant : sortedByValues.keySet()) {
-            for (int i = 0; i < sortedByValues.get(plant); i++) {
-                allPlants.add(plant);
-            }
-        }
 
         return createArray(height, width, allPlants);
     }
