@@ -10,6 +10,7 @@ public abstract class AbstractPlanting {
         String[][] plantedHerbs = new String[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
+                System.out.println(allPlants.get(0));
                 plantedHerbs[i][j] = allPlants.get(0);
                 allPlants.remove(0);
             }

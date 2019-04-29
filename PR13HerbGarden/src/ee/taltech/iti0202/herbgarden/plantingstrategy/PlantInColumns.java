@@ -23,7 +23,14 @@ public class PlantInColumns extends AbstractPlanting implements PlantingStrategy
             }
         }
 
+        String[][] plantedHerbs = new String[height][width];
 
-        return createArray(height, width, allPlants);
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                plantedHerbs[j][i] = allPlants.get(0);
+                allPlants.remove(0);
+            }
+        }
+        return plantedHerbs;
     }
 }
