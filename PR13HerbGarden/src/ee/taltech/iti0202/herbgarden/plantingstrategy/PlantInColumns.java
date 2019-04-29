@@ -24,6 +24,6 @@ public class PlantInColumns extends AbstractPlanting implements PlantingStrategy
         }
 
 
-        return createArray(width, height, allPlants);
+        return createArray(height, width, allPlants);
     }
 }
