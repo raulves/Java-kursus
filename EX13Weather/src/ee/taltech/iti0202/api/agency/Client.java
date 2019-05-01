@@ -7,27 +7,39 @@ import java.util.Optional;
 
 public class Client {
 
+    private String name;
+    private String startingCity;
+    private CityFinderStrategy choosingStrategy;
+    private List<String> wantsToVisitCities;
+
     public Client(String name, String startingCity, CityFinderStrategy choosingStrategy) {
+        this.name = name;
+        this.startingCity = startingCity;
+        this.choosingStrategy = choosingStrategy;
     }
 
     public Client(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
+        this.name = name;
+        this.startingCity = startingCity;
+        this.choosingStrategy = choosingStrategy;
+        this.wantsToVisitCities = wantsToVisitCities;
     }
 
 
     public String getName() {
-        return "";
+        return name;
     }
 
     public String getStartingCity() {
-        return "";
+        return startingCity;
     }
 
     public CityFinderStrategy getChoosingStrategy() {
-        return null;
+        return choosingStrategy;
     }
 
     public List<String> getCitiesThatWantsToVisit() {
-        return null;
+        return wantsToVisitCities;
     }
 
     public Optional<City> chooseBestCity(List<City> possibleCities) {

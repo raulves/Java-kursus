@@ -1,43 +1,56 @@
 package ee.taltech.iti0202.api.destinations;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class City {
+    private String name;
+    private double lon;
+    private double lat;
+    private List<Double> temperatures;
+    private List<Double> humidity;
+    private List<Integer> weatherCodes;
+
     City(String name, double lon, double lat, List<Double> temperatures, List<Double> humidity, List<Integer> weatherCodes) {
+        this.name = name;
+        this.lon = lon;
+        this.lat = lat;
+        this.temperatures = temperatures;
+        this.humidity = humidity;
+        this.weatherCodes = weatherCodes;
     }
 
     public String getName() {
-        return "";
+        return name;
     }
 
     public double getLon() {
-        return 0.0;
+        return lon;
     }
 
     public double getLat() {
-        return 0.0;
+        return lat;
     }
 
     public List<Double> getTemperatures() {
-        return new ArrayList<>();
+        return temperatures;
     }
 
     public List<Double> getHumidity() {
-        return new ArrayList<>();
+        return humidity;
     }
 
     public List<Integer> getWeatherCodes() {
-        return new ArrayList<>();
+        return weatherCodes;
     }
 
-    public double getAverageTemperature() {
-        return 0.00;
+    public OptionalDouble getAverageTemperature() {
+        return temperatures.stream().mapToDouble(n -> n).average();
     }
 
 
-    public double getAverageHumidity() {
-        return 0.00;
+    public OptionalDouble getAverageHumidity() {
+        return humidity.stream().mapToDouble(n -> n).average();
     }
 
 }
