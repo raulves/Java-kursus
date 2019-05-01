@@ -53,7 +53,6 @@ public class TravelAgency {
     */
     public Optional<City> findSuitableCitiesForClient(Client client) {
 
-        // Adding weather data to list
         for (String city : cityNames) {
             String weatherData = dataController.getCity(city);
             weatherDataAllCities.add(weatherData);
@@ -61,9 +60,6 @@ public class TravelAgency {
             City newCity = gson.fromJson(weatherData, City.class);
             cityObjects.add(newCity);
         }
-
-
-
 
         return Optional.empty();
     }
