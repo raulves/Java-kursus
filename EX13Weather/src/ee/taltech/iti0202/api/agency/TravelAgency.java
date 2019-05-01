@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.api.agency;
 
+import com.google.gson.Gson;
 import ee.taltech.iti0202.api.destinations.City;
+import ee.taltech.iti0202.api.destinations.CityBuilder;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ public class TravelAgency {
 
     private OnlineDataController dataController;
     private List<String> cityNames;
+    private List<String> weatherDataAllCities = new ArrayList<>();
+    private List<City> cityObjects = new ArrayList<>();
     
         public TravelAgency(List<String> cityNames, OnlineDataController dataController) {
             this.cityNames = cityNames;
@@ -23,7 +27,9 @@ public class TravelAgency {
      * @param city city name.
     */
     public void addCity(String city) {
-        
+        if(!cityNames.contains(city)) {
+            cityNames.add(city);
+        }
     }
     
     /**
@@ -46,6 +52,19 @@ public class TravelAgency {
      * @return Optional city if the client was happy with it.
     */
     public Optional<City> findSuitableCitiesForClient(Client client) {
+
+        // Adding weather data to list
+        for (String city : cityNames) {
+            String weatherData = dataController.getCity(city);
+            weatherDataAllCities.add(weatherData);
+            Gson gson = new Gson();
+            City newCity = gson.fromJson(weatherData, City.class);
+            cityObjects.add(newCity);
+        }
+
+
+
+
         return Optional.empty();
     }
 
