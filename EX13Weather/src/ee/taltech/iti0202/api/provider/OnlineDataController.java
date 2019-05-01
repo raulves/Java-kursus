@@ -38,9 +38,4 @@ public class OnlineDataController {
         return content.toString();
     }
 
-    public static void main(String[] args) {
-        OnlineDataController oc = new OnlineDataController();
-        System.out.println(oc.getCity("Tartu"));
-
-    }
 }
