@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.api.agency;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import ee.taltech.iti0202.api.destinations.City;
 import ee.taltech.iti0202.api.destinations.CityBuilder;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
@@ -38,7 +41,7 @@ public class TravelAgency {
     * @return list of cities
     */
     public List<String> getCityList() {
-        return new ArrayList<>();
+        return cityNames;
     }
 
 
@@ -56,9 +59,39 @@ public class TravelAgency {
         for (String city : cityNames) {
             String weatherData = dataController.getCity(city);
             weatherDataAllCities.add(weatherData);
-            Gson gson = new Gson();
-            City newCity = gson.fromJson(weatherData, City.class);
+
+            // Keys [cod, message, cnt, list, city]
+            JsonObject jsonObject = new JsonParser().parse(weatherData).getAsJsonObject();
+            String cityName = jsonObject.getAsJsonObject("city").get("name").getAsString();
+            double lon = jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lon").getAsDouble();
+            double lat = jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lat").getAsDouble();
+            List<Double> temperatures = new ArrayList<>();
+            JsonArray arr = jsonObject.getAsJsonArray("list");
+
+            for (int i = 0; i < arr.size(); i++) {
+                temperatures.add(arr.get(i).getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsDouble());
+            }
+
+            List<Double> humidity = new ArrayList<>();
+            for (int i = 0; i < arr.size(); i++) {
+                humidity.add(arr.get(i).getAsJsonObject().get("main").getAsJsonObject().get("humidity").getAsDouble());
+            }
+
+            List<Integer> weatherCodes = new ArrayList<>();
+            for (int i = 0; i < arr.size(); i++) {
+                weatherCodes.add(arr.get(i).getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsInt());
+            }
+
+            City newCity = new CityBuilder().setName(cityName)
+                    .setLon(lon)
+                    .setLat(lat)
+                    .setTemperatures(temperatures)
+                    .setHumidity(humidity)
+                    .setWeatherCodes(weatherCodes)
+                    .createCity();
             cityObjects.add(newCity);
+
+
         }
 
         return Optional.empty();
