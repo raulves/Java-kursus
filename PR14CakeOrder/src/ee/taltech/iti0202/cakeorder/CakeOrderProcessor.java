@@ -32,6 +32,14 @@ public class CakeOrderProcessor {
             orderCounts++;
             jsonObject.addProperty("order_id", orderCounts);
             for (JsonElement cake : array) {
+                String cakeName = cake.getAsJsonObject().get("name").getAsString();
+                String[] splitTheCakeName = cakeName.split(" ");
+                String cakeID = "";
+                for (String s : splitTheCakeName) {
+                    cakeID += s.substring(0, 1).toUpperCase();
+                }
+                cakeID += splitTheCakeName.length;
+                cake.getAsJsonObject().addProperty("cake_id", cakeID);
                 JsonArray ingredients = cake.getAsJsonObject().get("ingredients").getAsJsonArray();
                 double milkIngredientsTotal = 1.0;
                 for (int i = 0; i < ingredients.size(); i++) {
