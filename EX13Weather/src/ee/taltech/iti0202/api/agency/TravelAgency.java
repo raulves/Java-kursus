@@ -62,39 +62,58 @@ public class TravelAgency {
 
             // Keys [cod, message, cnt, list, city]
             JsonObject jsonObject = new JsonParser().parse(weatherData).getAsJsonObject();
-            String cityName = jsonObject.getAsJsonObject("city").get("name").getAsString();
-            double lon = jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lon").getAsDouble();
-            double lat = jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lat").getAsDouble();
-            List<Double> temperatures = new ArrayList<>();
-            JsonArray arr = jsonObject.getAsJsonArray("list");
 
-            for (int i = 0; i < arr.size(); i++) {
-                temperatures.add(arr.get(i).getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsDouble());
-            }
+            JsonArray array = jsonObject.getAsJsonArray("list");
 
-            List<Double> humidity = new ArrayList<>();
-            for (int i = 0; i < arr.size(); i++) {
-                humidity.add(arr.get(i).getAsJsonObject().get("main").getAsJsonObject().get("humidity").getAsDouble());
-            }
-
-            List<Integer> weatherCodes = new ArrayList<>();
-            for (int i = 0; i < arr.size(); i++) {
-                weatherCodes.add(arr.get(i).getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsInt());
-            }
-
-            City newCity = new CityBuilder().setName(cityName)
-                    .setLon(lon)
-                    .setLat(lat)
-                    .setTemperatures(temperatures)
-                    .setHumidity(humidity)
-                    .setWeatherCodes(weatherCodes)
+            City newCity = new CityBuilder()
+                    .setName(getName(jsonObject))
+                    .setLon(getLongitude(jsonObject))
+                    .setLat(getLatitude(jsonObject))
+                    .setTemperatures(getTemperatures(array))
+                    .setHumidity(getHumidity(array))
+                    .setWeatherCodes(getWeatherCodes(array))
                     .createCity();
             cityObjects.add(newCity);
-
 
         }
 
         return Optional.empty();
+    }
+
+    private String getName(JsonObject jsonObject) {
+        return jsonObject.getAsJsonObject("city").get("name").getAsString();
+    }
+
+    private double getLongitude(JsonObject jsonObject) {
+        return jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lon").getAsDouble();
+    }
+
+    private double getLatitude(JsonObject jsonObject) {
+        return jsonObject.getAsJsonObject("city").getAsJsonObject("coord").get("lat").getAsDouble();
+    }
+
+    private List<Double> getTemperatures(JsonArray array) {
+        List<Double> temperatures = new ArrayList<>();
+        for (int i = 0; i < array.size(); i++) {
+            temperatures.add(array.get(i).getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsDouble());
+        }
+        return temperatures;
+    }
+
+    private List<Double> getHumidity(JsonArray array) {
+        List<Double> humidity = new ArrayList<>();
+        for (int i = 0; i < array.size(); i++) {
+            humidity.add(array.get(i).getAsJsonObject().get("main").getAsJsonObject().get("humidity").getAsDouble());
+        }
+        return humidity;
+    }
+
+    private List<Integer> getWeatherCodes(JsonArray array) {
+        List<Integer> weatherCodes = new ArrayList<>();
+        for (int i = 0; i < array.size(); i++) {
+            weatherCodes.add(array.get(i).getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsInt());
+        }
+        return weatherCodes;
     }
 
 }
