@@ -63,6 +63,10 @@ public class CakeOrderProcessor {
         }
 
         if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
+            if (array.size() == 0) {
+                jsonObject.addProperty("total", 0);
+                return jsonObject.toString();
+            }
             double totalOrderAmount = 0.00;
             for (JsonElement cake : array) {
                 double cakePrice = cake.getAsJsonObject().get("price").getAsDouble();
@@ -78,18 +82,11 @@ public class CakeOrderProcessor {
 
             // Eemaldama hakkan arrayst, mis eespool deklareeritud.
             for (JsonElement cake : array) {
-                System.out.println(array);
-                // System.out.println(cake);
                 String inputDate = cake.getAsJsonObject().get("BBD").getAsString();
-
                 DateTimeFormatter dtfin = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(inputDate, dtfin);
-
                 DateTimeFormatter dtfout = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
                 LocalDate date = LocalDate.now();
-                System.out.println(localDate);
-                System.out.println(date);
 
                 if (localDate.isEqual(date) || localDate.isBefore(date)) {
                     elementsToRemove.add(cake);
