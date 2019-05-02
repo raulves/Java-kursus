@@ -35,6 +35,11 @@ public class CakeOrderProcessor {
         orderCounts++;
         jsonObject.addProperty("order_id", orderCounts);
 
+        if (array.size() == 0) {
+            jsonObject.addProperty("total", 0);
+            return jsonObject.toString();
+        }
+
         if (type.equals(CakeOrderProcessorType.MAKE_DAIRY_FREE)) {
 
             for (JsonElement cake : array) {
@@ -63,10 +68,7 @@ public class CakeOrderProcessor {
         }
 
         if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
-            if (array.size() == 0) {
-                jsonObject.addProperty("total", 0);
-                return jsonObject.toString();
-            }
+
             double totalOrderAmount = 0.00;
             for (JsonElement cake : array) {
                 double cakePrice = cake.getAsJsonObject().get("price").getAsDouble();
