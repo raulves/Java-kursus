@@ -55,7 +55,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
                 }
             }
 
-            if (count == 1) {
+            if (count <= 1) {
                 bestCities.add(acceptableCity);
             }
 
