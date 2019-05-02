@@ -8,6 +8,10 @@ import com.google.gson.JsonPrimitive;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CakeOrderProcessor {
@@ -68,12 +72,41 @@ public class CakeOrderProcessor {
             }
             jsonObject.addProperty("total", totalOrderAmount);
         }
+
+        if (type.equals(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER)) {
+
+            List<JsonElement> elementsToRemove = new ArrayList<>();
+
+            // Eemaldama hakkan arrayst, mis eespool deklareeritud.
+            for (JsonElement cake : array) {
+                System.out.println(array);
+                // System.out.println(cake);
+                String inputDate = cake.getAsJsonObject().get("BBD").getAsString();
+
+                DateTimeFormatter dtfin = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.parse(inputDate, dtfin);
+
+                DateTimeFormatter dtfout = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+                LocalDate date = LocalDate.now();
+                System.out.println(localDate);
+                System.out.println(date);
+
+                if (localDate.isEqual(date) || localDate.isBefore(date)) {
+                    elementsToRemove.add(cake);
+                }
+
+            }
+            for (JsonElement jsonElement : elementsToRemove) {
+                array.remove(jsonElement);
+            }
+        }
         return jsonObject.toString();
     }
 
 
     public static void main(String[] args) {
-        CakeOrderProcessor cp = new CakeOrderProcessor(CakeOrderProcessorType.COUNT_TOTAL_SUM);
+        CakeOrderProcessor cp = new CakeOrderProcessor(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER);
         String input = "{\n" +
                 "  \"cakes\": [\n" +
                 "    {\n" +
