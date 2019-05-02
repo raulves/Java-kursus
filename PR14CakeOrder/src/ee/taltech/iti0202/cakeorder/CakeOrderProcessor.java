@@ -11,12 +11,11 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CakeOrderProcessor {
     private final List<String> milkProducts = List.of("milk", "cream-cheese", "yoghurt");
-    private static int orderCounts = 0;
+    private int orderCounts = 0;
     public enum CakeOrderProcessorType {
         MAKE_DAIRY_FREE,
         COUNT_TOTAL_SUM,
