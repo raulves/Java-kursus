@@ -27,10 +27,11 @@ public class CakeOrderProcessor {
     public String process(String jsonInput) {
         JsonObject jsonObject = new JsonParser().parse(jsonInput).getAsJsonObject();
         JsonArray array = jsonObject.getAsJsonArray("cakes");
+        orderCounts++;
+        jsonObject.addProperty("order_id", orderCounts);
 
         if (type.equals(CakeOrderProcessorType.MAKE_DAIRY_FREE)) {
-            orderCounts++;
-            jsonObject.addProperty("order_id", orderCounts);
+
             for (JsonElement cake : array) {
                 String cakeName = cake.getAsJsonObject().get("name").getAsString();
                 String[] splitTheCakeName = cakeName.split(" ");
@@ -52,6 +53,10 @@ public class CakeOrderProcessor {
 
                 cake.getAsJsonObject().add("price", new JsonPrimitive(newPrice));
             }
+        }
+
+        if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
+
         }
         return jsonObject.toString();
     }
@@ -79,43 +84,6 @@ public class CakeOrderProcessor {
                 "  ]\n" +
                 "}";
         System.out.println(cp.process(input));
-
-        /*
-        JsonObject jsonObject = new JsonParser().parse(input).getAsJsonObject();
-        JsonArray array = jsonObject.getAsJsonArray("cakes");
-        System.out.println(array.get(0).getAsJsonObject().get("ingredients").getAsJsonArray());
-
-        Gson gson = new Gson();
-        JsonObject jsonObject2 = gson.fromJson(input, JsonObject.class);
-        double newPrice = 17.89;
-        JsonElement je = new JsonPrimitive(newPrice);
-        System.out.println(jsonObject2.getAsJsonArray("cakes").get(0));
-
-        jsonObject2.getAsJsonArray("cakes").get(0).getAsJsonObject().add("price", je);
-        jsonObject.getAsJsonArray("cakes").get(0).getAsJsonObject().add("price", je);
-        System.out.println(jsonObject2.getAsJsonArray("cakes").get(0));
-        System.out.println("-------------------");
-
-        List<String> milkProducts = List.of("milk", "cream-cheese", "yoghurt");
-        for (JsonElement cake : array) {
-            JsonArray ingredients = cake.getAsJsonObject().get("ingredients").getAsJsonArray();
-
-            for (int i = 0; i < ingredients.size(); i++) {
-                if (milkProducts.contains(ingredients.get(i).getAsString())) {
-                    System.out.println(ingredients.get(i).getAsString());
-                    ingredients.set(i, new JsonPrimitive("plant-" + ingredients.get(i).getAsString()));
-
-                    System.out.println("MILK");
-                } else {
-                    System.out.println("NO Milk");
-                }
-
-            }
-            System.out.println(ingredients);
-        }
-        System.out.println(array.toString());
-        System.out.println(14.0 * 1.1);
-        */
     }
 
 }
