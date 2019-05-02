@@ -24,16 +24,15 @@ public class HatesRainCityFinder implements CityFinderStrategy {
             for (int i = 0; i < 5; i++) {
                 List<Double> humidityPerDay = new ArrayList<>();
                 for (int j = 0; j < 8; j++) {
-                    humidityPerDay.add(humidities.get(j));
+                    humidityPerDay.add(humidities.get(0));
+                    humidities.remove(0);
                 }
                 if (getAverageTemperature(humidityPerDay) > 80) {
                     count++;
                 }
 
-                for (int k = 0; k < 8; k++) {
-                    humidities.remove(0);
-                }
             }
+
             if (count == 0) {
                 acceptableCities.add(city);
             }
@@ -41,25 +40,21 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         }
 
         // Rain
-
         List<City> bestCities = new ArrayList<>();
-
-
         for (City acceptableCity : acceptableCities) {
             List<Integer> weatherCodes = acceptableCity.getWeatherCodes();
             int count = 0;
             for (int i = 0; i < 5; i++) {
                 List<Integer> weatherPerDay = new ArrayList<>();
                 for (int j = 0; j < 8; j++) {
-                    weatherPerDay.add(weatherCodes.get(j));
+                    weatherPerDay.add(weatherCodes.get(0));
+                    weatherCodes.remove(0);
                 }
                 if (isRainyDay(weatherPerDay)) {
                     count++;
                 }
-                for (int k = 0; k < 8; k++) {
-                    weatherCodes.remove(0);
-                }
             }
+
             if (count <= 1) {
                 bestCities.add(acceptableCity);
             }
@@ -67,11 +62,9 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         }
 
 
-        if (bestCities.size() > 0) {
-            return Optional.of(bestCities.get(0));
-        }
 
-        return Optional.empty();
+
+        return Optional.ofNullable(bestCities.get(0));
     }
 
     private double getAverageTemperature(List<Double> temperatures) {
