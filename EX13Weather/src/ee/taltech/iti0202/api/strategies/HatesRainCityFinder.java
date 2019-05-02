@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class HatesRainCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
-        List<City> acceptableCities = candidateCities.stream().filter(city -> city.getAverageHumidity() <= 80).collect(Collectors.toList());
+        List<City> acceptableCities = candidateCities.stream().filter(city -> city.getAverageHumidity() < 80).collect(Collectors.toList());
 
         List<City> bestCities = new ArrayList<>();
 

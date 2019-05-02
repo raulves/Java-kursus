@@ -58,6 +58,7 @@ public class TravelAgency {
 
         for (String city : cityNames) {
             String weatherData = dataController.getCity(city);
+            System.out.println(weatherData);
             weatherDataAllCities.add(weatherData);
 
             // Keys [cod, message, cnt, list, city]
