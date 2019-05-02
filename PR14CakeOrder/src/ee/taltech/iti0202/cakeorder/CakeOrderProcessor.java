@@ -10,6 +10,7 @@ import java.util.List;
 
 public class CakeOrderProcessor {
     private final List<String> milkProducts = List.of("milk", "cream-cheese", "yoghurt");
+    private static int orderCounts = 0;
     public enum CakeOrderProcessorType {
         MAKE_DAIRY_FREE,
         COUNT_TOTAL_SUM,
@@ -28,6 +29,8 @@ public class CakeOrderProcessor {
         JsonArray array = jsonObject.getAsJsonArray("cakes");
 
         if (type.equals(CakeOrderProcessorType.MAKE_DAIRY_FREE)) {
+            orderCounts++;
+            jsonObject.addProperty("order_id", orderCounts);
             for (JsonElement cake : array) {
                 JsonArray ingredients = cake.getAsJsonObject().get("ingredients").getAsJsonArray();
                 double milkIngredientsTotal = 1.0;
