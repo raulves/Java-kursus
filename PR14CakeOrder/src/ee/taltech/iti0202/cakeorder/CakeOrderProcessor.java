@@ -44,7 +44,7 @@ public class CakeOrderProcessor {
                 cakeID += splitTheCakeName.length;
                 cake.getAsJsonObject().addProperty("cake_id", cakeID);
                 JsonArray ingredients = cake.getAsJsonObject().get("ingredients").getAsJsonArray();
-                double milkIngredientsTotal = 1.0;
+                double milkIngredientsTotal = 1.00;
                 for (int i = 0; i < ingredients.size(); i++) {
                     if (milkProducts.contains(ingredients.get(i).getAsString())) {
                         ingredients.set(i, new JsonPrimitive("plant-" + ingredients.get(i).getAsString()));
