@@ -37,8 +37,9 @@ public class CakeOrderProcessor {
                         milkIngredientsTotal += 0.1;
                     }
                 }
-                cake.getAsJsonObject().add("price",
-                        new JsonPrimitive(cake.getAsJsonObject().get("price").getAsDouble() * milkIngredientsTotal));
+                double newPrice = Math.round((cake.getAsJsonObject().get("price").getAsDouble() * milkIngredientsTotal));
+
+                cake.getAsJsonObject().add("price", new JsonPrimitive(newPrice));
             }
         }
         return jsonObject.toString();
