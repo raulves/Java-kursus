@@ -56,6 +56,12 @@ public class TravelAgency {
     */
     public Optional<City> findSuitableCitiesForClient(Client client) {
 
+        if (client.getCitiesThatWantsToVisit() != null) {
+            cityNames.clear();
+            cityNames.addAll(client.getCitiesThatWantsToVisit());
+
+        }
+
         for (String city : cityNames) {
             String weatherData = dataController.getCity(city);
             System.out.println(weatherData);
