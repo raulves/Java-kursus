@@ -64,7 +64,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
 
 
-        return Optional.ofNullable(bestCities.get(0));
+        return Optional.empty();
     }
 
     private double getAverageTemperature(List<Double> temperatures) {
