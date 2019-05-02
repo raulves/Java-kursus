@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CakeOrderProcessor {
@@ -56,7 +58,7 @@ public class CakeOrderProcessor {
         }
 
         if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
-            double totalOrderAmount = 0.0;
+            double totalOrderAmount = 0.00;
             for (JsonElement cake : array) {
                 double cakePrice = cake.getAsJsonObject().get("price").getAsDouble();
                 double cakeWeigth = cake.getAsJsonObject().get("kg").getAsDouble();
@@ -69,13 +71,13 @@ public class CakeOrderProcessor {
 
 
     public static void main(String[] args) {
-        CakeOrderProcessor cp = new CakeOrderProcessor(CakeOrderProcessorType.MAKE_DAIRY_FREE);
+        CakeOrderProcessor cp = new CakeOrderProcessor(CakeOrderProcessorType.COUNT_TOTAL_SUM);
         String input = "{\n" +
                 "  \"cakes\": [\n" +
                 "    {\n" +
                 "      \"name\": \"Sacher\",\n" +
                 "      \"BBD\": \"2019-04-29\",\n" +
-                "      \"price\": 14.00,\n" +
+                "      \"price\": 14.39,\n" +
                 "      \"kg\": 2.00,\n" +
                 "      \"ingredients\": [\"flour\", \"chocolate\", \"milk\", \"sugar\", \"eggs\"]\n" +
                 "    },\n" +
