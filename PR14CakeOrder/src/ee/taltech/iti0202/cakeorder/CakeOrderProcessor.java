@@ -56,7 +56,13 @@ public class CakeOrderProcessor {
         }
 
         if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
-
+            double totalOrderAmount = 0.0;
+            for (JsonElement cake : array) {
+                double cakePrice = cake.getAsJsonObject().get("price").getAsDouble();
+                double cakeWeigth = cake.getAsJsonObject().get("kg").getAsDouble();
+                totalOrderAmount += cakePrice * cakeWeigth;
+            }
+            jsonObject.addProperty("total", totalOrderAmount);
         }
         return jsonObject.toString();
     }
@@ -84,6 +90,7 @@ public class CakeOrderProcessor {
                 "  ]\n" +
                 "}";
         System.out.println(cp.process(input));
+
     }
 
 }
