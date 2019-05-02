@@ -54,4 +54,8 @@ public class City {
         return sum / humidity.size();
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
