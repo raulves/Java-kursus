@@ -52,8 +52,10 @@ public class CakeOrderProcessor {
                     }
                 }
                 double newPrice = cake.getAsJsonObject().get("price").getAsDouble() * milkIngredientsTotal;
+                DecimalFormat df = new DecimalFormat("#.##");
+                df.setRoundingMode(RoundingMode.CEILING);
 
-                cake.getAsJsonObject().add("price", new JsonPrimitive(newPrice));
+                cake.getAsJsonObject().add("price", new JsonPrimitive(df.format(newPrice)));
             }
         }
 
