@@ -43,7 +43,7 @@ public class Client {
     }
 
     public Optional<City> chooseBestCity(List<City> possibleCities) {
-        return Optional.empty();
+        return choosingStrategy.findBestCity(possibleCities);
     }
 }
 

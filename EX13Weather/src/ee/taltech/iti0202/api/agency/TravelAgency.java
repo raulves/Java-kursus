@@ -76,8 +76,13 @@ public class TravelAgency {
             cityObjects.add(newCity);
 
         }
+        for (City cityObject : cityObjects) {
+            if (cityObject.getName().equals(client.getStartingCity())) {
+                cityObjects.remove(cityObject);
+            }
+        }
 
-        return Optional.empty();
+        return client.chooseBestCity(cityObjects);
     }
 
     private String getName(JsonObject jsonObject) {
