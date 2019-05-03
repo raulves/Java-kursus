@@ -44,7 +44,7 @@ public class CakeOrderProcessor {
 
             for (JsonElement cake : array) {
                 String cakeName = cake.getAsJsonObject().get("name").getAsString();
-                String[] splitTheCakeName = cakeName.split(" ");
+                String[] splitTheCakeName = cakeName.split("\\W+");
                 String cakeID = "";
                 for (String s : splitTheCakeName) {
                     cakeID += s.substring(0, 1).toUpperCase();
