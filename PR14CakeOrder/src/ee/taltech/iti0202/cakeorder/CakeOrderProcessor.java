@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CakeOrderProcessor {
+    private final double ADDED_PERCENT = 0.1;
 
     class AllCakes {
         private List<Cake> cakes = new ArrayList<>();
@@ -21,9 +22,10 @@ public class CakeOrderProcessor {
 
         @Override
         public String toString() {
-            return "AllCakes{" +
-                    "cakes=" + cakes +
-                    '}';
+            return "AllCakes{"
+                    + "cakes="
+                    + cakes
+                    + '}';
         }
 
         public void setOrderId(int orderId) {
@@ -71,7 +73,7 @@ public class CakeOrderProcessor {
                 double countMilkProducts = 1.0;
                 for (String ingredient : ingredientsCopy) {
                     if (milkProducts.contains(ingredient)) {
-                        countMilkProducts += 0.1;
+                        countMilkProducts += ADDED_PERCENT;
                         String plantMilk = "plant-" + ingredient;
                         cake.getIngredients().add(plantMilk);
                         cake.getIngredients().remove(ingredient);
