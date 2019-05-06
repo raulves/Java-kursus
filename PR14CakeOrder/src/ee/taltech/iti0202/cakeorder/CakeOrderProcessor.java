@@ -1,10 +1,7 @@
 package ee.taltech.iti0202.cakeorder;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.*;
+import com.google.gson.annotations.SerializedName;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -14,6 +11,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CakeOrderProcessor {
+
+    class AllCakes {
+        private List<Cake> cakes = new ArrayList<>();
+        @SerializedName("order_id")
+        private int orderId;
+        @SerializedName("total")
+        private double orderTotal;
+
+        @Override
+        public String toString() {
+            return "AllCakes{" +
+                    "cakes=" + cakes +
+                    '}';
+        }
+
+        public void setOrderId(int orderId) {
+            this.orderId = orderId;
+        }
+
+        public void setOrderTotal(double orderTotal) {
+            this.orderTotal = orderTotal;
+        }
+    }
+
     private final List<String> milkProducts = List.of("milk", "cream-cheese", "yoghurt");
     private int orderCounts = 0;
     public enum CakeOrderProcessorType {
@@ -31,73 +52,65 @@ public class CakeOrderProcessor {
     }
 
     public String process(String jsonInput) {
-        JsonObject jsonObject = new JsonParser().parse(jsonInput).getAsJsonObject();
-        JsonArray array = jsonObject.getAsJsonArray("cakes");
+        Gson gson = new Gson();
+        AllCakes allCakes = gson.fromJson(jsonInput, AllCakes.class);
+
         orderCounts++;
-        jsonObject.addProperty("order_id", orderCounts);
+        allCakes.setOrderId(orderCounts);
+        for (Cake cake : allCakes.cakes) {
+            cake.setCakeId(addCakeId(cake.getName()));
+        }
+
 
 
 
         if (type.equals(CakeOrderProcessorType.MAKE_DAIRY_FREE)) {
 
-            for (JsonElement cake : array) {
-                String cakeName = cake.getAsJsonObject().get("name").getAsString();
-                String[] splitTheCakeName = cakeName.split(" ");
-                String cakeID = "";
-                for (String s : splitTheCakeName) {
-                    cakeID += s.substring(0, 1).toUpperCase();
-                }
-                cakeID += splitTheCakeName.length;
-                cake.getAsJsonObject().addProperty("cake_id", cakeID);
-                JsonArray ingredients = cake.getAsJsonObject().get("ingredients").getAsJsonArray();
-                double milkIngredientsTotal = 1.00;
-                for (int i = 0; i < ingredients.size(); i++) {
-                    if (milkProducts.contains(ingredients.get(i).getAsString())) {
-                        ingredients.set(i, new JsonPrimitive("plant-" + ingredients.get(i).getAsString()));
-                        milkIngredientsTotal += 0.1;
+            for (Cake cake : allCakes.cakes) {
+                List<String> ingredientsCopy = List.copyOf(cake.getIngredients());
+                double countMilkProducts = 1.0;
+                for (String ingredient : ingredientsCopy) {
+                    if (milkProducts.contains(ingredient)) {
+                        countMilkProducts += 0.1;
+                        String plantMilk = "plant-" + ingredient;
+                        cake.getIngredients().add(plantMilk);
+                        cake.getIngredients().remove(ingredient);
                     }
                 }
-                double newPrice = cake.getAsJsonObject().get("price").getAsDouble() * milkIngredientsTotal;
+                double newPrice = cake.getPrice() * countMilkProducts;
                 DecimalFormat df = new DecimalFormat("#.#");
                 df.setRoundingMode(RoundingMode.DOWN);
+                cake.setPrice(Double.parseDouble(df.format(newPrice)));
 
-                cake.getAsJsonObject().add("price", new JsonPrimitive(df.format(newPrice)));
             }
+
         }
 
         if (type.equals(CakeOrderProcessorType.COUNT_TOTAL_SUM)) {
-
-            double totalOrderAmount = 0.00;
-            for (JsonElement cake : array) {
-                double cakePrice = cake.getAsJsonObject().get("price").getAsDouble();
-                double cakeWeigth = cake.getAsJsonObject().get("kg").getAsDouble();
-                totalOrderAmount += cakePrice * cakeWeigth;
+            double totalOrder = 0.0;
+            for (Cake cake : allCakes.cakes) {
+                totalOrder += cake.getKg() * cake.getPrice();
             }
-            jsonObject.addProperty("total", totalOrderAmount);
+            allCakes.setOrderTotal(totalOrder);
         }
 
         if (type.equals(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER)) {
-
-            List<JsonElement> elementsToRemove = new ArrayList<>();
-
-            // Eemaldama hakkan arrayst, mis eespool deklareeritud.
-            for (JsonElement cake : array) {
-                String inputDate = cake.getAsJsonObject().get("BBD").getAsString();
+            List<Cake> cakesCopy = List.copyOf(allCakes.cakes);
+            for (Cake cake : cakesCopy) {
+                String inputDate = cake.getBestBeforeDate();
                 DateTimeFormatter dtfin = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(inputDate, dtfin);
                 DateTimeFormatter dtfout = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-                LocalDate date = LocalDate.now();
+                LocalDate today = LocalDate.now();
 
-                if (localDate.isEqual(date) || localDate.isBefore(date)) {
-                    elementsToRemove.add(cake);
+                if (localDate.isEqual(today) || localDate.isBefore(today)) {
+                    allCakes.cakes.remove(cake);
                 }
+            }
 
-            }
-            for (JsonElement jsonElement : elementsToRemove) {
-                array.remove(jsonElement);
-            }
+
         }
-        return jsonObject.toString();
+        return gson.toJson(allCakes);
     }
 
 
@@ -108,7 +121,7 @@ public class CakeOrderProcessor {
                 "    {\n" +
                 "      \"name\": \"Sacher\",\n" +
                 "      \"BBD\": \"2019-04-29\",\n" +
-                "      \"price\": 14.39,\n" +
+                "      \"price\": 14.00,\n" +
                 "      \"kg\": 2.00,\n" +
                 "      \"ingredients\": [\"flour\", \"chocolate\", \"milk\", \"sugar\", \"eggs\"]\n" +
                 "    },\n" +
@@ -124,6 +137,18 @@ public class CakeOrderProcessor {
                 "}";
         System.out.println(cp.process(input));
 
+
+    }
+
+    private String addCakeId(String cakeName) {
+        String[] splitTheCakeName = cakeName.split(" ");
+        String cakeID = "";
+        for (String s : splitTheCakeName) {
+            cakeID += s.substring(0, 1).toUpperCase();
+        }
+        cakeID += splitTheCakeName.length;
+
+        return cakeID;
     }
 
 }

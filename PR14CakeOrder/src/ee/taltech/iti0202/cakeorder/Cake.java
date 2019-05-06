@@ -5,14 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Cake {
-    String niisama = "\"cake_id\": \"S1\",\n" +
-            "      \"name\": \"Sacher\",\n" +
-            "      \"BBD\": \"2019-04-29\",\n" +
-            "      \"price\": 15.40,\n" +
-            "      \"kg\": 2.00,\n" +
-            "      \"ingredients\": [\"flour\", \"chocolate\", \"plant-milk\", \"sugar\", \"eggs\"]";
-
-
 
     private String name;
     @SerializedName("BBD")
@@ -29,7 +21,7 @@ public class Cake {
         this.price = price;
         this.kg = kg;
         this.ingredients = ingredients;
-        this.cakeId = "";
+
     }
 
     public String getName() {
@@ -79,4 +71,10 @@ public class Cake {
     public void setCakeId(String cakeId) {
         this.cakeId = cakeId;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
