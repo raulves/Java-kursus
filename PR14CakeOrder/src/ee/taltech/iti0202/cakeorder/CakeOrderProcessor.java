@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.cakeorder;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.math.RoundingMode;
@@ -113,7 +113,7 @@ public class CakeOrderProcessor {
         return gson.toJson(allCakes);
     }
 
-
+    /*
     public static void main(String[] args) {
         CakeOrderProcessor cp = new CakeOrderProcessor(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER);
         String input = "{\n" +
@@ -139,6 +139,7 @@ public class CakeOrderProcessor {
 
 
     }
+    */
 
     private String addCakeId(String cakeName) {
         String[] splitTheCakeName = cakeName.split(" ");
