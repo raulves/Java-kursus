@@ -36,10 +36,7 @@ public class CakeOrderProcessor {
         orderCounts++;
         jsonObject.addProperty("order_id", orderCounts);
 
-        if (array.size() == 0) {
-            jsonObject.addProperty("total", 0);
-            return jsonObject.toString();
-        }
+
 
         if (type.equals(CakeOrderProcessorType.MAKE_DAIRY_FREE)) {
 
