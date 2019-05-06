@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CakeOrderProcessor {
-    private final double ADDED_PERCENT = 0.1;
+    private final double addedPercent = 0.1;
 
     class AllCakes {
         private List<Cake> cakes = new ArrayList<>();
@@ -73,7 +73,7 @@ public class CakeOrderProcessor {
                 double countMilkProducts = 1.0;
                 for (String ingredient : ingredientsCopy) {
                     if (milkProducts.contains(ingredient)) {
-                        countMilkProducts += ADDED_PERCENT;
+                        countMilkProducts += addedPercent;
                         String plantMilk = "plant-" + ingredient;
                         cake.getIngredients().add(plantMilk);
                         cake.getIngredients().remove(ingredient);
