@@ -2,9 +2,14 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class LovesChangeCityFinder implements CityFinderStrategy {
+    private final int addScore = 20;
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
 
@@ -20,7 +25,7 @@ public class LovesChangeCityFinder implements CityFinderStrategy {
                     if (weatherCodes.get(i) - weatherCodes.get(i + 1) == 0) {
                         weatherScore -= 10;
                     } else if (weatherCodes.get(i) / 100 == weatherCodes.get(i + 1)) {
-                        weatherScore += 20;
+                        weatherScore += addScore;
                     } else {
                         weatherScore += 100;
                     }
