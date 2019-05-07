@@ -3,8 +3,6 @@ package ee.taltech.iti0202.api.strategies;
 import ee.taltech.iti0202.api.destinations.City;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
@@ -37,8 +35,8 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         List<City> lowHumidityCities = new ArrayList<>();
 
         for (City city : noRainCities) {
-            List<Double> humidities = city.getHumidity();
-
+            List<Double> humidities = new ArrayList<>(List.copyOf(city.getHumidity()));
+            System.out.println(humidities);
             int count = 0;
             for (int i = 0; i < 5; i++) {
                 List<Double> humidityPerDay = new ArrayList<>();
@@ -46,7 +44,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
                     humidityPerDay.add(humidities.get(0));
                     humidities.remove(0);
                 }
-                if (getAverageHumidity(humidityPerDay) > 80) {
+                if (getAverageHumidityPerDay(humidityPerDay) > 80) {
                     count++;
                 }
 
@@ -57,10 +55,16 @@ public class HatesRainCityFinder implements CityFinderStrategy {
             }
 
         }
+
         if (lowHumidityCities.size() == 1) {
             return Optional.ofNullable(lowHumidityCities.get(0));
         }
         if (lowHumidityCities.size() > 1) {
+
+            for (City city : lowHumidityCities) {
+                System.out.println(city);
+                System.out.println(city.getHumidity());
+            }
             return lowHumidityCities.stream().min(Comparator.comparing(city -> city.getAverageHumidity()));
         }
 
@@ -72,7 +76,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         return Optional.empty();
     }
 
-    private double getAverageHumidity(List<Double> humidity) {
+    private double getAverageHumidityPerDay(List<Double> humidity) {
         double sum = humidity.stream().mapToDouble(n -> n).sum();
         return sum / humidity.size();
     }

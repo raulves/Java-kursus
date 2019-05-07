@@ -50,6 +50,7 @@ public class City {
 
     public double getAverageHumidity() {
         double sum = humidity.stream().mapToDouble(n -> n).sum();
+
         return sum / humidity.size();
     }
 

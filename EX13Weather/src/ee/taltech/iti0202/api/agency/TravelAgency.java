@@ -71,7 +71,6 @@ public class TravelAgency {
             JsonObject jsonObject = new JsonParser().parse(weatherData).getAsJsonObject();
 
             JsonArray array = jsonObject.getAsJsonArray("list");
-
             City newCity = new CityBuilder()
                     .setName(getName(jsonObject))
                     .setLon(getLongitude(jsonObject))
