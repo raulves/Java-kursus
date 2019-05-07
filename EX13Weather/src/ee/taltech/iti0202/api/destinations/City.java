@@ -8,7 +8,6 @@ public class City {
     private String name;
     private double lon;
     private double lat;
-    @SerializedName("temp")
     private List<Double> temperatures;
     private List<Double> humidity;
     private List<Integer> weatherCodes;

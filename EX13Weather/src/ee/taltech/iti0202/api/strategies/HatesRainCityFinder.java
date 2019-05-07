@@ -28,23 +28,11 @@ public class HatesRainCityFinder implements CityFinderStrategy {
             rainyDaysPerFiveDays.put(acceptableCity, count);
         }
         int lessRainDays = Collections.min(rainyDaysPerFiveDays.values());
-        System.out.println(lessRainDays);
         for (City city : rainyDaysPerFiveDays.keySet()) {
             if (rainyDaysPerFiveDays.get(city) == lessRainDays) {
                 noRainCities.add(city);
             }
         }
-        System.out.println(noRainCities);
-
-
-
-
-
-
-
-
-
-
         return noRainCities.stream().min(Comparator.comparingDouble(city -> city.getAverageHumidity()));
     }
 
