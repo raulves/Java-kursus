@@ -61,10 +61,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         }
         if (lowHumidityCities.size() > 1) {
 
-            for (City city : lowHumidityCities) {
-                System.out.println(city);
-                System.out.println(city.getHumidity());
-            }
+            
             return lowHumidityCities.stream().min(Comparator.comparing(city -> city.getAverageHumidity()));
         }
 

@@ -1,11 +1,14 @@
 package ee.taltech.iti0202.api.destinations;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class City {
     private String name;
     private double lon;
     private double lat;
+    @SerializedName("temp")
     private List<Double> temperatures;
     private List<Double> humidity;
     private List<Integer> weatherCodes;

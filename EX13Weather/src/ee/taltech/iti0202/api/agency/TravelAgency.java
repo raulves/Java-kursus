@@ -8,11 +8,39 @@ import ee.taltech.iti0202.api.destinations.City;
 import ee.taltech.iti0202.api.destinations.CityBuilder;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TravelAgency {
+
+    /*
+    class Weather {
+        private List<Data> list = new ArrayList<>();
+
+
+        @Override
+        public String toString() {
+            return "Weather{" +
+                    "list=" + list +
+                    '}';
+        }
+    }
+
+    class Data {
+        private Map<String, Double> main = new HashMap<>();
+        private List<Map<String, Object>> weather = new ArrayList<>();
+
+        @Override
+        public String toString() {
+            return "Data{" +
+                    "main=" + main +
+                    ", weather=" + weather +
+                    '}';
+        }
+    }
+
+     */
+
+
 
     private OnlineDataController dataController;
     private List<String> cityNames;
@@ -55,6 +83,16 @@ public class TravelAgency {
      * @return Optional city if the client was happy with it.
     */
     public Optional<City> findSuitableCitiesForClient(Client client) {
+        /*
+        Gson gson = new Gson();
+        Weather weather = gson.fromJson(dataController.getCity(cityNames.get(0)), Weather.class);
+        System.out.println(weather.list);
+        System.out.println(weather.list.get(0).main.get("temp"));
+        Map result = gson.fromJson(dataController.getCity(cityNames.get(0)), Map.class);
+        System.out.println(result.get("city"));
+        */
+
+
 
         if (client.getCitiesThatWantsToVisit() != null) {
             cityNames.clear();
@@ -87,6 +125,8 @@ public class TravelAgency {
                 cityObjects.remove(cityObject);
             }
         }
+
+
 
         return client.chooseBestCity(cityObjects);
     }
