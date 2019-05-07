@@ -2,10 +2,7 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -14,34 +11,9 @@ public class HatesRainCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
 
-        // Humidity
-        List<City> acceptableCities = new ArrayList<>();
-
-        for (City city : candidateCities) {
-            List<Double> humidities = city.getHumidity();
-
-            int count = 0;
-            for (int i = 0; i < 5; i++) {
-                List<Double> humidityPerDay = new ArrayList<>();
-                for (int j = 0; j < 8; j++) {
-                    humidityPerDay.add(humidities.get(0));
-                    humidities.remove(0);
-                }
-                if (getAverageTemperature(humidityPerDay) > 80) {
-                    count++;
-                }
-
-            }
-
-            if (count == 0) {
-                acceptableCities.add(city);
-            }
-
-        }
-
         // Rain
-        List<City> bestCities = new ArrayList<>();
-        for (City acceptableCity : acceptableCities) {
+        List<City> noRainCities = new ArrayList<>();
+        for (City acceptableCity : candidateCities) {
             List<Integer> weatherCodes = acceptableCity.getWeatherCodes();
             int count = 0;
             for (int i = 0; i < 5; i++) {
@@ -56,22 +28,53 @@ public class HatesRainCityFinder implements CityFinderStrategy {
             }
 
             if (count <= 1) {
-                bestCities.add(acceptableCity);
+                noRainCities.add(acceptableCity);
             }
 
         }
 
+        // Humidity
+        List<City> lowHumidityCities = new ArrayList<>();
 
-        if (bestCities.size() > 0) {
-            return Optional.ofNullable(bestCities.get(0));
+        for (City city : noRainCities) {
+            List<Double> humidities = city.getHumidity();
+
+            int count = 0;
+            for (int i = 0; i < 5; i++) {
+                List<Double> humidityPerDay = new ArrayList<>();
+                for (int j = 0; j < 8; j++) {
+                    humidityPerDay.add(humidities.get(0));
+                    humidities.remove(0);
+                }
+                if (getAverageHumidity(humidityPerDay) > 80) {
+                    count++;
+                }
+
+            }
+
+            if (count == 0) {
+                lowHumidityCities.add(city);
+            }
+
         }
+        if (lowHumidityCities.size() == 1) {
+            return Optional.ofNullable(lowHumidityCities.get(0));
+        }
+        if (lowHumidityCities.size() > 1) {
+            return lowHumidityCities.stream().min(Comparator.comparing(city -> city.getAverageHumidity()));
+        }
+
+
+
+
+
 
         return Optional.empty();
     }
 
-    private double getAverageTemperature(List<Double> temperatures) {
-        double sum = temperatures.stream().mapToDouble(n -> n).sum();
-        return sum / temperatures.size();
+    private double getAverageHumidity(List<Double> humidity) {
+        double sum = humidity.stream().mapToDouble(n -> n).sum();
+        return sum / humidity.size();
     }
 
     private boolean isRainyDay(List<Integer> weatherCodes) {

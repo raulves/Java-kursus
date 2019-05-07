@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.api.destinations;
 
 import java.util.List;
-import java.util.OptionalDouble;
 
 public class City {
     private String name;

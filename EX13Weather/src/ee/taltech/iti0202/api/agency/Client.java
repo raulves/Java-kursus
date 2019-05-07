@@ -46,4 +46,3 @@ public class Client {
         return choosingStrategy.findBestCity(possibleCities);
     }
 }
-
