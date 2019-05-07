@@ -11,6 +11,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
         // Rain
         List<City> noRainCities = new ArrayList<>();
+        Map<City, Integer> rainyDaysPerFiveDays = new HashMap<>();
         for (City acceptableCity : candidateCities) {
             List<Integer> weatherCodes = acceptableCity.getWeatherCodes();
             int count = 0;
@@ -24,53 +25,27 @@ public class HatesRainCityFinder implements CityFinderStrategy {
                     count++;
                 }
             }
-
-            if (count <= 1) {
-                noRainCities.add(acceptableCity);
+            rainyDaysPerFiveDays.put(acceptableCity, count);
+        }
+        int lessRainDays = Collections.min(rainyDaysPerFiveDays.values());
+        System.out.println(lessRainDays);
+        for (City city : rainyDaysPerFiveDays.keySet()) {
+            if (rainyDaysPerFiveDays.get(city) == lessRainDays) {
+                noRainCities.add(city);
             }
-
         }
-
-        // Humidity
-        List<City> lowHumidityCities = new ArrayList<>();
-
-        for (City city : noRainCities) {
-            List<Double> humidities = new ArrayList<>(List.copyOf(city.getHumidity()));
-            System.out.println(humidities);
-            int count = 0;
-            for (int i = 0; i < 5; i++) {
-                List<Double> humidityPerDay = new ArrayList<>();
-                for (int j = 0; j < 8; j++) {
-                    humidityPerDay.add(humidities.get(0));
-                    humidities.remove(0);
-                }
-                if (getAverageHumidityPerDay(humidityPerDay) > 80) {
-                    count++;
-                }
-
-            }
-
-            if (count == 0) {
-                lowHumidityCities.add(city);
-            }
-
-        }
-
-        if (lowHumidityCities.size() == 1) {
-            return Optional.ofNullable(lowHumidityCities.get(0));
-        }
-        if (lowHumidityCities.size() > 1) {
-
-            
-            return lowHumidityCities.stream().min(Comparator.comparing(city -> city.getAverageHumidity()));
-        }
+        System.out.println(noRainCities);
 
 
 
 
 
 
-        return Optional.empty();
+
+
+
+
+        return noRainCities.stream().min(Comparator.comparingDouble(city -> city.getAverageHumidity()));
     }
 
     private double getAverageHumidityPerDay(List<Double> humidity) {
