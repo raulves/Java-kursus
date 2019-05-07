@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class StudentMadeCityFinder implements CityFinderStrategy {
+
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
         return candidateCities.stream()
