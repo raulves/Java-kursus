@@ -13,7 +13,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         List<City> noRainCities = new ArrayList<>();
         Map<City, Integer> rainyDaysPerFiveDays = new HashMap<>();
         for (City acceptableCity : candidateCities) {
-            List<Integer> weatherCodes = acceptableCity.getWeatherCodes();
+            List<Integer> weatherCodes = new ArrayList<>(List.copyOf(acceptableCity.getWeatherCodes()));
             int count = 0;
             for (int i = 0; i < 5; i++) {
                 List<Integer> weatherPerDay = new ArrayList<>();
