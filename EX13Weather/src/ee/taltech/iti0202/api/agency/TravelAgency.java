@@ -47,7 +47,6 @@ public class TravelAgency {
     private List<String> cityNames;
     private List<String> weatherDataAllCities = new ArrayList<>();
     private List<City> cityObjects = new ArrayList<>();
-    
         public TravelAgency(List<String> cityNames, OnlineDataController dataController) {
             this.cityNames = cityNames;
             this.dataController = dataController;
@@ -95,12 +94,14 @@ public class TravelAgency {
         */
 
 
-
+        /*
         if (client.getCitiesThatWantsToVisit() != null) {
             cityNames.clear();
             cityNames.addAll(client.getCitiesThatWantsToVisit());
 
         }
+
+         */
 
         for (String city : cityNames) {
             String weatherData = dataController.getCity(city);
