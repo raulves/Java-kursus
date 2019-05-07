@@ -4,7 +4,6 @@ import ee.taltech.iti0202.api.agency.Client;
 import ee.taltech.iti0202.api.agency.TravelAgency;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
 import ee.taltech.iti0202.api.strategies.HatesRainCityFinder;
-import ee.taltech.iti0202.api.strategies.WarmWeatherCityFinder;
 
 import java.util.ArrayList;
 import java.util.List;

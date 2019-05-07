@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class StudentMadeCityFinder implements CityFinderStrategy {
-
+    private final int lowestAcceptableTemp = 20;
+    private final int highestAcceptableHumidity = 50;
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
         return candidateCities.stream()
-                .filter(city -> city.getAverageTemperature() > 20)
-                .filter(city -> city.getAverageHumidity() < 50)
+                .filter(city -> city.getAverageTemperature() > lowestAcceptableTemp)
+                .filter(city -> city.getAverageHumidity() < highestAcceptableHumidity)
                 .max(Comparator.comparingDouble(City::getAverageTemperature));
     }
 }
