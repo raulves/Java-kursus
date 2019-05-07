@@ -2,6 +2,7 @@ package ee.taltech.iti0202.api.agency;
 import ee.taltech.iti0202.api.destinations.City;
 import ee.taltech.iti0202.api.strategies.CityFinderStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ public class Client {
     private String name;
     private String startingCity;
     private CityFinderStrategy choosingStrategy;
-    private List<String> wantsToVisitCities;
+    private List<String> wantsToVisitCities = new ArrayList<>();
 
     public Client(String name, String startingCity, CityFinderStrategy choosingStrategy) {
         this.name = name;
@@ -44,6 +45,7 @@ public class Client {
     }
 
     public Optional<City> chooseBestCity(List<City> possibleCities) {
+
         return choosingStrategy.findBestCity(possibleCities);
     }
 }
