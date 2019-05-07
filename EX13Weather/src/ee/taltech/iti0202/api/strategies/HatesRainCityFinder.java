@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
+    private final int MEASUREMENTS_PER_DAY = 8;
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
 
@@ -23,7 +24,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
             int count = 0;
             for (int i = 0; i < 5; i++) {
                 List<Integer> weatherPerDay = new ArrayList<>();
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < MEASUREMENTS_PER_DAY; j++) {
                     weatherPerDay.add(weatherCodes.get(0));
                     weatherCodes.remove(0);
                 }

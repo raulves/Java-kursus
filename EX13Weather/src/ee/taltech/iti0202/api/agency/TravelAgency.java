@@ -62,7 +62,6 @@ public class TravelAgency {
             cityNames.add(city);
         }
     }
-    
     /**
     * Return all the cities that the agency has.
     * 
