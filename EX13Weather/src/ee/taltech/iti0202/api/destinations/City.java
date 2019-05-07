@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.api.destinations;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class City {
@@ -12,7 +10,8 @@ public class City {
     private List<Double> humidity;
     private List<Integer> weatherCodes;
 
-    City(String name, double lon, double lat, List<Double> temperatures, List<Double> humidity, List<Integer> weatherCodes) {
+    City(String name, double lon, double lat, List<Double> temperatures,
+         List<Double> humidity, List<Integer> weatherCodes) {
         this.name = name;
         this.lon = lon;
         this.lat = lat;

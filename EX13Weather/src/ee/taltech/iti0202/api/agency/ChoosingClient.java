@@ -11,7 +11,8 @@ public class ChoosingClient extends Client {
         super(name, startingCity, choosingStrategy);
     }
 
-    public ChoosingClient(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
+    public ChoosingClient(String name, String startingCity, CityFinderStrategy choosingStrategy,
+                          List<String> wantsToVisitCities) {
         super(name, startingCity, choosingStrategy, wantsToVisitCities);
     }
 }

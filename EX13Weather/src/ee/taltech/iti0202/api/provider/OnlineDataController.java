@@ -9,13 +9,15 @@ import java.net.URL;
 public class OnlineDataController {
     
     /**
-         * Tries to get forecast data for the cityName. If there is no data or cityName doesn't exist, return an empty string.
+         * Tries to get forecast data for the cityName. If there is no data or cityName doesn't exist,
+     * return an empty string.
          * 
          * @param cityName Name of the city
          * @return String in the form of a json-string
     */
     public String getCity(String cityName) {
-        String urlString = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=metric&APPID=348899d16adaf3863e6995828e490828";
+        String urlString = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName
+                + "&mode=json&units=metric&APPID=348899d16adaf3863e6995828e490828";
         StringBuffer content = new StringBuffer();
         try {
             URL url = new URL(urlString);

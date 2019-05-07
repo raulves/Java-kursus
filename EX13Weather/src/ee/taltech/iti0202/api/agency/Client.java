@@ -18,7 +18,8 @@ public class Client {
         this.choosingStrategy = choosingStrategy;
     }
 
-    public Client(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
+    public Client(String name, String startingCity, CityFinderStrategy choosingStrategy,
+                  List<String> wantsToVisitCities) {
         this.name = name;
         this.startingCity = startingCity;
         this.choosingStrategy = choosingStrategy;

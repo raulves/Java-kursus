@@ -2,7 +2,13 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
