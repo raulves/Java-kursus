@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class OnlineDataController {
-    
     /**
          * Tries to get forecast data for the cityName. If there is no data or cityName doesn't exist,
      * return an empty string.

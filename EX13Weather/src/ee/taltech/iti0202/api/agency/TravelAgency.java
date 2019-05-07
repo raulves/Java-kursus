@@ -54,7 +54,7 @@ public class TravelAgency {
 
     /**
      * If the agency doesn't have a destination city yet, adds it to the list.
-     * 
+     *
      * @param city city name.
     */
     public void addCity(String city) {
@@ -64,7 +64,7 @@ public class TravelAgency {
     }
     /**
     * Return all the cities that the agency has.
-    * 
+    *
     * @return list of cities
     */
     public List<String> getCityList() {
@@ -74,7 +74,7 @@ public class TravelAgency {
 
     /**
      * This method tries to find a suitable city for the client to visit.
-     * 
+     *
      * It uses OnlineDataController, to get data for the cities.
      * After getting data about a city, SAVE IT for the duration of the cycle. OpenWeather API updates
      * data every 10 minutes.
