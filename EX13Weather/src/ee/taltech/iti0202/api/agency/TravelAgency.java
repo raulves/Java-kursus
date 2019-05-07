@@ -58,7 +58,7 @@ public class TravelAgency {
      * @param city city name.
     */
     public void addCity(String city) {
-        if(!cityNames.contains(city)) {
+        if (!cityNames.contains(city)) {
             cityNames.add(city);
         }
     }
