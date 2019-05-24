@@ -13,7 +13,7 @@ public class Wardrobe extends Furniture {
     public Wardrobe(String modelName, Category category, List<Material> materials, double height,
                     double width, double length, double price, int drawers) {
         super(modelName, category, materials, height, width, length, price);
-        this.drawers = drawers;
+        setDrawers(drawers);
 
     }
 
@@ -38,5 +38,9 @@ public class Wardrobe extends Furniture {
 
     public int getDrawers() {
         return drawers;
+    }
+
+    public void setDrawers(int drawers) {
+        this.drawers = drawers;
     }
 }

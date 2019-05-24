@@ -1,6 +1,7 @@
 import catalog.Catalog;
 import furniture.Furniture;
 import furniture.FurnitureFactory;
+import furniture.wardrobe.Wardrobe;
 import warehouse.Warehouse;
 import java.util.Arrays;
 
@@ -75,7 +76,6 @@ public class Main {
         Furniture officeWardrobe = FurnitureFactory.createWardrobe("Office wardrobe", Furniture.Category.WARDROBE,
                 Arrays.asList(Furniture.Material.VENEER, Furniture.Material.SCREW, Furniture.Material.GLUE), 1.8,
                 0.6, 3.5, 4500, 10);
-
 
         // Catalog
         Catalog catalog = new Catalog();
