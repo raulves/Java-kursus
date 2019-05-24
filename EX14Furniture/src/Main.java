@@ -19,7 +19,7 @@ public class Main {
                 Arrays.asList(Furniture.Material.VENEER, Furniture.Material.PLASTIC, Furniture.Material.SCREW),
                 1.2, 0.6, 1.8, 400);
         Furniture lightDesk = FurnitureFactory.createDesk("Light desk", Furniture.Category.DESK,
-                Arrays.asList(Furniture.Material.WOOD, Furniture.Material.PLASTIC, Furniture.Material.SCREW),
+                Arrays.asList(Furniture.Material.GLASS, Furniture.Material.PLASTIC, Furniture.Material.SCREW),
                 1.2, 0.6, 1, 600);
 
         // Beds
@@ -105,31 +105,64 @@ public class Main {
         // Warehouse
         Warehouse warehouse = new Warehouse();
         // Adding material to warehouse
-        warehouse.addMaterial(Furniture.Material.WOOD, 25);
-        warehouse.addMaterial(Furniture.Material.STAINLESS_STEEL, 4);
-        warehouse.addMaterial(Furniture.Material.SCREW, 16);
-        System.out.println("-------------");
-        System.out.println("Checking add furniture to warehouse");
-        warehouse.add(redDesk);
-        warehouse.add(comfortBed);
-        warehouse.add(kidsBed);
-        warehouse.add(vintageBed);
-        System.out.println(".............");
+        warehouse.addMaterial(Furniture.Material.WOOD, 100);
+        warehouse.addMaterial(Furniture.Material.MDF, 100);
+        warehouse.addMaterial(Furniture.Material.VENEER, 100);
+        warehouse.addMaterial(Furniture.Material.STAINLESS_STEEL, 100);
+        warehouse.addMaterial(Furniture.Material.PLASTIC, 100);
+        warehouse.addMaterial(Furniture.Material.FABRIC, 100);
+        warehouse.addMaterial(Furniture.Material.SCREW, 10000);
+        warehouse.addMaterial(Furniture.Material.GLUE, 100);
+
+        System.out.println("Materials in warehouse");
+        System.out.println(warehouse.getMaterials());
+        System.out.println("\n");
+        System.out.println("Materials amount by type");
+        System.out.println(warehouse.getMaterialByType(Furniture.Material.FABRIC));
+        System.out.println("\n");
+
+        // Adding furniture to warehouse
+        warehouse.add(redDesk, 3);
+        warehouse.add(comfortBed, 5);
+        warehouse.add(kidsBed, 10);
+        warehouse.add(vintageBed, 1);
+        warehouse.add(officeDesk, 25);
+        warehouse.add(homeDesk, 2);
+        warehouse.add(lazySofa, 2);
+        warehouse.add(officeSofa, 5);
+        warehouse.add(homeSofa, 1);
+        warehouse.add(outdoorSofa, 9);
+        warehouse.add(outdoorChair, 25);
+        warehouse.add(officeChair, 15);
+        catalog.add(kitchenChair);
+        warehouse.add(bossChair, 4);
+        warehouse.add(bedroomWardrobe, 1);
+        warehouse.add(officeWardrobe, 2);
+
         System.out.println("Get furniture by type");
         System.out.println(warehouse.getFurnitureByType(Furniture.Category.BED));
-        System.out.println(".............");
+
+        System.out.println("\n");
+        System.out.println("Furniture by amount and category in warehouse");
         System.out.println(warehouse.getFurnitureAmount());
-        System.out.println("-------------");
-        System.out.println("Can produce?");
-        System.out.println(redDesk.getMaterialsAmount());
-        System.out.println(warehouse.canManufacture(redDesk, 4));
-        System.out.println("---------------");
-        System.out.println(warehouse.getMaterials());
-        System.out.println(warehouse.getMaterialByType(Furniture.Material.MDF));
+        System.out.println("\n");
+
+        System.out.println("What materials and how much to build 1 Outdoor sofa");
+        System.out.println(outdoorSofa.getMaterialsAmount());
+        System.out.println("\n");
+
+        System.out.println("Can we build 4 Outdoor sofas?");
+        System.out.println(warehouse.canManufacture(outdoorSofa, 4));
+        System.out.println("\n");
+
+        System.out.println("Can we build 30 Outdoor sofas?");
+        System.out.println(warehouse.canManufacture(outdoorSofa, 30));
+        System.out.println("\n");
+
+        System.out.println("How many Comfort beds we can make with materials in warehouse?");
+        System.out.println(warehouse.getPossibleManufacturingAmount(comfortBed));
+
         // Map<String, String> map = Map.of("key1","value1", "key2", "value2");
         // System.out.println(map);
-        System.out.println(redDesk.getMaterialsAmount());
-        System.out.println(warehouse.getPossibleManufacturingAmount(redDesk));
-
     }
 }

@@ -33,7 +33,7 @@ public abstract class Furniture {
     }
 
     public enum Material {
-        VENEER, MDF, WOOD ,STAINLESS_STEEL, PLASTIC, FABRIC, SCREW, GLUE
+        VENEER, MDF, WOOD ,STAINLESS_STEEL, PLASTIC, FABRIC, SCREW, GLUE, GLASS
     }
 
     @Override

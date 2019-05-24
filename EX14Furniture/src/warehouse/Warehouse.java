@@ -19,26 +19,28 @@ public class Warehouse {
     }
 
     // Kõik olemasolev materjal
-    Map<Furniture.Material, Double> materials = new HashMap<>();
+    private Map<Furniture.Material, Double> materials = new HashMap<>();
 
     // Kui mitu voodit, lauda jne on laos.
-    Map<String, Integer> furnitureAmount = new HashMap<>();
+    private Map<String, Integer> furnitureAmount = new HashMap<>();
 
     // Mudeli nime järgi tooted.
-    Map<String, Integer> furnitureByModelTotal = new HashMap<>();
+    private Map<String, Integer> furnitureByModelTotal = new HashMap<>();
 
     // Kõik mööbliesemed
-    List<Furniture> furnitures = new ArrayList<>();
+    private List<Furniture> furnitures = new ArrayList<>();
 
     public Map<String, Integer> getFurnitureByModel() {
         return furnitureByModelTotal;
     }
 
-    // Lisada ka Mapi
-    public void add(Furniture furniture) {
-        furnitureAmount.put(furniture.getClass().getSimpleName(), furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + 1);
-        furnitureByModelTotal.put(furniture.getModelName(), furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + 1);
-        furnitures.add(furniture);
+    public void add(Furniture furniture, Integer amount) {
+        furnitureAmount.put(furniture.getClass().getSimpleName(), furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + amount);
+        furnitureByModelTotal.put(furniture.getModelName(), furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + amount);
+
+        for (int i = 0; i < amount; i++) {
+            furnitures.add(furniture);
+        }
     }
 
     public void addMaterial(Furniture.Material material, double amount) {

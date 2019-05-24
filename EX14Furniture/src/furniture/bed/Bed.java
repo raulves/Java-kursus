@@ -51,7 +51,7 @@ public class Bed extends Furniture {
             } else if (Arrays.asList(Material.STAINLESS_STEEL, Material.PLASTIC).contains(material)) {
                 materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + 4.0);
             } else if (material.equals(Material.SCREW)) {
-                double screwsAmount = width * length * 100;
+                double screwsAmount = width * length * 10;
                 materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(screwsAmount));
             }
         }
