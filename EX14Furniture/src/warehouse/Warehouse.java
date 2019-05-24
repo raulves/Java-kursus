@@ -134,8 +134,8 @@ public class Warehouse {
     // Kui mitu kindla tüübiga mööblieset oleks meil võimalik valmistada hetkel laos olevast materjalist
     public String getPossibleManufacturingAmount(Furniture furniture) {
         List<Integer> minAmount = new ArrayList<>();
-        for (Furniture.Material material : furniture.getMaterialsAmount().keySet()) {
-            double materialNeededForOneFurniture = furniture.getMaterialsAmount().get(material);
+        for (Furniture.Material material : furniture.calculateMaterialsAmount().keySet()) {
+            double materialNeededForOneFurniture = furniture.calculateMaterialsAmount().get(material);
             double materialAmountInWarehouse = materials.getOrDefault(material, 0.0);
             double amount = materialAmountInWarehouse / materialNeededForOneFurniture;
             int amountInt = (int) amount;
@@ -158,8 +158,8 @@ public class Warehouse {
     public String canManufacture(Furniture furniture, int amount) {
         Map<Furniture.Material, Double> materialsNeededToOrder = new HashMap<>();
 
-        for (Furniture.Material material : furniture.getMaterialsAmount().keySet()) {
-            double materialNeededForOneFurniture = furniture.getMaterialsAmount().get(material);
+        for (Furniture.Material material : furniture.calculateMaterialsAmount().keySet()) {
+            double materialNeededForOneFurniture = furniture.calculateMaterialsAmount().get(material);
             double totalMaterialNeededToFillTheOrder = materialNeededForOneFurniture * amount;
             // Material in warehouse.
             double materialAmountInWarehouse = materials.getOrDefault(material, 0.0);

@@ -160,7 +160,7 @@ public class Main {
         System.out.println("\n");
 
         System.out.println("What materials and how much to build 1 Outdoor sofa");
-        System.out.println(outdoorSofa.getMaterialsAmount());
+        System.out.println(outdoorSofa.calculateMaterialsAmount());
         System.out.println("\n");
 
         System.out.println("Can we build 4 Outdoor sofas?");
