@@ -5,7 +5,6 @@ import furniture.chair.Chair;
 import furniture.desk.Desk;
 import furniture.sofa.Sofa;
 import furniture.wardrobe.Wardrobe;
-
 import java.util.List;
 
 public class FurnitureFactory {

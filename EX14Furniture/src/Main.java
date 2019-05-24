@@ -139,8 +139,20 @@ public class Main {
         warehouse.add(bedroomWardrobe, 1);
         warehouse.add(officeWardrobe, 2);
 
+        System.out.println("All furniture in warehouse");
+        System.out.println(warehouse.getFurnitures());
+        System.out.println("\n");
+
         System.out.println("Get furniture by type");
         System.out.println(warehouse.getFurnitureByType(Furniture.Category.BED));
+        System.out.println("\n");
+
+        System.out.println("Get furniture by model name");
+        System.out.println(warehouse.getFurnitureByModelName("Outdoor sofa"));
+        System.out.println("\n");
+
+        System.out.println("Get all furniture counted by model name");
+        System.out.println(warehouse.getFurnitureByModel());
 
         System.out.println("\n");
         System.out.println("Furniture by amount and category in warehouse");
@@ -161,6 +173,9 @@ public class Main {
 
         System.out.println("How many Comfort beds we can make with materials in warehouse?");
         System.out.println(warehouse.getPossibleManufacturingAmount(comfortBed));
+        System.out.println("\n");
+
+        warehouse.removeFurniture("Office desk", 150);
 
         // Map<String, String> map = Map.of("key1","value1", "key2", "value2");
         // System.out.println(map);

@@ -2,7 +2,6 @@ package furniture.wardrobe;
 
 import com.google.gson.annotations.SerializedName;
 import furniture.Furniture;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

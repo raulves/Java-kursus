@@ -2,6 +2,7 @@ package warehouse;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import exception.NotEnoughFurnitureInWarehouseToRemoveException;
 import furniture.Furniture;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,30 +22,57 @@ public class Warehouse {
     // Kõik olemasolev materjal
     private Map<Furniture.Material, Double> materials = new HashMap<>();
 
-    // Kui mitu voodit, lauda jne on laos.
-    private Map<String, Integer> furnitureAmount = new HashMap<>();
-
-    // Mudeli nime järgi tooted.
-    private Map<String, Integer> furnitureByModelTotal = new HashMap<>();
-
     // Kõik mööbliesemed
     private List<Furniture> furnitures = new ArrayList<>();
 
-    public Map<String, Integer> getFurnitureByModel() {
-        return furnitureByModelTotal;
-    }
-
     public void add(Furniture furniture, Integer amount) {
-        furnitureAmount.put(furniture.getClass().getSimpleName(), furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + amount);
-        furnitureByModelTotal.put(furniture.getModelName(), furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + amount);
 
         for (int i = 0; i < amount; i++) {
             furnitures.add(furniture);
         }
     }
 
+    public void removeFurniture(Furniture furniture) {
+        furnitures.remove(furniture);
+    }
+
+    public void removeFurniture(String modelName, Integer amount) {
+        int count = (int) furnitures.stream()
+                .filter(x -> x.getModelName().equals(modelName))
+                .count();
+        if (count >= amount) {
+            List<Furniture> collect = furnitures.stream()
+                    .filter(x -> x.getModelName().equals(modelName))
+                    .limit(amount)
+                    .collect(Collectors.toList());
+            for (Furniture furniture : collect) {
+                furnitures.remove(furniture);
+            }
+        } else {
+            throw new NotEnoughFurnitureInWarehouseToRemoveException();
+        }
+    }
+
+
     public void addMaterial(Furniture.Material material, double amount) {
         materials.put(material, materials.getOrDefault(material, 0.0) + amount);
+    }
+
+    public void removeMaterial(Furniture.Material material, double amount) {
+        if (materials.keySet().contains(material)) {
+            if (materials.get(material) >= amount) {
+                materials.put(material, materials.get(material) - amount);
+            }
+        }
+    }
+
+    public String getFurnitureByModel() {
+        Map<String, Integer> furnitureByModelTotal = new HashMap<>();
+        for (Furniture furniture : furnitures) {
+            furnitureByModelTotal.put(furniture.getModelName(), furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + 1);
+        }
+        Gson gson = new Gson();
+        return gson.toJson(furnitureByModelTotal);
     }
 
     // Kindla kategooriaga mööbliesemed
@@ -69,6 +97,9 @@ public class Warehouse {
         List<Furniture> sortedByType = furnitures.stream()
                 .filter(furniture -> furniture.getModelName().equals(modelName))
                 .collect(Collectors.toList());
+        if (sortedByType.isEmpty()) {
+            return "No such products in warehouse";
+        }
         return gson.toJson(sortedByType);
     }
 
@@ -83,6 +114,10 @@ public class Warehouse {
     }
 
     public String getFurnitureAmount() {
+        Map<String, Integer> furnitureAmount = new HashMap<>();
+        for (Furniture furniture : furnitures) {
+            furnitureAmount.put(furniture.getClass().getSimpleName(), furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + 1);
+        }
         Gson gson = new Gson();
         return gson.toJson(furnitureAmount);
     }
