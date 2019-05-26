@@ -69,7 +69,8 @@ public class Warehouse {
     public String getFurnitureByModel() {
         Map<String, Integer> furnitureByModelTotal = new HashMap<>();
         for (Furniture furniture : furnitures) {
-            furnitureByModelTotal.put(furniture.getModelName(), furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + 1);
+            furnitureByModelTotal.put(furniture.getModelName(),
+                    furnitureByModelTotal.getOrDefault(furniture.getModelName(), 0) + 1);
         }
         Gson gson = new Gson();
         return gson.toJson(furnitureByModelTotal);
@@ -116,7 +117,8 @@ public class Warehouse {
     public String getFurnitureAmount() {
         Map<String, Integer> furnitureAmount = new HashMap<>();
         for (Furniture furniture : furnitures) {
-            furnitureAmount.put(furniture.getClass().getSimpleName(), furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + 1);
+            furnitureAmount.put(furniture.getClass().getSimpleName(),
+                    furnitureAmount.getOrDefault(furniture.getClass().getSimpleName(), 0) + 1);
         }
         Gson gson = new Gson();
         return gson.toJson(furnitureAmount);
@@ -167,7 +169,8 @@ public class Warehouse {
                 continue;
             } else {
                 double materialAmountToBeOrdered = Math.abs(materialAmountInWarehouse - totalMaterialNeededToFillTheOrder);
-                materialsNeededToOrder.put(material, materialsNeededToOrder.getOrDefault(material, 0.0) + materialAmountToBeOrdered);
+                materialsNeededToOrder.put(material, materialsNeededToOrder.getOrDefault(material, 0.0)
+                        + materialAmountToBeOrdered);
             }
         }
         if (materialsNeededToOrder.size() > 0) {

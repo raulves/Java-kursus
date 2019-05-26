@@ -8,6 +8,9 @@ import java.util.Map;
 
 public class Chair extends Furniture {
 
+    private final double SCREWS_AMOUNT = 16;
+    private final double CHAIR_LEGS = 4;
+
     public Chair(String modelName, Furniture.Category category, List<Furniture.Material> materials,
                  double height, double width, double length, double price) {
         super(modelName, category, materials, height, width, length, price);
@@ -20,12 +23,13 @@ public class Chair extends Furniture {
         for (Material material : super.getMaterials()) {
             if (Arrays.asList(Material.VENEER, Material.WOOD).contains(material)) {
                 double baseMaterialAmountM2 = super.getWidth() * super.getLength();
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(baseMaterialAmountM2));
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0)
+                        + roundDouble(baseMaterialAmountM2));
             } else if (Arrays.asList(Material.STAINLESS_STEEL, Material.PLASTIC).contains(material)) {
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + 4.0);
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + CHAIR_LEGS);
             } else if (material.equals(Material.SCREW)) {
-                double screwsAmount = 16;
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(screwsAmount));
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0)
+                        + roundDouble(SCREWS_AMOUNT));
             }
         }
         return materialsTotal;

@@ -175,9 +175,13 @@ public class Main {
         System.out.println(warehouse.getPossibleManufacturingAmount(comfortBed));
         System.out.println("\n");
 
+        System.out.println(((Wardrobe)bedroomWardrobe).getDrawers());
+
         warehouse.removeFurniture("Office desk", 150);
 
         // Map<String, String> map = Map.of("key1","value1", "key2", "value2");
         // System.out.println(map);
+
+
     }
 }

@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class Wardrobe extends Furniture {
 
+    private final double DRAWERS_RATE = 0.5;
+    private final int SCREWS_RATE = 50;
+    private final double GLUE_RATE = 0.1;
+
     private int drawers;
 
     public Wardrobe(String modelName, Category category, List<Material> materials, double height,
@@ -23,14 +27,18 @@ public class Wardrobe extends Furniture {
 
         for (Material material : super.getMaterials()) {
             if (Arrays.asList(Material.VENEER, Material.MDF, Material.WOOD).contains(material)) {
-                double baseMaterialAmountM2 = (super.getWidth() * super.getLength() + super.getHeight() * super.getLength()) + getDrawers() * 0.5;
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(baseMaterialAmountM2));
+                double baseMaterialAmountM2 = (super.getWidth() * super.getLength()
+                        + super.getHeight() * super.getLength()) + getDrawers() * DRAWERS_RATE;
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0)
+                        + roundDouble(baseMaterialAmountM2));
             } else if (material.equals(Material.SCREW)) {
-                double screwsAmount = super.getWidth() * super.getHeight() * super.getLength() * 50;
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(screwsAmount));
+                double screwsAmount = super.getWidth() * super.getHeight() * super.getLength() * SCREWS_RATE;
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0)
+                        + roundDouble(screwsAmount));
             } else if (material.equals(Material.GLUE)) {
-                double glueAmount = super.getHeight() * super.getWidth() * super.getLength() * 0.1;
-                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0) + roundDouble(glueAmount));
+                double glueAmount = super.getHeight() * super.getWidth() * super.getLength() * GLUE_RATE;
+                materialsTotal.put(material, materialsTotal.getOrDefault(material, 0.0)
+                        + roundDouble(glueAmount));
             }
         }
         return materialsTotal;

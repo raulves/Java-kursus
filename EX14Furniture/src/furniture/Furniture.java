@@ -19,7 +19,8 @@ public abstract class Furniture {
     private double price;
 
 
-    public Furniture(String modelName, Category category, List<Material> materials, double height, double width, double length, double price) {
+    public Furniture(String modelName, Category category, List<Material> materials, double height, double width,
+                     double length, double price) {
         this.modelName = modelName;
         this.category = category;
         this.materials = materials;
