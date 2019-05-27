@@ -7,8 +7,6 @@ import component.Motherboard;
 import component.PowerSupplyUnit;
 import component.Processor;
 
-import java.math.BigDecimal;
-
 public class Computer {
 
     private Processor processor;
@@ -17,6 +15,7 @@ public class Computer {
     private HardDrive hardDrive;
     private Memory memory;
     private PowerSupplyUnit powerSupplyUnit;
+    private Integer performancePointsTotal;
 
     public Computer(Processor processor, Motherboard motherboard, GraphicsCard graphicsCard, HardDrive hardDrive,
                     Memory memory, PowerSupplyUnit powerSupplyUnit) {
@@ -26,13 +25,23 @@ public class Computer {
         this.hardDrive = hardDrive;
         this.memory = memory;
         this.powerSupplyUnit = powerSupplyUnit;
+        this.performancePointsTotal = getComputerPerformancePoints();
     }
 
-    public BigDecimal getComputerPerformancePoints() {
-        return processor.getPerformancePoints().add(motherboard.getPerformancePoints())
-                .add(graphicsCard.getPerformancePoints()).add(hardDrive.getPerformancePoints())
-                .add(memory.getPerformancePoints());
+    public Integer getPerformancePointsTotal() {
+        return performancePointsTotal;
     }
+
+    public void setPerformancePointsTotal(Integer points) {
+        this.performancePointsTotal = points;
+    }
+
+    private Integer getComputerPerformancePoints() {
+        return processor.getPerformancePoints() + motherboard.getPerformancePoints()
+                + graphicsCard.getPerformancePoints() + hardDrive.getPerformancePoints()
+                + memory.getPerformancePoints();
+    }
+
 
     public Integer getCost() {
         return processor.getPrice() + motherboard.getPrice() + graphicsCard.getPrice() + hardDrive.getPrice()
@@ -72,6 +81,7 @@ public class Computer {
                 ", hardDrive=" + hardDrive +
                 ", memory=" + memory +
                 ", powerSupplyUnit=" + powerSupplyUnit +
+                ", performancePointsTotal=" + performancePointsTotal +
                 '}';
     }
 }

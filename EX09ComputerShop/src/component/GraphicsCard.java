@@ -1,15 +1,13 @@
 package component;
 
-import java.math.BigDecimal;
-
 public class GraphicsCard extends ComputerComponent {
 
     private String name;
     private Integer energy;
-    private BigDecimal performancePoints;
+    private Integer performancePoints;
     private Integer price;
 
-    public GraphicsCard(String name, Integer energy, BigDecimal performancePoints, Integer price) {
+    public GraphicsCard(String name, Integer energy, Integer performancePoints, Integer price) {
         this.name = name;
         this.energy = energy;
         this.performancePoints = performancePoints;
@@ -24,7 +22,7 @@ public class GraphicsCard extends ComputerComponent {
         return energy;
     }
 
-    public BigDecimal getPerformancePoints() {
+    public Integer getPerformancePoints() {
         return performancePoints;
     }
 
@@ -32,8 +30,8 @@ public class GraphicsCard extends ComputerComponent {
         return price;
     }
 
-    public void setPerformancePoints(BigDecimal performancePoints) {
-        this.performancePoints = performancePoints;
+    public void setPerformancePoints(Integer points) {
+        this.performancePoints = points;
     }
 
     @Override

@@ -36,14 +36,10 @@ public class Order {
         if (budget != null) {
             return getSuitableComputers().stream()
                     .filter(x -> x.getCost() <= budget)
-                    .max(Comparator.comparingInt(x -> x.getComputerPerformancePoints()
-                            .intValue()));
+                    .max(Comparator.comparingInt(Computer::getPerformancePointsTotal));
 
         }
-        BigDecimal max = getSuitableComputers().stream().max(Comparator.comparingInt(x -> x.getComputerPerformancePoints().intValue())).get().getComputerPerformancePoints();
-
         return getSuitableComputers().stream()
-                .max(Comparator.comparingInt(x -> x.getComputerPerformancePoints()
-                        .intValue()));
+                .max(Comparator.comparingInt(Computer::getPerformancePointsTotal));
     }
 }

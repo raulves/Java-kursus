@@ -7,7 +7,7 @@ public class ComputerComponent {
     }
 
     public enum HardDriveSocket {
-        HDD ,SSD, M2, MSATA, SATA_DOM, PCI_EXPRESS, PATA
+        HDD ,SSD, M2, SATA, PCI_EXPRESS, PATA
     }
 
     public enum MemorySocket {

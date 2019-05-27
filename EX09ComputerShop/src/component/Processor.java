@@ -1,16 +1,14 @@
 package component;
 
-import java.math.BigDecimal;
-
 public class Processor extends ComputerComponent {
 
     private String name;
     private ProcessorSocket socket;
     private Integer energy;
-    private BigDecimal performancePoints;
+    private Integer performancePoints;
     private Integer price;
 
-    public Processor(String name, ProcessorSocket socket, Integer energy, BigDecimal performancePoints, Integer price) {
+    public Processor(String name, ProcessorSocket socket, Integer energy, Integer performancePoints, Integer price) {
         this.name = name;
         this.socket = socket;
         this.energy = energy;
@@ -30,7 +28,7 @@ public class Processor extends ComputerComponent {
         return energy;
     }
 
-    public BigDecimal getPerformancePoints() {
+    public Integer getPerformancePoints() {
         return performancePoints;
     }
 
@@ -38,8 +36,8 @@ public class Processor extends ComputerComponent {
         return price;
     }
 
-    public void setPerformancePoints(BigDecimal performancePoints) {
-        this.performancePoints = performancePoints;
+    public void setPerformancePoints(Integer points) {
+        this.performancePoints = points;
     }
 
     @Override

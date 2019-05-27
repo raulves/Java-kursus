@@ -1,19 +1,17 @@
 package component;
 
-import java.math.BigDecimal;
-
 public class Motherboard extends ComputerComponent {
 
     private String name;
     private MemorySocket memorySocket;
     private ProcessorSocket processorSocket;
     private HardDriveSocket hardDriveSocket;
-    private BigDecimal performancePoints;
+    private Integer performancePoints;
     private Integer socket16x;
     private Integer price;
 
     public Motherboard(String name, MemorySocket memorySocket, ProcessorSocket processorSocket,
-                       HardDriveSocket hardDriveSocket, BigDecimal performancePoints, Integer socket16x, Integer price) {
+                       HardDriveSocket hardDriveSocket, Integer performancePoints, Integer socket16x, Integer price) {
         this.name = name;
         this.memorySocket = memorySocket;
         this.processorSocket = processorSocket;
@@ -39,7 +37,7 @@ public class Motherboard extends ComputerComponent {
         return hardDriveSocket;
     }
 
-    public BigDecimal getPerformancePoints() {
+    public Integer getPerformancePoints() {
         return performancePoints;
     }
 

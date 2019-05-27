@@ -1,13 +1,11 @@
 package computer;
 
 import catalog.Catalog;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Workstation implements UseCase {
 
-    private final BigDecimal USECASE_COEFFICIENT = new BigDecimal("1.3");
+    private final Integer USECASE_COEFFICIENT = 2;
 
     @Override
     public List<Computer> getComputers(Catalog catalog) {
@@ -15,8 +13,8 @@ public class Workstation implements UseCase {
 
         // Protsessorile lisan koefitsiendi
         for (Computer computer : computers) {
-            BigDecimal newPoints = computer.getProcessor().getPerformancePoints().multiply(USECASE_COEFFICIENT);
-            computer.getProcessor().setPerformancePoints(newPoints);
+            Integer newPointsForProcessor = computer.getProcessor().getPerformancePoints() / 2 * USECASE_COEFFICIENT;
+            computer.setPerformancePointsTotal(computer.getPerformancePointsTotal() + newPointsForProcessor);
         }
         return catalog.generateComputers();
     }

@@ -67,12 +67,15 @@ public class Catalog {
                                 ram = null;
                             }
                             for (PowerSupplyUnit unit : powerSupplyUnits) {
-                                int consumption = cpu.getEnergy() + gpu.getEnergy() + hd.getEnergy() + ram.getEnergy();
-                                if (unit.getEnergy() >= consumption) {
-                                    psu = unit;
-                                } else {
-                                    psu = null;
+                                if (cpu != null && gpu != null && hd != null && ram != null) {
+                                    int consumption = cpu.getEnergy() + gpu.getEnergy() + hd.getEnergy() + ram.getEnergy();
+                                    if (unit.getEnergy() >= consumption) {
+                                        psu = unit;
+                                    } else {
+                                        psu = null;
+                                    }
                                 }
+
                                 if (cpu != null && gpu != null && hd != null && ram != null && psu != null) {
                                     computers.add(new ComputerBuilder()
                                     .setMotherboard(mb)
