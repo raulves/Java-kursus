@@ -1,6 +1,11 @@
 package computer;
 
-import component.*;
+import component.GraphicsCard;
+import component.HardDrive;
+import component.Memory;
+import component.Motherboard;
+import component.PowerSupplyUnit;
+import component.Processor;
 
 public class ComputerBuilder {
     private Processor processor;

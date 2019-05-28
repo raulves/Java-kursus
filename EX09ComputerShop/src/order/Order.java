@@ -3,8 +3,6 @@ package order;
 import catalog.Catalog;
 import computer.Computer;
 import computer.UseCase;
-
-import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +25,7 @@ public class Order {
     }
 
     // Saan arvutid läbi interface
-    public List<Computer> getSuitableComputers() {
+    private List<Computer> getSuitableComputers() {
         return useCase.getComputers(catalog);
     }
 
@@ -36,10 +34,12 @@ public class Order {
         if (budget != null) {
             return getSuitableComputers().stream()
                     .filter(x -> x.getCost() <= budget)
-                    .max(Comparator.comparingInt(Computer::getPerformancePointsTotal));
+                    .max(Comparator.comparingInt(x -> x.getComputerPerformancePoints()
+                            .intValue()));
 
         }
         return getSuitableComputers().stream()
-                .max(Comparator.comparingInt(Computer::getPerformancePointsTotal));
+                .max(Comparator.comparingInt(x -> x.getComputerPerformancePoints()
+                        .intValue()));
     }
 }

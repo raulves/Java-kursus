@@ -1,14 +1,16 @@
 package component;
 
+import java.math.BigDecimal;
+
 public class Memory extends ComputerComponent {
 
     private String name;
     private MemorySocket socket;
     private Integer energy;
-    private Integer performancePoints;
+    private BigDecimal performancePoints;
     private Integer price;
 
-    public Memory(String name, MemorySocket socket, Integer energy, Integer performancePoints, Integer price) {
+    public Memory(String name, MemorySocket socket, Integer energy, BigDecimal performancePoints, Integer price) {
         this.name = name;
         this.socket = socket;
         this.energy = energy;
@@ -28,7 +30,7 @@ public class Memory extends ComputerComponent {
         return energy;
     }
 
-    public Integer getPerformancePoints() {
+    public BigDecimal getPerformancePoints() {
         return performancePoints;
     }
 

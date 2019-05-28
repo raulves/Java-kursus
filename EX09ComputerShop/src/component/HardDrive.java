@@ -1,14 +1,16 @@
 package component;
 
+import java.math.BigDecimal;
+
 public class HardDrive extends ComputerComponent {
 
     private String name;
     private HardDriveSocket socket;
     private Integer energy;
-    private Integer performancePoints;
+    private BigDecimal performancePoints;
     private Integer price;
 
-    public HardDrive(String name, HardDriveSocket socket, Integer energy, Integer performancePoints, Integer price) {
+    public HardDrive(String name, HardDriveSocket socket, Integer energy, BigDecimal performancePoints, Integer price) {
         this.name = name;
         this.socket = socket;
         this.energy = energy;
@@ -28,7 +30,7 @@ public class HardDrive extends ComputerComponent {
         return energy;
     }
 
-    public Integer getPerformancePoints() {
+    public BigDecimal getPerformancePoints() {
         return performancePoints;
     }
 
