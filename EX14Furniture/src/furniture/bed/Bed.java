@@ -9,8 +9,8 @@ import java.util.Map;
 public class Bed extends Furniture {
 
     private boolean storageSpace;
-    private final double BED_LEGS = 4;
-    private final int SCREWS_AMOUNT_RATE = 10;
+    private static final double BED_LEGS = 4;
+    private static final int SCREWS_AMOUNT_RATE = 10;
 
 
     public Bed(String modelName, Category category, List<Material> materials, double height, double width,

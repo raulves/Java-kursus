@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Sofa extends Furniture {
 
-    private final double GLUE_RATE = 0.1;
-    private final int SCREWS_RATE = 100;
-    private final int FABRIC_AMOUNT_RATE = 2;
-    private final double SOFA_LEGS = 4;
+    private static final double GLUE_RATE = 0.1;
+    private static final int SCREWS_RATE = 100;
+    private static final int FABRIC_AMOUNT_RATE = 2;
+    private static final double SOFA_LEGS = 4;
 
 
     public Sofa(String modelName, Category category, List<Material> materials, double height, double width,

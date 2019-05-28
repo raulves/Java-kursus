@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class Desk extends Furniture {
 
-    private final double DESK_LEGS = 4;
-    private final double SCREWS_AMOUNT = 16;
+    private static final double DESK_LEGS = 4;
+    private static final double SCREWS_AMOUNT = 16;
 
     public Desk(String modelName, Category category, List<Material> materials, double height, double width,
                 double length, double price) {

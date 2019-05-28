@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class Wardrobe extends Furniture {
 
-    private final double DRAWERS_RATE = 0.5;
-    private final int SCREWS_RATE = 50;
-    private final double GLUE_RATE = 0.1;
+    private static final double DRAWERS_RATE = 0.5;
+    private static final int SCREWS_RATE = 50;
+    private static final double GLUE_RATE = 0.1;
 
     private int drawers;
 
