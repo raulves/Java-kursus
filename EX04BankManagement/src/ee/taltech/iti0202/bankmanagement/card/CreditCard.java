@@ -7,7 +7,7 @@ import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
 import java.math.BigDecimal;
 
 public final class CreditCard extends BankCard {
-    private final int maxDebt = -5000;
+    private static final int maxDebt = -5000;
 
     CreditCard() {
     }

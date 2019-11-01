@@ -17,6 +17,7 @@ public class Exam {
      * centeredAverage([-10, -4, -2, -4, -2, 0]) → -3
      */
     public static int centeredAverage(List<Integer> nums) {
+
         List<Integer> numbers = new ArrayList<>();
         numbers.addAll(nums);
         int min = numbers.get(0);
@@ -40,6 +41,7 @@ public class Exam {
             sum += num;
         }
         return sum / numbers.size();
+
     }
 
 

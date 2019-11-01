@@ -15,6 +15,13 @@ public class GameController {
     private Player player;
     private Map<Label, Long> labelsStartTimes = new HashMap<>();
 
+    private final int MAX_X_FOR_GAME_AREA = 400;
+    private final int MIN_X_FOR_GAME_AREA = 50;
+    private final int MAX_Y_FOR_GAME_AREA = 300;
+    private final int MIN_Y_FOR_GAME_AREA = 50;
+    private final int REMOVE_POINTS = 50;
+    private final int ROTATE_TRANSITION_DURATION = 200;
+
     @FXML
     private Label points;
 
@@ -34,7 +41,7 @@ public class GameController {
             for (Label label1 : labelToShow) {
                 if (keyEvent.getText().equals(label1.getText())) {
 
-                    RotateTransition rt = new RotateTransition(Duration.millis(200), label1);
+                    RotateTransition rt = new RotateTransition(Duration.millis(ROTATE_TRANSITION_DURATION), label1);
                     rt.setByAngle(360);
                     rt.setCycleCount(1);
                     rt.play();
@@ -95,8 +102,8 @@ public class GameController {
         Map<String, Integer> coordinates = new HashMap<>();
 
         Random randomForCoordinates = new Random();
-        int randomX = randomForCoordinates.nextInt(400) + 50;
-        int randomY = randomForCoordinates.nextInt(300) + 50;
+        int randomX = randomForCoordinates.nextInt(MAX_X_FOR_GAME_AREA) + MIN_X_FOR_GAME_AREA;
+        int randomY = randomForCoordinates.nextInt(MAX_Y_FOR_GAME_AREA) + MIN_Y_FOR_GAME_AREA;
 
         coordinates.put("x", randomX);
         coordinates.put("y", randomY);
@@ -115,7 +122,7 @@ public class GameController {
     }
 
     private void removePoints() {
-        player.setPoints(player.getPoints() - 50);
+        player.setPoints(player.getPoints() - REMOVE_POINTS);
         points.setText(Integer.toString(player.getPoints()));
     }
 }

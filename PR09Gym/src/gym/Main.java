@@ -1,12 +1,12 @@
 package gym;
 
-// import gym.clients.ClientBuilder;
-// import gym.trainings.Trainings;
+import gym.clients.ClientBuilder;
+import gym.trainings.Trainings;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*
+
         Gym gym = new Gym();
         ClientBuilder client1 = new ClientBuilder("Raul")
                 .setAge(28)
@@ -21,8 +21,8 @@ public class Main {
                 .setTrainingPartner(client1);
 
 
-        var a = Trainings.makeClass(Trainings.TrainingType.CROSSTRAINING, Trainings.DifficultyLevel.MEDIUM, 25);
-        var b = Trainings.makeClass(Trainings.TrainingType.SWIMMING, Trainings.DifficultyLevel.LOW, 10);
+        var a = Trainings.makeCrossTrainingClass(Trainings.TrainingType.CROSSTRAINING, Trainings.DifficultyLevel.MEDIUM, 25);
+        var b = Trainings.makeSwimmingClass(Trainings.TrainingType.SWIMMING, Trainings.DifficultyLevel.LOW, 10);
         System.out.println(Trainings.getTotalTrainingsInGym());
 
         gym.addTraining(a);
@@ -34,6 +34,5 @@ public class Main {
 
         System.out.println(gym.getClients());
         System.out.println(gym.getTrainings());
-        */
     }
 }

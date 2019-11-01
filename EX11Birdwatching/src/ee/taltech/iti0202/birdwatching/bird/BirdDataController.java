@@ -19,9 +19,7 @@ public class BirdDataController {
         List<String> lines;
         try {
 
-            // Path path = Paths.get(filename);
-            // System.out.println(path);
-            // System.out.println(Files.lines(path));
+            // Siin tuleks ka Streamiga teha
             lines = Files.readAllLines(Paths.get(filename));
             for (String line : lines) {
                 String[] splittedLine = line.split(",");
@@ -31,7 +29,8 @@ public class BirdDataController {
                         .setWeight(Double.parseDouble(splittedLine[1]))
                         .setWingspan(Double.parseDouble(splittedLine[2]))
                         .setSex(Bird.Sex.valueOf(splittedLine[3].toUpperCase()))
-                        .setAge(Bird.Age.valueOf(splittedLine[4].toUpperCase())).createBird());
+                        .setAge(Bird.Age.valueOf(splittedLine[4].toUpperCase()))
+                        .createBird());
             }
 
         } catch (IOException e) {

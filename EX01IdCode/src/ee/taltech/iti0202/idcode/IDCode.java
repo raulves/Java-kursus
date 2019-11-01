@@ -11,22 +11,15 @@ public class IDCode {
 
     public static boolean isIDCodeCorrect(String idCode) {
         final int ID_LENGTH = 11;
-        if (idCode.length() == ID_LENGTH) {
-            if (idCode.matches("[0-9]+")) {
-                if (isGenderNumberCorrect(idCode)) {
-                    if (isYearNumberCorrect(idCode)) {
-                        if (isMonthNumberCorrect(idCode)) {
-                            if (isDayNumberCorrect(idCode)) {
-                                if (isQueueNumberCorrect(idCode)) {
-                                    return isControlNumberCorrect(idCode);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return idCode.length() == ID_LENGTH
+                && idCode.matches("[0-9]+")
+                && isGenderNumberCorrect(idCode)
+                && isYearNumberCorrect(idCode)
+                && isMonthNumberCorrect(idCode)
+                && isDayNumberCorrect(idCode)
+                && isQueueNumberCorrect(idCode)
+                && isControlNumberCorrect(idCode);
+
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {

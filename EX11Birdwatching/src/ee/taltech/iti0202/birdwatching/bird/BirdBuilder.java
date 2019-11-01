@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.birdwatching.bird;
 
 public class BirdBuilder {
+
     private String species;
     private double weight;
     private double wingspan;

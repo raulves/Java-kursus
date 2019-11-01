@@ -15,8 +15,7 @@ public class AgeFilter implements BirdFilter {
 
     @Override
     public List<Bird> getSuitableBirds(List<Bird> birds) {
-        return birds
-                .stream()
+        return birds.stream()
                 .filter(bird -> bird.getAge() == age)
                 .collect(Collectors.toList());
     }

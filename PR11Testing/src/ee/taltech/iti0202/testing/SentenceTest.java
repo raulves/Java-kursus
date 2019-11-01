@@ -14,7 +14,6 @@ public class SentenceTest {
         Sentence sentence = new Sentence();
 
         boolean result = sentence.addPunctuation(".");
-
         assertFalse(result);
     }
 

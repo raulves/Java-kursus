@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -34,9 +33,6 @@ public class TypeGame extends Application {
         stage.setTitle("TypeGame");
         stage.show();
         scene.getStylesheets().add(getClass().getResource("main.css").toString());
-
-
-
     }
 
     public void playScene() throws IOException {

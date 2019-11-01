@@ -25,14 +25,17 @@ public abstract class Trainings {
         totalTrainingsInGym += 1;
     }
 
-    public static Trainings makeClass(TrainingType type, DifficultyLevel xpLevel, Integer maxPeople) {
-        switch (type) {
-            case SPINNING: return new MakeSpinningClass(type, xpLevel, maxPeople);
-            case CROSSTRAINING: return new MakeCrossTrainingClass(type, xpLevel, maxPeople);
-            case SWIMMING: return new MakeSwimmingClass(type, xpLevel, maxPeople);
-            default: return null;
-        }
 
+    public static Trainings makeSpinningClass(TrainingType type, DifficultyLevel xpLevel, Integer maxPeople) {
+        return new MakeSpinningClass(type, xpLevel, maxPeople);
+    }
+
+    public static Trainings makeCrossTrainingClass(TrainingType type, DifficultyLevel xpLevel, Integer maxPeople) {
+        return new MakeCrossTrainingClass(type, xpLevel, maxPeople);
+    }
+
+    public static Trainings makeSwimmingClass(TrainingType type, DifficultyLevel xpLevel, Integer maxPeople) {
+        return new MakeSwimmingClass(type, xpLevel, maxPeople);
     }
 
     public TrainingType getType() {

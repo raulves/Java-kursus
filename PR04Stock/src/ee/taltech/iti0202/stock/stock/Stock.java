@@ -30,6 +30,7 @@ public class Stock {
     public Stock(String name, int maxCapacity) {
         this.name = name;
         this.maxCapacity = maxCapacity;
+        
     }
 
     /**
